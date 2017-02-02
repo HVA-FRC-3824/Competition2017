@@ -14,6 +14,9 @@ import org.usfirst.frc3824.Competition2017.Robot;
 import org.usfirst.frc3824.Competition2017.RobotMap;
 import org.usfirst.frc3824.Competition2017.commands.*;
 
+import edu.wpi.first.wpilibj.AnalogGyro;
+import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedController;
