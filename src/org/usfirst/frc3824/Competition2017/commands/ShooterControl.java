@@ -37,6 +37,9 @@ public class ShooterControl extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+		Robot.shooter.enablePIDs();
+		Robot.shooter.setShooterPID_ParametersFromSmartdashboard();
+		Robot.shooter.setShooterRPM_FromSmartdashboard();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -50,10 +53,12 @@ public class ShooterControl extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.shooter.disablePIDs();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }
