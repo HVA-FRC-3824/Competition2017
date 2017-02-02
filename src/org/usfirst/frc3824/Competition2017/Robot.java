@@ -14,6 +14,8 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.usfirst.frc3824.Competition2017.commands.*;
 import org.usfirst.frc3824.Competition2017.subsystems.*;
 
@@ -108,6 +110,8 @@ public class Robot extends IterativeRobot
 	public void teleopPeriodic()
 	{
 		Scheduler.getInstance().run();
+		
+		SmartDashboard.putNumber("Average Climber Current", Robot.climber.getClimberCurrent());
 	}
 
 	/**
