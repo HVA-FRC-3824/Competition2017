@@ -64,7 +64,8 @@ public class RobotMap
         chassisRobotDrive.setExpiration(0.1);
         chassisRobotDrive.setSensitivity(0.5);
         chassisRobotDrive.setMaxOutput(1.0);
-
+        chassisRobotDrive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
+        chassisRobotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
         chassisUltrasound = new AnalogInput(1);
         LiveWindow.addSensor("Chassis", "Ultrasound", chassisUltrasound);
         

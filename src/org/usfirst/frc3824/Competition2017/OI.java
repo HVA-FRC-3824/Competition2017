@@ -67,7 +67,7 @@ public class OI
 
         // SmartDashboard Buttons
         SmartDashboard.putData("Shooter Control", new ShooterControl());
-        SmartDashboard.putData("Chassis Drive Distance: FiveFeet", new ChassisDriveDistance(60.0, 0.75));
+        SmartDashboard.putData("Chassis Drive Distance: FiveFeet", new ChassisDriveDistance(60.0, .75));
         SmartDashboard.putData("Chassis Turn Angle: Right", new ChassisTurnAngle(90.0, 0.5));
         SmartDashboard.putData("Chassis Drive Range: TwelveInches", new ChassisDriveRange(12.0, 0.75));
 

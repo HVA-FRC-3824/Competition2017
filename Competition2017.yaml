@@ -40,9 +40,9 @@ Children:
         Name: Drive Right
       Properties:
         Left Motor Inverted: !!robotbuilder.data.properties.BooleanProperty {default: false,
-          name: Left Motor Inverted, validators: null, value: false}
+          name: Left Motor Inverted, validators: null, value: true}
         Right Motor Inverted: !!robotbuilder.data.properties.BooleanProperty {default: false,
-          name: Right Motor Inverted, validators: null, value: false}
+          name: Right Motor Inverted, validators: null, value: true}
         Sensitivity: !!robotbuilder.data.properties.DoubleProperty {default: 0.5,
           name: Sensitivity, validators: null, value: 0.5}
         Right Motor: !!robotbuilder.data.properties.ChildSelectionProperty
@@ -194,7 +194,7 @@ Children:
         validators: null
         value: []
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Default Command, type: Command, validators: null, value: Climber Control}
+        name: Default Command, type: Command, validators: null, value: None}
       Constants: !!robotbuilder.data.properties.ConstantsProperty
         default: []
         name: Constants
@@ -422,6 +422,7 @@ Children:
         validators: null
         value:
         - !!robotbuilder.data.properties.ParameterDescriptor {name: Distance, type: double}
+        - !!robotbuilder.data.properties.ParameterDescriptor {name: Power, type: double}
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Requires, type: Subsystem, validators: null, value: Chassis}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
@@ -433,6 +434,7 @@ Children:
           name: TwelveInches
           parameters:
           - {name: Distance, type: double, value: '12.0'}
+          - {name: Power, type: double, value: '0.75'}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Command
