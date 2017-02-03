@@ -56,6 +56,7 @@ public class Chassis extends Subsystem
 	// Parameter used for drive while running under PID Control. The values
 	// not set by the controller constructor can be set by a command directly
 	private double m_magnitude;
+	private boolean m_highGear;
 
 	// PID controller for driving based on Gyro
 	private PIDController angleGyroPID = new PIDController(
@@ -97,6 +98,19 @@ public class Chassis extends Subsystem
 		Robot.chassis.robotDrive.arcadeDrive(0, 0);
 	}
 	
+	
+	public void setGearHigh() {
+		m_highGear = true;
+	}
+	
+	public void setGearLow() {
+		m_highGear = false;
+	}
+	
+	public boolean isGearHigh() {
+		return m_highGear;
+	}
+	
 	/*
 	 * Method to control the drive through the specified joystick
 	 */
@@ -125,9 +139,14 @@ public class Chassis extends Subsystem
 	/**
 	 * Method to configure the gyro based turn/drive straight PID controller
 	 */
-	public void driveStraightPID(double power) {		
+	public void driveStraightPID(double power, boolean highGear) {		
 		// update the drive power
 		m_magnitude = power;
+		if (highGear) {
+			setGearHigh();
+		} else {
+			setGearLow();
+		}
 
 		startGyroPID(
 			Constants.DRIVETRAIN_DRIVE_STRAIGHT_P,
@@ -143,10 +162,15 @@ public class Chassis extends Subsystem
 	/**
 	 * Method to configure the gyro based turn/drive straight PID controller
 	 */
-	public void turnAnglePID(double desiredHeading, double power) {		
+	public void turnAnglePID(double desiredHeading, double power, boolean highGear) {		
 		// update the drive power
 		m_magnitude = power;
-
+		if (highGear) {
+			setGearHigh();
+		} else {
+			setGearLow();
+		}
+		
 		startGyroPID(
 			Constants.DRIVETRAIN_DRIVE_STRAIGHT_P,
 			Constants.DRIVETRAIN_DRIVE_STRAIGHT_I,
