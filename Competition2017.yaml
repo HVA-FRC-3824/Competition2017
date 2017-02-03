@@ -439,6 +439,146 @@ Children:
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Command
     Name: Chassis Drive Range
+  - Children: []
+    Properties:
+      Parameters: !!robotbuilder.data.properties.ParametersProperty
+        default: []
+        name: Parameters
+        validators: null
+        value:
+        - !!robotbuilder.data.properties.ParameterDescriptor {name: StartPosition,
+          type: String}
+      Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
+        default: &id014
+        - !!robotbuilder.data.properties.ParameterSet
+          name: Center
+          parameters:
+          - {name: StartPosition, type: String, value: Center}
+        - !!robotbuilder.data.properties.ParameterSet
+          name: Left
+          parameters:
+          - {name: StartPosition, type: String, value: Left}
+        - !!robotbuilder.data.properties.ParameterSet
+          name: Right
+          parameters:
+          - {name: StartPosition, type: String, value: Right}
+        name: Parameter presets
+        validators: null
+        value: *id014
+      Commands: !!robotbuilder.data.properties.ListProperty
+        default: &id015 []
+        name: Commands
+        validators: &id017 [List]
+        value: *id015
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
+    Base: Command Group
+    Name: Autonomous Baseline
+  - Children: []
+    Properties:
+      Parameters: !!robotbuilder.data.properties.ParametersProperty
+        default: []
+        name: Parameters
+        validators: null
+        value:
+        - !!robotbuilder.data.properties.ParameterDescriptor {name: GearLocation,
+          type: String}
+      Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
+        default: &id016
+        - !!robotbuilder.data.properties.ParameterSet
+          name: Center
+          parameters:
+          - {name: GearLocation, type: String, value: Center}
+        - !!robotbuilder.data.properties.ParameterSet
+          name: Left
+          parameters:
+          - {name: GearLocation, type: String, value: Left}
+        - !!robotbuilder.data.properties.ParameterSet
+          name: Right
+          parameters:
+          - {name: GearLocation, type: String, value: Right}
+        name: Parameter presets
+        validators: null
+        value: *id016
+      Commands: !!robotbuilder.data.properties.ListProperty
+        default: &id018 []
+        name: Commands
+        validators: *id017
+        value: *id018
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
+    Base: Command Group
+    Name: Autonomous Place Gear
+  - Children: []
+    Properties:
+      Parameters: !!robotbuilder.data.properties.ParametersProperty
+        default: []
+        name: Parameters
+        validators: null
+        value:
+        - !!robotbuilder.data.properties.ParameterDescriptor {name: StartPosition,
+          type: String}
+      Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
+        default: &id019
+        - !!robotbuilder.data.properties.ParameterSet
+          name: Center
+          parameters:
+          - {name: StartPosition, type: String, value: Center}
+        - !!robotbuilder.data.properties.ParameterSet
+          name: Left
+          parameters:
+          - {name: StartPosition, type: String, value: Left}
+        - !!robotbuilder.data.properties.ParameterSet
+          name: Right
+          parameters:
+          - {name: StartPosition, type: String, value: Right}
+        name: Parameter presets
+        validators: null
+        value: *id019
+      Commands: !!robotbuilder.data.properties.ListProperty
+        default: &id020 []
+        name: Commands
+        validators: *id017
+        value: *id020
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
+    Base: Command Group
+    Name: Autonomous Shoot
+  - Children: []
+    Properties:
+      Parameters: !!robotbuilder.data.properties.ParametersProperty
+        default: []
+        name: Parameters
+        validators: null
+        value:
+        - !!robotbuilder.data.properties.ParameterDescriptor {name: StartPosition,
+          type: String}
+      Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
+        default: &id021
+        - !!robotbuilder.data.properties.ParameterSet
+          name: Center
+          parameters:
+          - {name: StartPosition, type: String, value: Center}
+        - !!robotbuilder.data.properties.ParameterSet
+          name: Left
+          parameters:
+          - {name: StartPosition, type: String, value: Left}
+        - !!robotbuilder.data.properties.ParameterSet
+          name: Right
+          parameters:
+          - {name: StartPosition, type: String, value: Right}
+        name: Parameter presets
+        validators: null
+        value: *id021
+      Commands: !!robotbuilder.data.properties.ListProperty
+        default: &id022 []
+        name: Commands
+        validators: *id017
+        value: *id022
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
+    Base: Command Group
+    Name: Autonomous Hopper
   Properties: {}
   Base: Commands
   Name: Commands
