@@ -83,7 +83,7 @@ public class RobotMap
         climberClimberMotor = new Talon(6);
         LiveWindow.addActuator("Climber", "Climber Motor", (Talon) climberClimberMotor);
         
-        shooterShooter = new CANTalon(0);
+        shooterShooter = new CANTalon(2);
         LiveWindow.addActuator("Shooter", "Shooter", shooterShooter);
         
         shooterFeeder = new CANTalon(1);
