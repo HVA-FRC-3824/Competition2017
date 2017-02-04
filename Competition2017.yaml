@@ -348,6 +348,7 @@ Children:
         value:
         - !!robotbuilder.data.properties.ParameterDescriptor {name: Time, type: double}
         - !!robotbuilder.data.properties.ParameterDescriptor {name: Power, type: double}
+        - !!robotbuilder.data.properties.ParameterDescriptor {name: HightGear, type: boolean}
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Requires, type: Subsystem, validators: null, value: Chassis}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
@@ -360,6 +361,7 @@ Children:
           parameters:
           - {name: Time, type: double, value: '1.0'}
           - {name: Power, type: double, value: '1.0'}
+          - {name: HightGear, type: boolean, value: 'false'}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: false}
     Base: Command
@@ -373,6 +375,7 @@ Children:
         value:
         - !!robotbuilder.data.properties.ParameterDescriptor {name: Distance, type: double}
         - !!robotbuilder.data.properties.ParameterDescriptor {name: Power, type: double}
+        - !!robotbuilder.data.properties.ParameterDescriptor {name: HighGear, type: boolean}
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Requires, type: Subsystem, validators: null, value: Chassis}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
@@ -385,6 +388,7 @@ Children:
           parameters:
           - {name: Distance, type: double, value: '60.0'}
           - {name: Power, type: double, value: '.75'}
+          - {name: HighGear, type: boolean, value: 'false'}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Command
@@ -398,6 +402,7 @@ Children:
         value:
         - !!robotbuilder.data.properties.ParameterDescriptor {name: TurnDegrees, type: double}
         - !!robotbuilder.data.properties.ParameterDescriptor {name: Power, type: double}
+        - !!robotbuilder.data.properties.ParameterDescriptor {name: HighGear, type: boolean}
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Requires, type: Subsystem, validators: null, value: Chassis}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
@@ -410,6 +415,7 @@ Children:
           parameters:
           - {name: TurnDegrees, type: double, value: '90.0'}
           - {name: Power, type: double, value: '0.5'}
+          - {name: HighGear, type: boolean, value: 'false'}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Command
@@ -423,6 +429,7 @@ Children:
         value:
         - !!robotbuilder.data.properties.ParameterDescriptor {name: Distance, type: double}
         - !!robotbuilder.data.properties.ParameterDescriptor {name: Power, type: double}
+        - !!robotbuilder.data.properties.ParameterDescriptor {name: HighGear, type: boolean}
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Requires, type: Subsystem, validators: null, value: Chassis}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
@@ -435,6 +442,7 @@ Children:
           parameters:
           - {name: Distance, type: double, value: '12.0'}
           - {name: Power, type: double, value: '0.75'}
+          - {name: HighGear, type: boolean, value: 'false'}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Command
@@ -449,7 +457,10 @@ Children:
         - !!robotbuilder.data.properties.ParameterDescriptor {name: StartPosition,
           type: String}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: &id014
+        default: []
+        name: Parameter presets
+        validators: null
+        value:
         - !!robotbuilder.data.properties.ParameterSet
           name: Center
           parameters:
@@ -462,16 +473,13 @@ Children:
           name: Right
           parameters:
           - {name: StartPosition, type: String, value: Right}
-        name: Parameter presets
-        validators: null
-        value: *id014
       Commands: !!robotbuilder.data.properties.ListProperty
-        default: &id015 []
+        default: []
         name: Commands
-        validators: &id017 [List]
-        value: *id015
+        validators: &id014 [List]
+        value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
-        name: Button on SmartDashboard, validators: null, value: true}
+        name: Button on SmartDashboard, validators: null, value: false}
     Base: Command Group
     Name: Autonomous Baseline
   - Children: []
@@ -484,7 +492,10 @@ Children:
         - !!robotbuilder.data.properties.ParameterDescriptor {name: GearLocation,
           type: String}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: &id016
+        default: []
+        name: Parameter presets
+        validators: null
+        value:
         - !!robotbuilder.data.properties.ParameterSet
           name: Center
           parameters:
@@ -497,16 +508,13 @@ Children:
           name: Right
           parameters:
           - {name: GearLocation, type: String, value: Right}
-        name: Parameter presets
-        validators: null
-        value: *id016
       Commands: !!robotbuilder.data.properties.ListProperty
-        default: &id018 []
+        default: []
         name: Commands
-        validators: *id017
-        value: *id018
+        validators: *id014
+        value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
-        name: Button on SmartDashboard, validators: null, value: true}
+        name: Button on SmartDashboard, validators: null, value: false}
     Base: Command Group
     Name: Autonomous Place Gear
   - Children: []
@@ -519,7 +527,10 @@ Children:
         - !!robotbuilder.data.properties.ParameterDescriptor {name: StartPosition,
           type: String}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: &id019
+        default: []
+        name: Parameter presets
+        validators: null
+        value:
         - !!robotbuilder.data.properties.ParameterSet
           name: Center
           parameters:
@@ -532,16 +543,13 @@ Children:
           name: Right
           parameters:
           - {name: StartPosition, type: String, value: Right}
-        name: Parameter presets
-        validators: null
-        value: *id019
       Commands: !!robotbuilder.data.properties.ListProperty
-        default: &id020 []
+        default: []
         name: Commands
-        validators: *id017
-        value: *id020
+        validators: *id014
+        value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
-        name: Button on SmartDashboard, validators: null, value: true}
+        name: Button on SmartDashboard, validators: null, value: false}
     Base: Command Group
     Name: Autonomous Shoot
   - Children: []
@@ -554,7 +562,10 @@ Children:
         - !!robotbuilder.data.properties.ParameterDescriptor {name: StartPosition,
           type: String}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: &id021
+        default: []
+        name: Parameter presets
+        validators: null
+        value:
         - !!robotbuilder.data.properties.ParameterSet
           name: Center
           parameters:
@@ -567,16 +578,13 @@ Children:
           name: Right
           parameters:
           - {name: StartPosition, type: String, value: Right}
-        name: Parameter presets
-        validators: null
-        value: *id021
       Commands: !!robotbuilder.data.properties.ListProperty
-        default: &id022 []
+        default: []
         name: Commands
-        validators: *id017
-        value: *id022
+        validators: *id014
+        value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
-        name: Button on SmartDashboard, validators: null, value: true}
+        name: Button on SmartDashboard, validators: null, value: false}
     Base: Command Group
     Name: Autonomous Hopper
   Properties: {}
