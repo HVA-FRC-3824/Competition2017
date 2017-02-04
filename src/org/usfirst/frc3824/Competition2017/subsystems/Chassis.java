@@ -23,7 +23,6 @@ import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.Talon;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -66,6 +65,35 @@ public class Chassis extends Subsystem
         gyro, new AnglePIDOutput()
     );
 	
+	private PIDController angleEncoderPID_Right = new PIDController(Constants.IMAGE_ANGLE_ENCODER_P,
+            Constants.IMAGE_ANGLE_ENCODER_I, 
+            Constants.IMAGE_ANGLE_ENCODER_D, 
+            encoderRight, 
+            new EncoderPIDOutputRight());
+
+	private PIDController angleEncoderPID_Left = new PIDController(Constants.IMAGE_ANGLE_ENCODER_P,
+           Constants.IMAGE_ANGLE_ENCODER_I, 
+           Constants.IMAGE_ANGLE_ENCODER_D, 
+           encoderLeft,
+           new EncoderPIDOutputLeft());
+	
+	public Chassis() {
+		
+		// Configure angleEncoderPIDs
+		
+		// Set the PID gains
+		angleEncoderPID_Left.setPID(Constants.IMAGE_ANGLE_ENCODER_P, Constants.IMAGE_ANGLE_ENCODER_I, Constants.IMAGE_ANGLE_ENCODER_D);
+		angleEncoderPID_Right.setPID(Constants.IMAGE_ANGLE_ENCODER_P, Constants.IMAGE_ANGLE_ENCODER_I, Constants.IMAGE_ANGLE_ENCODER_D);
+
+		// Set the encoder input value range
+		angleEncoderPID_Left.setInputRange(Constants.IMAGE_ANGLE_MINIMUM_INPUT, Constants.IMAGE_ANGLE_MAXIMUM_INPUT);
+		angleEncoderPID_Right.setInputRange(Constants.IMAGE_ANGLE_MINIMUM_INPUT, Constants.IMAGE_ANGLE_MAXIMUM_INPUT);
+
+		// Set the encoder output range
+		angleEncoderPID_Left.setOutputRange(Constants.IMAGE_ANGLE_MINIMUM_OUTPUT, Constants.IMAGE_ANGLE_MAXIMUM_OUTPUT);
+		angleEncoderPID_Right.setOutputRange(Constants.IMAGE_ANGLE_MINIMUM_OUTPUT, Constants.IMAGE_ANGLE_MAXIMUM_OUTPUT);
+	}
+	
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 
@@ -92,6 +120,11 @@ public class Chassis extends Subsystem
 	{
 		angleGyroPID.disable();
 		angleGyroPID.reset();
+		angleEncoderPID_Right.disable();
+		angleEncoderPID_Right.reset();
+		angleEncoderPID_Left.disable();
+		angleEncoderPID_Left.reset();
+		
 		gyro.reset();
 		encoderLeft.reset();
 		encoderRight.reset();
@@ -182,6 +215,41 @@ public class Chassis extends Subsystem
 	}
 	
 	/**
+	 * method to enable the encoderPID
+	 * @param desiredEncoderValue
+	 */
+	public void encoderPID(double desiredEncoderValue)
+	{
+		// reset other PIDS
+		reset();
+		
+		updateEncoderSetpoint(desiredEncoderValue);
+
+		angleEncoderPID_Left.enable();
+		angleEncoderPID_Right.enable();
+	}
+	
+	/**
+	 * Method to update the encoder PID target value (heading)
+	 */
+	public void updateEncoderSetpoint(double desiredEncoderValue)
+	{
+		angleEncoderPID_Left.setSetpoint(-desiredEncoderValue);
+		angleEncoderPID_Right.setSetpoint(desiredEncoderValue);
+	}
+	
+	/**
+	 * Method to get the encoder PID target value (heading)
+	 */
+	public double getEncoderSetpoint()
+	{
+		// Return the Right set point
+		// Note: The Left set point should just be the negative of the Left
+		return angleEncoderPID_Right.getSetpoint();
+	}
+
+	
+	/**
 	 * Method to update output power while under PID control
 	 * ie. after startGyroPID() is called
 	 * 
@@ -264,6 +332,34 @@ public class Chassis extends Subsystem
 			// Drive the robot given the speed and direction
 			// Note: The Arcade drive expects a joystick which is negative forward
 			robotDrive.arcadeDrive(-m_magnitude, PIDoutput, false);
+		}
+	}
+	
+	/**
+	 * Class declaration for the PIDOutput
+	 */
+	public class EncoderPIDOutputRight implements PIDOutput
+	{		
+		/**
+		 * Virtual function to receive the PID output and set the drive direction 
+		 */
+		public void pidWrite(double PIDoutput)
+		{
+			driveRight.set(PIDoutput);
+		}
+	}
+
+	/**
+	 * Class declaration for the PIDOutput
+	 */
+	public class EncoderPIDOutputLeft implements PIDOutput
+	{
+		/**
+		 * Virtual function to receive the PID output and set the drive direction 
+		 */
+		public void pidWrite(double PIDoutput)
+		{
+			driveLeft.set(-PIDoutput);
 		}
 	}
 

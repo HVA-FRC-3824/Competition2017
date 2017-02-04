@@ -92,4 +92,18 @@ public class Target {
 	{
 		return mImgHeight;
 	}
+	
+	public double imgXCenter() {
+		return mImgWidth / 2;
+	}
+	
+	public double imgYCenter() {
+		return mImgHeight / 2;
+	}
+	
+	public double deviationFromTarget() {
+		return mXCenter - imgXCenter();
+	}
+
+
 }
