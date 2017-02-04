@@ -7,6 +7,8 @@ public class Target {
 	private int mXCenter;
 	private int mYCenter;
 	private int mHeight;
+	private int mImgWidth;
+	private int mImgHeight;
 	
 	// ------------
 	// C Structure:
@@ -30,6 +32,8 @@ public class Target {
 		mXCenter = 0;
 		mYCenter = 0;
 		mHeight = 0;
+		mImgWidth = 0;
+		mImgHeight = 0;
 	}
 	
 	Target(byte[] udpBuf)
@@ -39,9 +43,11 @@ public class Target {
 			mValid       = true;
 			mTargetType  = (int) (udpBuf[1] & 0xFF);
 			mFrameIndex  = ((int) (udpBuf[2] & 0xFF) * 256) + ((int) (udpBuf[3] & 0xFF) );	// treat the low byte as unsigned
-			mXCenter     = ((int) (udpBuf[4] & 0xFF) * 256) + ((int) (udpBuf[5] & 0xFF) );;
+			mXCenter     = ((int) (udpBuf[4] & 0xFF) * 256) + ((int) (udpBuf[5] & 0xFF) );
 			mYCenter     = ((int) (udpBuf[6] & 0xFF) * 256) + ((int) (udpBuf[7] & 0xFF) );
 			mHeight      = ((int) (udpBuf[8] & 0xFF) * 256) + ((int) (udpBuf[9] & 0xFF) );
+			mImgWidth    = ((int) (udpBuf[10] & 0xFF) * 256) + ((int) (udpBuf[11] & 0xFF) );
+			mImgHeight    = ((int) (udpBuf[12] & 0xFF) * 256) + ((int) (udpBuf[13] & 0xFF) );
 		}
 		else
 		{
@@ -49,33 +55,41 @@ public class Target {
 		}
 	}
 	
-	boolean isValid()
+	public boolean isValid()
 	{
 		return mValid;
 	}
 		
-	int getFrameIndex()
+	public int getFrameIndex()
 	{
 		return mFrameIndex;
 	}
 	
-	int getTargetType()
+	public int getTargetType()
 	{
 		return mTargetType;
 	}
 	
-	double getXCenter()
+	public double getXCenter()
 	{
 		return mXCenter;
 	}
 	
-	double getYCenter()
+	public double getYCenter()
 	{
 		return mYCenter;
 	}
 	
-	double getHeight()
+	public double getHeight()
 	{
 		return mHeight;
+	}
+	public double getImgWidth()
+	{
+		return mImgWidth;
+	}
+	public double getImgHeight()
+	{
+		return mImgHeight;
 	}
 }
