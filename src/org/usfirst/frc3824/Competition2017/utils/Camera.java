@@ -1,9 +1,11 @@
 package org.usfirst.frc3824.Competition2017.utils;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
+import java.util.stream.Stream;
 
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
@@ -29,17 +31,11 @@ public class Camera
 	static int MIN_COUNTOUR_AREA     = 100;
 	static int MIN_CONTOUR_PERIMETER = 100;
 	
-	// Create the matrixes for image processing
-	static Mat source           = new Mat();
-	static Mat HSVimage         = new Mat();
-	static Mat contourImg       = new Mat();
-	
-	static Mat output           = new Mat();
-	static Mat cameraFrameImage = new Mat();
+	// Create matrix for image data
+	static Mat image           = new Mat();
 
-	// Vectors holding contour and contour attributes
-	static Vector<Vector<Point> > outputContours;
-	static Vector<Rect> targetRectangles;
+	// Create contour output
+	static List<MatOfPoint> contours = new ArrayList<MatOfPoint>();
 	
 	// Read the HSV values from the smartdashboard
 	static double H_min =  60;
@@ -52,13 +48,13 @@ public class Camera
 	static Rect largestTargetRect;
 	static Rect secondLargestTargetRect;
 	
+	private static Comparator<Rect> rectAreaCompare = (rect1, rect2) -> Double.compare(rect1.area(), rect2.area());
+	
 	/*
 	 * Thread to process the camera images and determine the targets based on the reflective tape
 	 */
 	private static Thread thread = new Thread(() ->
-	{
-		int loopcounter = 0;
-	
+	{	
 		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 
 	    // Setup the camera
@@ -78,13 +74,15 @@ public class Camera
 		SmartDashboard.putNumber("V Min", V_min);
 		SmartDashboard.putNumber("V Max", V_max);
 
+		// Initialize the minimum and maximum color range
+		Scalar MINCOLOR = new Scalar(H_min, S_min, V_min);
+		Scalar MAXCOLOR = new Scalar(H_max, S_max, V_max);
+		
 		// Continuously run the image processing thread
 		while (!Thread.interrupted())
-		{
-//			System.out.println("**** Start of loop: " + loopcounter++ + " ****");
-						
+		{						
 			// Grab a camera frame
-			cvSink.grabFrame(source);
+			cvSink.grabFrame(image);
 
 //			// Read the HSV values from the smartdashboard
 //			H_min = SmartDashboard.getNumber("H Min",  60);
@@ -95,17 +93,37 @@ public class Camera
 //			V_max = SmartDashboard.getNumber("V Max", 255);
 
 			// Blurs image from camera to make colors run together
-			Imgproc.blur(source, cameraFrameImage, new Size(10, 10));
-//			outputStream.putFrame(cameraFrameImage);
+			Imgproc.blur(image, image, new Size(10, 10));
 			
-			// Determine the reflective tape regions
-			findTapeRegion(cameraFrameImage);
-	
-			// Find the region contours
-			findRectangles(contourImg);
+			// Converts image from BGR to HSV
+			Imgproc.cvtColor(image, image, Imgproc.COLOR_BGR2HSV);
 
+			// Filter specified HSV min and max constants
+			Core.inRange(image, MINCOLOR, MAXCOLOR, image);
+				
+			// Finds the contours on the contour image
+			Imgproc.findContours(image, contours, null, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE);
+			
+			// get bounding rect of contours
+			Stream<Rect> rectangles = contours.stream().map(Imgproc::boundingRect)
+			.filter(rect -> 
+				rect.width > MIN_CONTOUR_WIDTH &&
+				rect.width < MAX_CONTOUR_WIDTH &&
+				rect.height > MIN_CONTOUR_HEIGHT &&
+				rect.height < MAX_CONTOUR_HEIGHT
+			).filter(rect ->
+				rect.area() > MIN_COUNTOUR_AREA
+			);
+
+			
 			// Find the two largest rectangles
-			findTwoLargestRectangles();
+			rectangles.max(rectAreaCompare).ifPresent(largestRect -> {
+				largestTargetRect = largestRect;
+				
+				rectangles.filter(rect -> !largestRect.equals(rect)).max(rectAreaCompare).ifPresent(secondLargestRect -> {
+					secondLargestTargetRect = secondLargestRect;
+				});
+			});
 			
 			SmartDashboard.putNumber("Target A area", largestTargetRect.area());
 			SmartDashboard.putNumber("Target B area", secondLargestTargetRect.area());
@@ -116,8 +134,8 @@ public class Camera
 			SmartDashboard.putNumber("Target B X", secondLargestTargetRect.x);
 			SmartDashboard.putNumber("Target B Y", secondLargestTargetRect.y);
 		
-//			// Show the contours
-//			outputStream.putFrame(contourImg);
+			// Show the contours
+			outputStream.putFrame(image);
 			
 //			try
 //			{
@@ -130,117 +148,7 @@ public class Camera
 //			}
 		}
 	});
-	
-	/*
-	 * 
-	 */
-	private static void findTapeRegion(Mat image)
-	{	
-		// Initialize the minimum and maximum color range
-		Scalar MINCOLOR = new Scalar(H_min, S_min, V_min);
-		Scalar MAXCOLOR = new Scalar(H_max, S_max, V_max);
 		
-		// Converts image from BGR to HSV
-		Imgproc.cvtColor(image, HSVimage, Imgproc.COLOR_BGR2HSV);
-
-		// Makes the output image only show elements that are in between
-		// the specified HSV min and max constants
-		Core.inRange(HSVimage, MINCOLOR, MAXCOLOR, contourImg);
-	}
-	
-	/*
-	 * 
-	 */
-	private static void findRectangles(Mat image)
-	{	
-		Mat hierarchy                  = new Mat();
-		List<MatOfPoint> inputContours = new ArrayList<MatOfPoint>();
-
-		targetRectangles = new Vector<Rect>();
-		
-		try
-		{
-			// Clear the target rectangles array
-			targetRectangles.clear();
-		}
-		finally
-		{
-			
-		}
-
-		// Finds the contours on the contour image
-		Imgproc.findContours(contourImg, inputContours, hierarchy, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE);
-		
-		// Find max contour area
-		Iterator<MatOfPoint> each = inputContours.iterator();
-		
-		while (each.hasNext())
-		{
-			MatOfPoint wrapper = each.next();
-			
-			// Determine the bounding rectangle
-			Rect boundingRetcangle = Imgproc.boundingRect(wrapper);
-			
-			if ((boundingRetcangle.width  > MIN_CONTOUR_WIDTH)  && (boundingRetcangle.width  < MAX_CONTOUR_WIDTH) &&
-			    (boundingRetcangle.height > MIN_CONTOUR_HEIGHT) && (boundingRetcangle.height < MAX_CONTOUR_HEIGHT))
-			{
-				double area = Imgproc.contourArea(wrapper);
-
-				// Ensure the area is large enough to be a target
-				if (area > MIN_COUNTOUR_AREA)
-				{
-					targetRectangles.add(boundingRetcangle);
-				}
-			}
-		}
-	}
-	
-	/*
-	 * 
-	 */
-	static void findTwoLargestRectangles()
-	{
-		int largestAreaIndex       = -1;
-		int secondLargestAreaIndex = -1;
-		double largestArea;
-		
-		largestArea = 0;
-		for (int index = 0; index < targetRectangles.size(); index++)
-		{
-			Rect rectangel = targetRectangles.get(index);
-			
-			double area = rectangel.area();
-			
-			if (area > largestArea)
-			{
-				largestArea = area;
-				largestAreaIndex = index;
-			}
-		}
-			
-		largestArea = 0;
-		for (int index = 0; index < targetRectangles.size(); index++)
-		{
-			if (index == largestAreaIndex)
-				continue;
-			
-			Rect rectangel = targetRectangles.get(index);
-			
-			double area = rectangel.area();
-			
-			if (area > largestArea)
-			{
-				largestArea = area;
-				secondLargestAreaIndex = index;
-			}
-		}
-		
-		if (largestAreaIndex != -1)
-			largestTargetRect = targetRectangles.get(largestAreaIndex);
-		if (secondLargestAreaIndex != -1)
-			secondLargestTargetRect = targetRectangles.get(secondLargestAreaIndex);		
-	}
-	
 	/*
 	 * Method to return the camera processing thread
 	 */
