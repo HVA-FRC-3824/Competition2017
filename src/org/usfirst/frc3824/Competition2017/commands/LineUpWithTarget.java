@@ -85,12 +85,19 @@ public class LineUpWithTarget extends Command {
     	
 		double deviationFromTarget = target.deviationFromTarget();
 
-    	if (deviationFromTarget <= -2.0) {
-			encoderPosition += 15.0;
-		} else if (deviationFromTarget >= 2.0) {
-			encoderPosition -= 15.0;
+		if (deviationFromTarget < -Constants.DEVIATION_FROM_TARGET) {
+			encoderPosition += Constants.IMAGE_ANGLE_JOG_DISTANCE;
+		} else if (deviationFromTarget > Constants.DEVIATION_FROM_TARGET) {
+			encoderPosition -= Constants.IMAGE_ANGLE_JOG_DISTANCE;
 		}
-
+		
+		
+		// if the deviation is really large, jog the encoder position a second time
+		if (deviationFromTarget < -2*Constants.DEVIATION_FROM_TARGET) {
+			encoderPosition += Constants.IMAGE_ANGLE_JOG_DISTANCE;
+		} else if (deviationFromTarget > 2*Constants.DEVIATION_FROM_TARGET) {
+			encoderPosition -= Constants.IMAGE_ANGLE_JOG_DISTANCE;
+		}
     	
     	Robot.chassis.updateEncoderSetpoint(encoderPosition);
     }

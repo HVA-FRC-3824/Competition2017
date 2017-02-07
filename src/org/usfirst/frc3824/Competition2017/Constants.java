@@ -59,6 +59,8 @@ public class Constants
 
 	public static double IMAGE_ANGLE_MINIMUM_OUTPUT           = -0.4;
 	public static double IMAGE_ANGLE_MAXIMUM_OUTPUT           =  0.4;	
+	
+	public static double IMAGE_ANGLE_JOG_DISTANCE             = 15.0; 
 
 	
 	// ***************************************************************************************
@@ -72,5 +74,5 @@ public class Constants
 
 	// ***************************************************************************************
 	// Target constants
-	public static double DEVIATION_FROM_TARGET				= 2; 
+	public static double DEVIATION_FROM_TARGET              = 2; 
 }
