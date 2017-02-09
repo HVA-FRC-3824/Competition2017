@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc3824.Competition2017.RobotMap;
 import org.usfirst.frc3824.Competition2017.RPiDataSource;
 import org.usfirst.frc3824.Competition2017.commands.*;
 import org.usfirst.frc3824.Competition2017.subsystems.*;
@@ -89,6 +90,9 @@ public class Robot extends IterativeRobot
 		startingLocationChooser.addObject("Center", "Center");
 		startingLocationChooser.addObject("Left",   "Left");
 		SmartDashboard.putData("Starting Location", startingLocationChooser );
+		
+		// Start the compressor
+		RobotMap.chassisCompressor.setClosedLoopControl(true);
 		
 		rpi = RPiDataSource.getInstance();
         rpi.start();
