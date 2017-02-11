@@ -24,6 +24,15 @@ public class Constants
 	public static double TURN_ANGLE_MAXIMUM_OUTPUT			= 0.9;
 
 	public static double TURN_THRESHOLD						= 5.0;
+	
+	// ***************************************************************************************
+	// Climber constants
+		
+	public static int    CLIMBER_BUTTON_OFF                 = 15;
+	public static int    CLIMBER_BUTTON_FAST                = 14;
+	public static double CLIMBER_SPEED_FAST                 = -0.5;
+	public static double CLIMBER_SPEED_SLOW                 = -0.35;
+	public static double CLIMBER_SPEED_HOLD                 = -0.2;
 
 	// ***************************************************************************************
 	// Shooter constants

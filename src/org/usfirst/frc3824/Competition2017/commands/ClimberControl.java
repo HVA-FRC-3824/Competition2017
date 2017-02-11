@@ -11,6 +11,8 @@
 package org.usfirst.frc3824.Competition2017.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+
+import org.usfirst.frc3824.Competition2017.Constants;
 import org.usfirst.frc3824.Competition2017.Robot;
 
 /**
@@ -40,9 +42,6 @@ public class ClimberControl extends Command
 	// Called just before this Command runs the first time
 	protected void initialize()
 	{
-		// Set the climber motor to off
-		Robot.climber.climbControl(0.0);
-		
 		// Initialize to not at top of rope
 		atTop = false;
 	}
@@ -61,12 +60,12 @@ public class ClimberControl extends Command
 		if (atTop)
 		{
 			// Hold the robot at the present location
-			Robot.climber.climbControl(-0.2);
+			Robot.climber.climbControl(Constants.CLIMBER_SPEED_HOLD);
 		} 
 		else 
 		{
 			// Continue climbing
-			Robot.climber.climbControl(-0.5);
+			Robot.climber.climbControl(Constants.CLIMBER_SPEED_FAST);
 		}
 	}
 
