@@ -51,6 +51,7 @@ public class Constants
 	public static double SHOOTER_SPEED_HIGH                   = 4000.0;
 	public static double SHOOTER_SPEED_MED                    = 3000.0;
 	public static double SHOOTER_SPEED_LOW                    = 2000.0;
+	public static double SHOOTER_JOG_SPEED                    = 200.0;
 	
 	public static double SHOOTER_SPINUP_TIME                = 1.0;
 	public static double FEEDER_REVERSE_TIME                = 0.5;

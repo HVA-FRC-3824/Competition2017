@@ -165,6 +165,11 @@ public class Shooter extends Subsystem
 		shooterB.set(m_shooter_speed);
 	}
 	
+	public void jogShooterSpeed(double speedChange)
+	{
+		setShooterSpeed(m_shooter_speed + speedChange);
+	}
+	
 	/**
 	 * Method to set the Feeder speed
 	 */
