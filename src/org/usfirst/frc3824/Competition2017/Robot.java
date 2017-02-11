@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc3824.Competition2017.RobotMap;
 import org.usfirst.frc3824.Competition2017.RPiDataSource;
 import org.usfirst.frc3824.Competition2017.commands.*;
 import org.usfirst.frc3824.Competition2017.subsystems.*;
@@ -89,6 +90,9 @@ public class Robot extends IterativeRobot
 		startingLocationChooser.addObject("Center", "Center");
 		startingLocationChooser.addObject("Left",   "Left");
 		SmartDashboard.putData("Starting Location", startingLocationChooser );
+		
+		// Start the compressor
+		RobotMap.chassisCompressor.setClosedLoopControl(true);
 		
 		rpi = RPiDataSource.getInstance();
         rpi.start();
@@ -177,6 +181,11 @@ public class Robot extends IterativeRobot
 		SmartDashboard.putNumber("Average Climber Current", Robot.climber.getClimberCurrent());
 		SmartDashboard.putNumber("Chassis Encoder Left", RobotMap.chassisEncoderLeft.getDistance());
 		SmartDashboard.putNumber("Chassis Encoder Right", RobotMap.chassisEncoderRight.getDistance());
+		
+		// Show the shooter and feeder speeds
+		SmartDashboard.putNumber("Shooter A Speed", Robot.shooter.getShooterASpeed());
+		SmartDashboard.putNumber("Shooter B Speed", Robot.shooter.getShooterASpeed());
+		SmartDashboard.putNumber("Feeder Speed", Robot.shooter.getFeederSpeed());
 		
 		// Update the SmartDashboard data about the image processing
         rpi.updateSmartDashboardData();

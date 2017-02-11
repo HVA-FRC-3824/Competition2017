@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDSourceType;
@@ -43,6 +44,7 @@ public class RobotMap
     public static Encoder chassisEncoderLeft;
     public static Encoder chassisEncoderRight;
     public static Solenoid chassisTransmission;
+    public static Compressor chassisCompressor;
     public static SpeedController climberClimberMotor;
     public static CANTalon shooterShooterA;
     public static CANTalon shooterShooterB;
@@ -88,7 +90,10 @@ public class RobotMap
         chassisTransmission = new Solenoid(0, 0);
         LiveWindow.addActuator("Chassis", "Transmission", chassisTransmission);
         
-        climberClimberMotor = new Talon(6);
+        chassisCompressor = new Compressor(0);
+        
+        
+        climberClimberMotor = new Talon(4);
         LiveWindow.addActuator("Climber", "Climber Motor", (Talon) climberClimberMotor);
         
         shooterShooterA = new CANTalon(1);

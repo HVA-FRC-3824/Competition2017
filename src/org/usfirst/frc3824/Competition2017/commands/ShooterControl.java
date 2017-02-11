@@ -54,9 +54,7 @@ public class ShooterControl extends Command
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute()
 	{
-		// Show the shooter and feeder speeds
-		SmartDashboard.putNumber("Shooter Speed", Robot.shooter.getShooterSpeed());
-		SmartDashboard.putNumber("Feeder Speed", Robot.shooter.getFeederSpeed());
+
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
