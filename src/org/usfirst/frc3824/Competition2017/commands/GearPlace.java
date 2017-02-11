@@ -62,6 +62,8 @@ public class GearPlace extends Command {
     protected void end() {
     	// Bring gear deployer back in when we're done
     	Robot.gear.setDeploy(false);
+    	
+    	timer.stop();
     }
 
     // Called when another command which requires one or more of the same

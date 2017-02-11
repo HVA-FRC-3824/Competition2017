@@ -30,9 +30,12 @@ public class Constants
 		
 	public static int    CLIMBER_BUTTON_OFF                 = 15;
 	public static int    CLIMBER_BUTTON_FAST                = 14;
+	
 	public static double CLIMBER_SPEED_FAST                 = -0.5;
 	public static double CLIMBER_SPEED_SLOW                 = -0.35;
 	public static double CLIMBER_SPEED_HOLD                 = -0.2;
+	
+	public static double CLIMBER_JOG_TIME                 = 0.25;
 
 	// ***************************************************************************************
 	// Gear constants
@@ -64,7 +67,7 @@ public class Constants
 	public static double FEEDER_D							= 4.0000;
 	public static double FEEDER_F							= 0.1000;
 	public static double DEFAULT_FEEDER_SPEED               = 400.0;
-	public static double FEEDER_REVERSE_SPEED               = -200.0;
+	public static double FEEDER_REVERSE_SPEED               = -100.0;
 	
 	// ***************************************************************************************
 	// Ball Pickup constants
