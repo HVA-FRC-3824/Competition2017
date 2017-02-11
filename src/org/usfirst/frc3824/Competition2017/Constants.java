@@ -24,7 +24,24 @@ public class Constants
 	public static double TURN_ANGLE_MAXIMUM_OUTPUT			= 0.9;
 
 	public static double TURN_THRESHOLD						= 5.0;
+	
+	// ***************************************************************************************
+	// Climber constants
+		
+	public static int    CLIMBER_BUTTON_OFF                 = 15;
+	public static int    CLIMBER_BUTTON_FAST                = 14;
+	
+	public static double CLIMBER_SPEED_FAST                 = -0.5;
+	public static double CLIMBER_SPEED_SLOW                 = -0.35;
+	public static double CLIMBER_SPEED_HOLD                 = -0.2;
+	
+	public static double CLIMBER_JOG_TIME                 = 0.25;
 
+	// ***************************************************************************************
+	// Gear constants
+	
+	public static double GEAR_PLACE_TIME                    = 2.0;
+	
 	// ***************************************************************************************
 	// Shooter constants
 	
@@ -32,12 +49,15 @@ public class Constants
 	public static double SHOOTER_I							= 0.0004;
 	public static double SHOOTER_D							= 4.0000;
 	public static double SHOOTER_F							= 0.0050;
-	public static double DEFAULT_SHOOTER_SPEED              = 4000.0;
+	public static double DEFAULT_SHOOTER_SPEED              = 1000.0;
 	
-	public static double SHOOTER_SPEED_A                    = 1000.0;
-	public static double SHOOTER_SPEED_B                    = 2000.0;
-	public static double SHOOTER_SPEED_C                    = 3000.0;
-	public static double SHOOTER_SPEED_D                    = 3500.0;
+	public static double SHOOTER_SPEED_HIGH                   = 4000.0;
+	public static double SHOOTER_SPEED_MED                    = 3000.0;
+	public static double SHOOTER_SPEED_LOW                    = 2000.0;
+	public static double SHOOTER_JOG_SPEED                    = 200.0;
+	
+	public static double SHOOTER_SPINUP_TIME                = 1.0;
+	public static double FEEDER_REVERSE_TIME                = 0.5;
 	
 	// ***************************************************************************************
 	// Feeder constants
@@ -47,6 +67,7 @@ public class Constants
 	public static double FEEDER_D							= 4.0000;
 	public static double FEEDER_F							= 0.1000;
 	public static double DEFAULT_FEEDER_SPEED               = 400.0;
+	public static double FEEDER_REVERSE_SPEED               = -100.0;
 	
 	// ***************************************************************************************
 	// Ball Pickup constants
