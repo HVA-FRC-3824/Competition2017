@@ -35,6 +35,11 @@ public class Constants
 	public static double CLIMBER_SPEED_HOLD                 = -0.2;
 
 	// ***************************************************************************************
+	// Gear constants
+	
+	public static double GEAR_PLACE_TIME                    = 2.0;
+	
+	// ***************************************************************************************
 	// Shooter constants
 	
 	public static double SHOOTER_P							= 0.0600;
