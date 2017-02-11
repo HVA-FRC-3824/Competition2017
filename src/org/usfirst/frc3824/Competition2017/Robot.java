@@ -114,6 +114,15 @@ public class Robot extends IterativeRobot
 		SmartDashboard.putNumber("Chassis Encoder Left", RobotMap.chassisEncoderLeft.getDistance());
 		SmartDashboard.putNumber("Chassis Encoder Right", RobotMap.chassisEncoderRight.getDistance());
 		
+		// Show the shooter and feeder speeds
+		SmartDashboard.putNumber("Shooter A Speed", Robot.shooter.getShooterASpeed());
+		SmartDashboard.putNumber("Shooter B Speed", Robot.shooter.getShooterBSpeed());
+		SmartDashboard.putNumber("Feeder Speed", Robot.shooter.getFeederSpeed());
+
+//		// Determine if a button is pressed
+//		for (int button = 1; button <= 20; button++)
+//			SmartDashboard.putBoolean("Button" + button, Robot.oi.getControllerJoystick().getRawButton(button));
+		
 		// Update the SmartDashboard data about the image processing
         rpi.updateSmartDashboardData();
         rpi.updateSmartDashboardActive();
@@ -184,7 +193,7 @@ public class Robot extends IterativeRobot
 		
 		// Show the shooter and feeder speeds
 		SmartDashboard.putNumber("Shooter A Speed", Robot.shooter.getShooterASpeed());
-		SmartDashboard.putNumber("Shooter B Speed", Robot.shooter.getShooterASpeed());
+		SmartDashboard.putNumber("Shooter B Speed", Robot.shooter.getShooterBSpeed());
 		SmartDashboard.putNumber("Feeder Speed", Robot.shooter.getFeederSpeed());
 		
 		// Update the SmartDashboard data about the image processing

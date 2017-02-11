@@ -67,7 +67,7 @@ public class RobotMap
         
         chassisRobotDrive = new RobotDrive(chassisDriveLeft, chassisDriveRight);
         
-        chassisRobotDrive.setSafetyEnabled(true);
+        chassisRobotDrive.setSafetyEnabled(false);
         chassisRobotDrive.setExpiration(0.1);
         chassisRobotDrive.setSensitivity(0.5);
         chassisRobotDrive.setMaxOutput(1.0);

@@ -11,7 +11,6 @@
 package org.usfirst.frc3824.Competition2017.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc3824.Competition2017.Robot;
 
@@ -54,7 +53,8 @@ public class ShooterControl extends Command
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute()
 	{
-
+		Robot.shooter.setShooterSpeedFromSmartdashboard();
+		Robot.shooter.setFeederSpeedFromSmartdashboard();
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -75,6 +75,6 @@ public class ShooterControl extends Command
 	// subsystems is scheduled to run
 	protected void interrupted()
 	{
-		end();
+		this.end();
 	}
 }

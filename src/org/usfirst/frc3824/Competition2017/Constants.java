@@ -32,12 +32,14 @@ public class Constants
 	public static double SHOOTER_I							= 0.0004;
 	public static double SHOOTER_D							= 4.0000;
 	public static double SHOOTER_F							= 0.0050;
-	public static double DEFAULT_SHOOTER_SPEED              = 4000.0;
+	public static double DEFAULT_SHOOTER_SPEED              = 1000.0;
 	
-	public static double SHOOTER_SPEED_A                    = 1000.0;
-	public static double SHOOTER_SPEED_B                    = 2000.0;
-	public static double SHOOTER_SPEED_C                    = 3000.0;
-	public static double SHOOTER_SPEED_D                    = 3500.0;
+	public static double SHOOTER_SPEED_HIGH                   = 4000.0;
+	public static double SHOOTER_SPEED_MED                    = 3000.0;
+	public static double SHOOTER_SPEED_LOW                    = 2000.0;
+	
+	public static double SHOOTER_SPINUP_TIME                = 1.0;
+	public static double FEEDER_REVERSE_TIME                = 0.5;
 	
 	// ***************************************************************************************
 	// Feeder constants
@@ -47,6 +49,7 @@ public class Constants
 	public static double FEEDER_D							= 4.0000;
 	public static double FEEDER_F							= 0.1000;
 	public static double DEFAULT_FEEDER_SPEED               = 400.0;
+	public static double FEEDER_REVERSE_SPEED               = -200.0;
 	
 	// ***************************************************************************************
 	// Ball Pickup constants

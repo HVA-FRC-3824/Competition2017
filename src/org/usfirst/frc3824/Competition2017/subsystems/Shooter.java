@@ -42,18 +42,18 @@ public class Shooter extends Subsystem
     public Shooter()
 	{
 		// Set closed loop gains in slot0
-		SmartDashboard.putNumber("Shooter P",     Constants.SHOOTER_P * 1000.0);
-		SmartDashboard.putNumber("Shooter I",     Constants.SHOOTER_I * 1000.0);
-		SmartDashboard.putNumber("Shooter D",     Constants.SHOOTER_D * 1000.0);
-		SmartDashboard.putNumber("Shooter F",     Constants.SHOOTER_F * 1000.0);
-		SmartDashboard.putNumber("Shooter Speed", Constants.DEFAULT_SHOOTER_SPEED);
+		SmartDashboard.putNumber("Shooter P",        Constants.SHOOTER_P * 1000.0);
+		SmartDashboard.putNumber("Shooter I",        Constants.SHOOTER_I * 1000.0);
+		SmartDashboard.putNumber("Shooter D",        Constants.SHOOTER_D * 1000.0);
+		SmartDashboard.putNumber("Shooter F",        Constants.SHOOTER_F * 1000.0);
+		SmartDashboard.putNumber("Shooter Setpoint", Constants.DEFAULT_SHOOTER_SPEED);
 		
 		// Set closed loop gains in slot0
-		SmartDashboard.putNumber("Feeder P",     Constants.FEEDER_P * 1000.0);
-		SmartDashboard.putNumber("Feeder I",     Constants.FEEDER_I * 1000.0);
-		SmartDashboard.putNumber("Feeder D",     Constants.FEEDER_D * 1000.0);
-		SmartDashboard.putNumber("Feeder F",     Constants.FEEDER_F * 1000.0);
-		SmartDashboard.putNumber("Feeder Speed", Constants.DEFAULT_FEEDER_SPEED);
+		SmartDashboard.putNumber("Feeder P",        Constants.FEEDER_P * 1000.0);
+		SmartDashboard.putNumber("Feeder I",        Constants.FEEDER_I * 1000.0);
+		SmartDashboard.putNumber("Feeder D",        Constants.FEEDER_D * 1000.0);
+		SmartDashboard.putNumber("Feeder F",        Constants.FEEDER_F * 1000.0);
+		SmartDashboard.putNumber("Feeder Setpoint", Constants.DEFAULT_FEEDER_SPEED);
 		
 		//********************************************************************
 		// Configure the Shooter A Talon SRX
@@ -76,6 +76,7 @@ public class Shooter extends Subsystem
 		shooterA.setI(Constants.SHOOTER_I);
 		shooterA.setD(Constants.SHOOTER_D);
 		shooterA.setF(Constants.SHOOTER_F);
+		shooterA.changeControlMode(CANTalon.TalonControlMode.Speed);
 		
 		shooterA.disable();
 		shooterA.set(Constants.DEFAULT_SHOOTER_SPEED);
@@ -85,7 +86,7 @@ public class Shooter extends Subsystem
 		//********************************************************************
 
 		shooterB.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
-		shooterB.reverseSensor(false);
+		shooterB.reverseSensor(true);
 
 		// Set the peak and nominal outputs, 12V means full
 		shooterB.configNominalOutputVoltage(0.0f, 0.0f);
@@ -101,7 +102,8 @@ public class Shooter extends Subsystem
 		shooterB.setI(Constants.SHOOTER_I);
 		shooterB.setD(Constants.SHOOTER_D);
 		shooterB.setF(Constants.SHOOTER_F);
-		
+		shooterB.changeControlMode(CANTalon.TalonControlMode.Speed);
+	
 		shooterB.disable();
 		shooterB.set(Constants.DEFAULT_SHOOTER_SPEED);
 		
@@ -151,9 +153,7 @@ public class Shooter extends Subsystem
 			// Ensure the Talon is in PID speed mode
 			shooterA.changeControlMode(CANTalon.TalonControlMode.Speed);
 			shooterB.changeControlMode(CANTalon.TalonControlMode.Speed);
-		
-			setShooterPID_ParametersFromSmartdashboard();
-			
+
 			m_shooter_mode_PID = true;
 		}
 		
@@ -174,8 +174,6 @@ public class Shooter extends Subsystem
 		{
 			// Ensure the Talon is in PID speed mode
 			feeder.changeControlMode(CANTalon.TalonControlMode.Speed);
-			
-			setFeederPID_ParametersFromSmartdashboard();
 			
 			m_feeder_mode_PID = true;
 		}
@@ -211,6 +209,10 @@ public class Shooter extends Subsystem
 	 */
 	public void enableShooterPIDs()
 	{
+		// Ensure the Talon is in PID speed mode
+		shooterA.changeControlMode(CANTalon.TalonControlMode.Speed);
+		shooterB.changeControlMode(CANTalon.TalonControlMode.Speed);
+	
 		// Enable both shooter PID controllers
 		shooterA.enable();
 		shooterB.enable();
@@ -221,6 +223,9 @@ public class Shooter extends Subsystem
 	 */
 	public void enableFeederPID()
 	{
+		// Ensure the Talon is in PID speed mode
+		feeder.changeControlMode(CANTalon.TalonControlMode.Speed);
+		
 		// Enable the feeder PID controller
 		feeder.enable();
 	}
@@ -249,6 +254,10 @@ public class Shooter extends Subsystem
 	 */
 	public void setShooterPID_Parameters(double F, double P, double I, double D)
 	{
+		// Ensure the Talon is in PID speed mode
+		shooterA.changeControlMode(CANTalon.TalonControlMode.Speed);
+		shooterB.changeControlMode(CANTalon.TalonControlMode.Speed);
+	
 		// Set the F, P, I and D parameters for shooter motor A PID controller
 		shooterA.setF(F);
 		shooterA.setP(P);
@@ -267,6 +276,9 @@ public class Shooter extends Subsystem
 	 */
 	public void setFeederPID_Parameters(double F, double P, double I, double D)
 	{
+		// Ensure the Talon is in PID speed mode
+		feeder.changeControlMode(CANTalon.TalonControlMode.Speed);
+		
 		// Set the F, P, I and D parameters for the feeder PID controller
 		feeder.setF(F);
 		feeder.setP(P);
@@ -279,8 +291,12 @@ public class Shooter extends Subsystem
 	 */
 	public void setShooterPID_ParametersFromSmartdashboard()
 	{
+		// Ensure the Talon is in PID speed mode
+		shooterA.changeControlMode(CANTalon.TalonControlMode.Speed);
+		shooterB.changeControlMode(CANTalon.TalonControlMode.Speed);
+	
 		// Update the shooter speed
-		m_shooter_speed = SmartDashboard.getNumber("Shooter Speed", 0.0);
+		m_shooter_speed = SmartDashboard.getNumber("Shooter Setpoint", 0.0);
 		
 		// Read the F, P, I and D parameters for shooter motor A from the SmartDashboard
 		// divide everything by 1000 so SmartDashboard numbers are not really small
@@ -303,6 +319,9 @@ public class Shooter extends Subsystem
 	 */
 	public void setFeederPID_ParametersFromSmartdashboard()
 	{
+		// Ensure the Talon is in PID speed mode
+		feeder.changeControlMode(CANTalon.TalonControlMode.Speed);
+		
 		// Update the feeder speed
 		m_feeder_speed = SmartDashboard.getNumber("Feeder Speed", 0.0);		
 		
@@ -321,7 +340,7 @@ public class Shooter extends Subsystem
 	public void setShooterSpeedFromSmartdashboard()
 	{
 		// Update the shooter speed
-		m_shooter_speed = SmartDashboard.getNumber("Shooter Speed", 0.0);
+		m_shooter_speed = SmartDashboard.getNumber("Shooter Setpoint", 0.0);
 		
 		// Set the Shooter speed from the SmartDashboard
 		setShooterSpeed(m_shooter_speed);
@@ -333,7 +352,7 @@ public class Shooter extends Subsystem
 	public void setFeederSpeedFromSmartdashboard()
 	{
 		// Update the feeder speed
-		m_feeder_speed = SmartDashboard.getNumber("Feeder Speed", 0.0);		
+		m_feeder_speed = SmartDashboard.getNumber("Feeder Setpoint", 0.0);		
 		
 		// Set the Feeder speed from the SmartDashboard
 		setFeederSpeed(m_feeder_speed);
@@ -368,16 +387,17 @@ public class Shooter extends Subsystem
 	}
 	
 	/**
-	 * Method to return the Shooter speed
+	 * Method to return the Shooter A speed
 	 */
 	public double getShooterASpeed()
 	{
 		// Assume shooter A and shooter B are set to the same speed
 		return shooterA.getSpeed();
+
 	}
 
 	/**
-	 * Method to return the Shooter speed
+	 * Method to return the Shooter B speed
 	 */
 	public double getShooterBSpeed()
 	{
@@ -392,5 +412,32 @@ public class Shooter extends Subsystem
 	{
 		// Return the feeder speed
 		return feeder.getSpeed();
+	}
+	
+	/**
+	 * Method to return the Shooter A error
+	 */
+	public double getShooterAError()
+	{
+		// Return the Shooter A PID error
+		return shooterA.getError();
+	}
+	
+	/**
+	 * Method to return the Shooter B error
+	 */
+	public double getShooterBError()
+	{
+		// Return the Shooter B PID error
+		return shooterB.getError();
+	}
+	
+	/**
+	 * Method to 
+	 * @return
+	 */
+	public double getShooterASetpoint()
+	{
+		return shooterA.getSetpoint();
 	}
 }
