@@ -28,24 +28,31 @@ public class Constants
 	// ***************************************************************************************
 	// Shooter constants
 	
-	public static double SHOOTER_P							= 0.0050;
+	public static double SHOOTER_P							= 0.0600;
 	public static double SHOOTER_I							= 0.0004;
-	public static double SHOOTER_D							= 0.0000;
-	public static double SHOOTER_F							= 0.0000;
+	public static double SHOOTER_D							= 4.0000;
+	public static double SHOOTER_F							= 0.0050;
+	public static double DEFAULT_SHOOTER_SPEED              = 4000.0;
+	
+	public static double SHOOTER_SPEED_A                    = 1000.0;
+	public static double SHOOTER_SPEED_B                    = 2000.0;
+	public static double SHOOTER_SPEED_C                    = 3000.0;
+	public static double SHOOTER_SPEED_D                    = 3500.0;
 	
 	// ***************************************************************************************
 	// Feeder constants
 	
-	public static double FEEDER_P							= 0.0050;
-	public static double FEEDER_I							= 0.0004;
-	public static double FEEDER_D							= 0.0000;
-	public static double FEEDER_F							= 0.0000;
+	public static double FEEDER_P							= 0.1000;
+	public static double FEEDER_I							= 0.0010;
+	public static double FEEDER_D							= 4.0000;
+	public static double FEEDER_F							= 0.1000;
+	public static double DEFAULT_FEEDER_SPEED               = 400.0;
 	
 	// ***************************************************************************************
 	// Ball Pickup constants
 	
-	public static double SWEEPER_VOLTAGE					= 5.0;
-	public static double TRANSPORT_VOLTAGE					= 5.0;
+	public static double SWEEPER_VOLTAGE					= 3.0;
+	public static double TRANSPORT_VOLTAGE					= 3.0;
 
 	// ***************************************************************************************
 	// Ultrasonic constants

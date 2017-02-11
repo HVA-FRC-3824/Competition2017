@@ -182,6 +182,11 @@ public class Robot extends IterativeRobot
 		SmartDashboard.putNumber("Chassis Encoder Left", RobotMap.chassisEncoderLeft.getDistance());
 		SmartDashboard.putNumber("Chassis Encoder Right", RobotMap.chassisEncoderRight.getDistance());
 		
+		// Show the shooter and feeder speeds
+		SmartDashboard.putNumber("Shooter A Speed", Robot.shooter.getShooterASpeed());
+		SmartDashboard.putNumber("Shooter B Speed", Robot.shooter.getShooterASpeed());
+		SmartDashboard.putNumber("Feeder Speed", Robot.shooter.getFeederSpeed());
+		
 		// Update the SmartDashboard data about the image processing
         rpi.updateSmartDashboardData();
         rpi.updateSmartDashboardActive();
