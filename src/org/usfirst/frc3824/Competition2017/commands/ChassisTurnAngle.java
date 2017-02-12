@@ -87,7 +87,8 @@ public class ChassisTurnAngle extends Command
 			{
 				return true;
 			}
-		} else
+		} 
+		else
 		{
 			// Reset the timer since the move did not complete
 			m_OnTargetTimer.reset();

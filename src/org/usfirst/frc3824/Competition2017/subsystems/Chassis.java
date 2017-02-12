@@ -56,27 +56,26 @@ public class Chassis extends Subsystem
 	private boolean					m_highGear;
 
 	// PID controller for driving based on Gyro
-	private PIDController angleGyroPID = new PIDController(
-		Constants.DRIVETRAIN_DRIVE_STRAIGHT_P,
-        Constants.DRIVETRAIN_DRIVE_STRAIGHT_I, 
-        Constants.DRIVETRAIN_DRIVE_STRAIGHT_D, 
-        gyro, new AnglePIDOutput()
+	private PIDController angleGyroPID = new PIDController(Constants.DRIVETRAIN_DRIVE_STRAIGHT_P,
+														   Constants.DRIVETRAIN_DRIVE_STRAIGHT_I, 
+                                                           Constants.DRIVETRAIN_DRIVE_STRAIGHT_D, 
+                                                           gyro, new AnglePIDOutput()
     );
 	
 	private PIDController angleEncoderPID_Right = new PIDController(Constants.IMAGE_ANGLE_ENCODER_P,
-            Constants.IMAGE_ANGLE_ENCODER_I, 
-            Constants.IMAGE_ANGLE_ENCODER_D, 
-            encoderRight, 
-            new EncoderPIDOutputRight());
+                                                                    Constants.IMAGE_ANGLE_ENCODER_I, 
+                                                                    Constants.IMAGE_ANGLE_ENCODER_D, 
+                                                                    encoderRight, 
+                                                                    new EncoderPIDOutputRight());
 
 	private PIDController angleEncoderPID_Left = new PIDController(Constants.IMAGE_ANGLE_ENCODER_P,
-           Constants.IMAGE_ANGLE_ENCODER_I, 
-           Constants.IMAGE_ANGLE_ENCODER_D, 
-           encoderLeft,
-           new EncoderPIDOutputLeft());
+                                                                   Constants.IMAGE_ANGLE_ENCODER_I, 
+                                                                   Constants.IMAGE_ANGLE_ENCODER_D, 
+                                                                   encoderLeft,
+                                                                   new EncoderPIDOutputLeft());
 	
-	public Chassis() {
-		
+	public Chassis() 
+	{
 		// Configure angleEncoderPIDs
 		
 		// Set the PID gains
@@ -173,7 +172,7 @@ public class Chassis extends Subsystem
 		return m_highGear;
 	}
 
-	/*
+	/**
 	 * Method to control the drive through the specified joystick
 	 */
 	public void driveWithJoystick(Joystick stick)
@@ -279,7 +278,6 @@ public class Chassis extends Subsystem
 		// Note: The Left set point should just be the negative of the Left
 		return angleEncoderPID_Right.getSetpoint();
 	}
-
 	
 	/**
 	 * Method to update output power while under PID control
@@ -413,5 +411,4 @@ public class Chassis extends Subsystem
 			driveLeft.set(-PIDoutput);
 		}
 	}
-
 }

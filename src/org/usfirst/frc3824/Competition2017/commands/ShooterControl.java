@@ -39,27 +39,34 @@ public class ShooterControl extends Command
 	// Called just before this Command runs the first time
 	protected void initialize()
 	{
+		System.out.println("In Shooter Control Initialize");
+		
 		// Setup the shooter PID control and start the shooter motor
 		Robot.shooter.setShooterPID_ParametersFromSmartdashboard();
 		Robot.shooter.setShooterSpeedFromSmartdashboard();
 		Robot.shooter.enableShooterPIDs();
+		Robot.shooter.setShooterSpeedFromSmartdashboard();
 		
-		// Setup the feeder PID control and start the feeder motor
-		Robot.shooter.setFeederPID_ParametersFromSmartdashboard();		
-		Robot.shooter.setFeederSpeedFromSmartdashboard();
-		Robot.shooter.enableFeederPID();
+//		// Setup the feeder PID control and start the feeder motor
+//		Robot.shooter.setFeederPID_ParametersFromSmartdashboard();		
+//		Robot.shooter.setFeederSpeedFromSmartdashboard();
+//		Robot.shooter.enableFeederPID();
+//		Robot.shooter.setFeederSpeedFromSmartdashboard();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute()
 	{
-		Robot.shooter.setShooterSpeedFromSmartdashboard();
-		Robot.shooter.setFeederSpeedFromSmartdashboard();
+
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished()
 	{
+		// Wait for "DO NOT PRESS" button to be released
+		if (Robot.oi.getControllerJoystick().getRawButton(19) == false)
+			return true;
+		
 		return false;
 	}
 

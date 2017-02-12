@@ -113,10 +113,10 @@ public class RobotMap
         ballPickupTransport = new Talon(3);
         LiveWindow.addActuator("Ball Pickup", "Transport", (Talon) ballPickupTransport);
         
-        gearReceive = new Solenoid(0, 1);
+        gearReceive = new Solenoid(0, 4);
         LiveWindow.addActuator("Gear", "Receive", gearReceive);
         
-        gearDeploy = new Solenoid(0, 2);
+        gearDeploy = new Solenoid(0, 5);
         LiveWindow.addActuator("Gear", "Deploy", gearDeploy);
         
 
