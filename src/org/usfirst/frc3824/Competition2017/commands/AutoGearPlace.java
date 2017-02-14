@@ -25,8 +25,12 @@ public class AutoGearPlace extends CommandGroup
 		// e.g. addSequential(new Command1());
 		// addSequential(new Command2());
 		// these will run in order.
-
+    	
 		addSequential(new LineUpWithTarget());
+		
+		addSequential(new ChassisDriveRange(25.0, 0.25, false));
+		
+		addSequential(new GearPlace());
 
 		// To run multiple commands at the same time,
 		// use addParallel()
