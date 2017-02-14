@@ -125,6 +125,8 @@ public class Camera
 				});
 			});
 			
+			
+			
 			SmartDashboard.putNumber("Target A area", largestTargetRect.area());
 			SmartDashboard.putNumber("Target B area", secondLargestTargetRect.area());
 			

@@ -53,6 +53,19 @@ public class Target
 			mValid = false;
 		}
 	}
+	
+	Target(int targetType, int frameIndex, int xCenter, int yCenter, int height, int imgWidth, int imgHeight)
+	{
+		mValid      = true;
+		mTargetType = targetType;
+		mFrameIndex = frameIndex;
+		mXCenter    = xCenter;
+		mYCenter    = yCenter;
+		mHeight     = height;
+		mImgWidth   = imgWidth;
+		mImgHeight  = imgHeight;
+	}
+
 
 	/**
 	 * Method to return if the target data is valid

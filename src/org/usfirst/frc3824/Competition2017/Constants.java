@@ -101,10 +101,27 @@ public class Constants
 
 	public static double IMAGE_ANGLE_MINIMUM_OUTPUT         = -0.4;
 	public static double IMAGE_ANGLE_MAXIMUM_OUTPUT         =  0.4;	
-	
-	public static double IMAGE_ANGLE_JOG_DISTANCE           =  15.0; 
+		
+	public static double IMAGE_ANGLE_JOG_DISTANCE           =  15.0;
+
 	
 	// ***************************************************************************************
 	// Target constants
-	public static double DEVIATION_FROM_TARGET              = 2; 
+	public static double DEVIATION_FROM_TARGET              = 2;
+	public static double CAM_FOV                            = 48.0;
+	
+	
+	public static double DISTANCE_A                           =  0.0839;  //  0.0838;   // x^2
+	public static double DISTANCE_B                           = -16.762;  // -16.665;   // x
+	public static double DISTANCE_C                           =  967.84;  //  952.25;   // offset
+	
+	// y = 0.0003x2 - 0.0462x + 183.46
+	public static double IMAGE_Y_A                            =   0.0003;  // 0.0001;    //0.00005; //   0.0001;    // x^2
+	public static double IMAGE_Y_B                            =  -0.0462;  // 0.0534;    //0.1887;  //   0.0534;    // x
+	public static double IMAGE_Y_C                            =   183.46;  // 172.81;    //141.11;  //   172.81;    // offset
+	
+	//                                                       2016: Thing 1  // Thing 2  // Thing 1
+	public static int    IMAGE_ON_TARGET_X_POSITION           =   170;  // 170;        // X location of the "onTarget" position
+	public static int    IMAGE_ON_TARGET_Y_OFFSET             =   -25;  // -25;
+
 }
