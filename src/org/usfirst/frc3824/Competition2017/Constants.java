@@ -92,8 +92,8 @@ public class Constants
 	// ***************************************************************************************
 	// Automated aim and shoot constants
 	
-	public static double IMAGE_ANGLE_ENCODER_P              =  0.3;
-	public static double IMAGE_ANGLE_ENCODER_I              =  0.0005;
+	public static double IMAGE_ANGLE_ENCODER_P              =  0.01; //0.03;
+	public static double IMAGE_ANGLE_ENCODER_I              =  0.000;
 	public static double IMAGE_ANGLE_ENCODER_D              =  0.0;
 
 	public static double IMAGE_ANGLE_MINIMUM_INPUT          = -1000.0;
@@ -102,12 +102,12 @@ public class Constants
 	public static double IMAGE_ANGLE_MINIMUM_OUTPUT         = -0.4;
 	public static double IMAGE_ANGLE_MAXIMUM_OUTPUT         =  0.4;	
 		
-	public static double IMAGE_ANGLE_JOG_DISTANCE           =  15.0;
+	public static double IMAGE_ANGLE_JOG_DISTANCE           =  5.0;
 
 	
 	// ***************************************************************************************
 	// Target constants
-	public static double DEVIATION_FROM_TARGET              = 2;
+	public static double DEVIATION_FROM_TARGET              = 6.0;
 	public static double CAM_FOV                            = 48.0;
 	
 	

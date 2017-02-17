@@ -1,12 +1,9 @@
 package org.usfirst.frc3824.Competition2017.utils;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import org.usfirst.frc3824.Competition2017.Constants;
-
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class TargetingInfo {
 	public int    offsetFromTargetX;	// pixels from targeting point in the X direction

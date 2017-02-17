@@ -149,7 +149,7 @@ public class RPiDataSource
 								"  Height: " + getTarget().getHeight()));
 			} else
 			{
-				SmartDashboard.putString("NO VALID TARGET", null);
+				SmartDashboard.putString("Target", "NO VALID TARGET");
 			}
 		} catch (Exception e)
 		{

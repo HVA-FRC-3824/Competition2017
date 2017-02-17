@@ -27,6 +27,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedController;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The Chassis class contains all the methods and members for the Chassis subassembly
@@ -78,9 +79,9 @@ public class Chassis extends Subsystem
 	{
 		// Configure angleEncoderPIDs
 		
-		// Set the PID gains
-		angleEncoderPID_Left.setPID(Constants.IMAGE_ANGLE_ENCODER_P, Constants.IMAGE_ANGLE_ENCODER_I, Constants.IMAGE_ANGLE_ENCODER_D);
-		angleEncoderPID_Right.setPID(Constants.IMAGE_ANGLE_ENCODER_P, Constants.IMAGE_ANGLE_ENCODER_I, Constants.IMAGE_ANGLE_ENCODER_D);
+		SmartDashboard.putNumber("angleEncoderPID P", angleEncoderPID_Left.getP());
+		SmartDashboard.putNumber("angleEncoderPID I", angleEncoderPID_Left.getI());
+		SmartDashboard.putNumber("angleEncoderPID D", angleEncoderPID_Left.getD());
 
 		// Set the encoder input value range
 		angleEncoderPID_Left.setInputRange(Constants.IMAGE_ANGLE_MINIMUM_INPUT, Constants.IMAGE_ANGLE_MAXIMUM_INPUT);
@@ -274,9 +275,36 @@ public class Chassis extends Subsystem
 	 */
 	public double getEncoderSetpoint()
 	{
+		return angleEncoderPID_Right.getSetpoint();
+	}
+	
+	/**
+	 * 
+	 * Method to get the encoder PID error
+	 */
+	public double getLeftEncoderPIDError()
+	{
+		return angleEncoderPID_Left.getError();
+	}
+	
+	/**
+	 * 
+	 * Method to get the encoder PID error
+	 */
+	public double getRightEncoderPIDError()
+	{
 		// Return the Right set point
 		// Note: The Left set point should just be the negative of the Left
-		return angleEncoderPID_Right.getSetpoint();
+		return angleEncoderPID_Right.getError();
+	}
+	
+	public void setEncoderPID_ParametersFromSmartdashboard() {
+		double p = SmartDashboard.getNumber("angleEncoderPID P", angleEncoderPID_Left.getP());
+		double i = SmartDashboard.getNumber("angleEncoderPID I", angleEncoderPID_Left.getI());
+		double d = SmartDashboard.getNumber("angleEncoderPID D", angleEncoderPID_Left.getD());
+		
+		angleEncoderPID_Left.setPID(p, i, d);
+		angleEncoderPID_Right.setPID(p, i, d);
 	}
 	
 	/**
@@ -395,6 +423,8 @@ public class Chassis extends Subsystem
 		public void pidWrite(double PIDoutput)
 		{
 			driveRight.set(PIDoutput);
+			
+			SmartDashboard.putNumber("Right Output", PIDoutput);
 		}
 	}
 
@@ -409,6 +439,8 @@ public class Chassis extends Subsystem
 		public void pidWrite(double PIDoutput)
 		{
 			driveLeft.set(-PIDoutput);
+			
+			SmartDashboard.putNumber("Left Output", -PIDoutput);
 		}
 	}
 }

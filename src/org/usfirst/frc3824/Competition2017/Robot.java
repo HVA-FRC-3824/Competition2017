@@ -125,10 +125,10 @@ public class Robot extends IterativeRobot
 		// Update the SmartDashboard data about the image processing
         rpi.updateSmartDashboardData();
         rpi.updateSmartDashboardActive();
-        
-		// Determine if a button is pressed
-		for (int button = 1; button <= 20; button++)
-			SmartDashboard.putBoolean("Button" + button, Robot.oi.getControllerJoystick().getRawButton(button));
+//        
+//		// Determine if a button is pressed
+//		for (int button = 1; button <= 20; button++)
+//			SmartDashboard.putBoolean("Button" + button, Robot.oi.getControllerJoystick().getRawButton(button));
 	}
 
 	public void autonomousInit()
