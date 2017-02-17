@@ -63,7 +63,7 @@ public class LineUpWithTarget extends Command
 			System.out.println("Valid Target Out");
 			// only update periodically
 			if (timer.get() > 1.0) {
-				updateEncoderSetpoint(target);
+		    	Robot.chassis.updateEncoderSetpointWithTarget(target);
 	
 				double deviationFromTarget = target.deviationFromTarget();
 
@@ -98,32 +98,4 @@ public class LineUpWithTarget extends Command
 		end();
 	}
 
-	private void updateEncoderSetpoint(Target target)
-	{
-		double encoderPosition = Robot.chassis.getEncoderSetpoint();
-
-		double deviationFromTarget = target.deviationFromTarget();
-
-		if (deviationFromTarget < -Constants.DEVIATION_FROM_TARGET)
-		{
-			encoderPosition += Constants.IMAGE_ANGLE_JOG_DISTANCE;
-		} 
-		else if (deviationFromTarget > Constants.DEVIATION_FROM_TARGET)
-		{
-			encoderPosition -= Constants.IMAGE_ANGLE_JOG_DISTANCE;
-		}
-
-		// if the deviation is really large, jog the encoder position a second
-		// time
-		if (deviationFromTarget < -2 * Constants.DEVIATION_FROM_TARGET)
-		{
-			encoderPosition += Constants.IMAGE_ANGLE_JOG_DISTANCE;
-		} 
-		else if (deviationFromTarget > 2 * Constants.DEVIATION_FROM_TARGET)
-		{
-			encoderPosition -= Constants.IMAGE_ANGLE_JOG_DISTANCE;
-		}
-
-		Robot.chassis.updateEncoderSetpoint(encoderPosition);
-	}
 }

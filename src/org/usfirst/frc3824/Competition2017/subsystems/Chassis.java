@@ -13,6 +13,7 @@ package org.usfirst.frc3824.Competition2017.subsystems;
 import org.usfirst.frc3824.Competition2017.Robot;
 import org.usfirst.frc3824.Competition2017.Constants;
 import org.usfirst.frc3824.Competition2017.RobotMap;
+import org.usfirst.frc3824.Competition2017.Target;
 import org.usfirst.frc3824.Competition2017.commands.*;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
@@ -125,6 +126,8 @@ public class Chassis extends Subsystem
 		angleEncoderPID_Left.reset();
 		
 		gyro.reset();
+		
+		m_magnitude = 0;
 		
 		// Reset the drive encoders
 		encoderLeft.reset();
@@ -270,6 +273,35 @@ public class Chassis extends Subsystem
 		angleEncoderPID_Right.setSetpoint(desiredEncoderValue);
 	}
 	
+	public void updateEncoderSetpointWithTarget(Target target)
+	{
+		double encoderPosition = Robot.chassis.getEncoderSetpoint();
+
+		double deviationFromTarget = target.deviationFromTarget();
+
+		if (deviationFromTarget < -Constants.DEVIATION_FROM_TARGET)
+		{
+			encoderPosition += Constants.IMAGE_ANGLE_JOG_DISTANCE;
+		} 
+		else if (deviationFromTarget > Constants.DEVIATION_FROM_TARGET)
+		{
+			encoderPosition -= Constants.IMAGE_ANGLE_JOG_DISTANCE;
+		}
+
+		// if the deviation is really large, jog the encoder position a second
+		// time
+		if (deviationFromTarget < -2 * Constants.DEVIATION_FROM_TARGET)
+		{
+			encoderPosition += Constants.IMAGE_ANGLE_JOG_DISTANCE;
+		} 
+		else if (deviationFromTarget > 2 * Constants.DEVIATION_FROM_TARGET)
+		{
+			encoderPosition -= Constants.IMAGE_ANGLE_JOG_DISTANCE;
+		}
+
+		updateEncoderSetpoint(encoderPosition);
+	}
+
 	/**
 	 * Method to get the encoder PID target value (heading)
 	 */
@@ -422,7 +454,7 @@ public class Chassis extends Subsystem
 		 */
 		public void pidWrite(double PIDoutput)
 		{
-			driveRight.set(PIDoutput);
+			driveRight.set(PIDoutput + m_magnitude);
 			
 			SmartDashboard.putNumber("Right Output", PIDoutput);
 		}
@@ -438,7 +470,7 @@ public class Chassis extends Subsystem
 		 */
 		public void pidWrite(double PIDoutput)
 		{
-			driveLeft.set(-PIDoutput);
+			driveLeft.set(-PIDoutput + m_magnitude);
 			
 			SmartDashboard.putNumber("Left Output", -PIDoutput);
 		}
