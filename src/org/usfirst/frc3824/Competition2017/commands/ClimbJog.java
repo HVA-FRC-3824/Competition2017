@@ -57,7 +57,7 @@ public class ClimbJog extends Command
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished()
 	{
-		return timer.get() < Constants.CLIMBER_JOG_TIME;
+		return timer.get() > Constants.CLIMBER_JOG_TIME;
 	}
 
 	// Called once after isFinished returns true
