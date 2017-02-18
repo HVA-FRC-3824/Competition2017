@@ -203,11 +203,7 @@ public class Robot extends IterativeRobot
 		Scheduler.getInstance().run();
 		
 		SmartDashboard.putNumber("Average Climber Current", Robot.climber.getClimberCurrent());
-		
-		for (int i = 0; i < 16; i++) {			
-			SmartDashboard.putNumber("Motor Current " + i, RobotMap.pdp.getCurrent(i));
-		}
-		
+				
 		SmartDashboard.putNumber("Chassis Encoder Left", RobotMap.chassisEncoderLeft.getDistance());
 		SmartDashboard.putNumber("Chassis Encoder Right", RobotMap.chassisEncoderRight.getDistance());
 		

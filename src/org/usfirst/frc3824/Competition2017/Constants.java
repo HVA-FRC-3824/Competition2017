@@ -7,7 +7,7 @@ public class Constants
 	public static double TWIST_MULTIPLIER = 0.90;
 	public static int    DRIVER_REVERSE_BUTTON = 11;
 
-	public static int    BACK_TO_SHOOT_DISTANCE = 48;
+	public static double BACK_TO_SHOOT_DISTANCE = 48.0;
 	
 	// ***************************************************************************************
 	// Drive straight constants
