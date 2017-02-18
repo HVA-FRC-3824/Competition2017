@@ -123,7 +123,7 @@ public class OI
         ballPickupForward.whenPressed(new BallPickupEnableDisable(true, false));
         driveJoystick = new Joystick(0);
         
-        encoderControl = new JoystickButton(driveJoystick, 11);
+        encoderControl = new JoystickButton(driveJoystick, 8);
         encoderControl.whileHeld(new DriveWithEncoders());
         shifterLowGear = new JoystickButton(driveJoystick, 2);
         shifterLowGear.whenReleased(new ChassisShift(false));

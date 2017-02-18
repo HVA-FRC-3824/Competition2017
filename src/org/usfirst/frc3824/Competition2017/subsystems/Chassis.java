@@ -196,6 +196,11 @@ public class Chassis extends Subsystem
 		{
 			moveValue = moveValue * moveValue;
 		}
+		
+		if (stick.getRawButton(Constants.DRIVER_REVERSE_BUTTON))
+		{
+			moveValue = -1.0 * moveValue; // reverse moveValue
+		}
 
 		// Drive with arcade control
 		Robot.chassis.robotDrive.arcadeDrive(moveValue, twist);

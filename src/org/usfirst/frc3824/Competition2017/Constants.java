@@ -3,8 +3,14 @@ package org.usfirst.frc3824.Competition2017;
 public class Constants
 {
 	// ***************************************************************************************
+	// Drivetrain constants
+	public static double TWIST_MULTIPLIER = 0.75;
+	public static int    DRIVER_REVERSE_BUTTON = 11;
+
+	
+	// ***************************************************************************************
 	// Drive straight constants
-		
+
 	public static double DRIVETRAIN_DRIVE_STRAIGHT_P		= 0.1;
 	public static double DRIVETRAIN_DRIVE_STRAIGHT_I		= 0.0;
 	public static double DRIVETRAIN_DRIVE_STRAIGHT_D		= 0.0;
@@ -13,7 +19,7 @@ public class Constants
 	public static double DRIVETRAIN_DRIVE_MAXIMUM_OUTPUT	=  1.0;
 
 	public static double DRIVETRAIN_DRIVE_TOLERANCE			= 0.0;
-	public static double TWIST_MULTIPLIER = 0.5;
+	
 
 	// ***************************************************************************************
 	// Chassis turn constants
@@ -52,7 +58,7 @@ public class Constants
 	public static double SHOOTER_I							= 0.0004;
 	public static double SHOOTER_D							= 4.0000;
 	public static double SHOOTER_F							= 0.0050;
-	public static double DEFAULT_SHOOTER_SPEED              = 1500.0;
+	public static double DEFAULT_SHOOTER_SPEED              = 3500.0;
 	
 	public static double SHOOTER_SPEED_HIGH                 = 4000.0;
 	public static double SHOOTER_SPEED_MEDHIGH              = 3500.0;
