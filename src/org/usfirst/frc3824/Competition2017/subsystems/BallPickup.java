@@ -45,11 +45,12 @@ public class BallPickup extends Subsystem
 	/**
 	 * Method to enable just the ball transport motor
 	 */
-	public void enableTransport()
+	public void setTransport(double speed)
 	{
 		// Enable the ball transpot motor
-		transport.set(Constants.TRANSPORT_VOLTAGE);
+		transport.set(speed);
 	}
+
 	
 	/**
 	 * Method to disable just the ball transport motor

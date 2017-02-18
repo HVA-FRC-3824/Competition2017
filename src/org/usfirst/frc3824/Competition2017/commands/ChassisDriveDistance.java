@@ -72,6 +72,12 @@ public class ChassisDriveDistance extends Command
 	protected boolean isFinished()
 	{
 		// Determine if the robot has reached the specified distance
+		if (m_Timer.get() > 5.0)
+		{
+			// fail after 5.0 seconds
+			return true;
+		}
+		
 		return Robot.chassis.getEncoderDistance() > m_Distance;
 	}
 

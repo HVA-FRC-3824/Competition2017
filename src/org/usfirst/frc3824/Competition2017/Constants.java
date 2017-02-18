@@ -4,9 +4,10 @@ public class Constants
 {
 	// ***************************************************************************************
 	// Drivetrain constants
-	public static double TWIST_MULTIPLIER = 0.75;
+	public static double TWIST_MULTIPLIER = 0.90;
 	public static int    DRIVER_REVERSE_BUTTON = 11;
 
+	public static int    BACK_TO_SHOOT_DISTANCE = 48;
 	
 	// ***************************************************************************************
 	// Drive straight constants
@@ -36,8 +37,8 @@ public class Constants
 	// ***************************************************************************************
 	// Climber constants
 		
-	public static int    CLIMBER_BUTTON_SLOW                =  15;
-	public static int    CLIMBER_BUTTON_FAST                =  14;
+	public static int    CLIMBER_BUTTON_SLOW                =  14;
+	public static int    CLIMBER_BUTTON_FAST                =  15;
 	public static int    CLIMBER_BUTTON_AUTO                =  4;
 	
 	public static double CLIMBER_SPEED_FAST                 = -0.5;
@@ -60,11 +61,11 @@ public class Constants
 	public static double SHOOTER_F							= 0.0050;
 	public static double DEFAULT_SHOOTER_SPEED              = 3500.0;
 	
-	public static double SHOOTER_SPEED_HIGH                 = 4000.0;
-	public static double SHOOTER_SPEED_MEDHIGH              = 3500.0;
-	public static double SHOOTER_SPEED_MEDLOW               = 3000.0;
-	public static double SHOOTER_SPEED_LOW                  = 2000.0;
-	public static double SHOOTER_JOG_SPEED                  = 200.0;
+	public static double SHOOTER_SPEED_HIGH                 = 4500.0;
+	public static double SHOOTER_SPEED_MEDHIGH              = 4000.0;
+	public static double SHOOTER_SPEED_MEDLOW               = 3500.0;
+	public static double SHOOTER_SPEED_LOW                  = 3200.0;
+	public static double SHOOTER_JOG_SPEED                  = 50.0;
 	
 	public static double FEEDER_CLEAR_BALLS_TIME            = 0.5;
 	public static double SHOOTER_SPINUP_TIME                = 1.0;
@@ -89,6 +90,7 @@ public class Constants
 	
 	public static double SWEEPER_VOLTAGE					= 1.0;
 	public static double TRANSPORT_VOLTAGE					= 1.5;
+	public static double TRANSPORT_SLOW_VOLTAGE             = 0.5;
 	
 	// ***************************************************************************************
 	// Ultrasonic constants

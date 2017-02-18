@@ -109,7 +109,7 @@ public class ShooterManualShoot extends Command
 			case STATE_CLEAR_BALLS:
 			{
 				// Enable the ball transport to help feed the balls
-				Robot.ballPickup.enableTransport();
+				Robot.ballPickup.setTransport(-Constants.TRANSPORT_SLOW_VOLTAGE);
 			
 				// Enable the feeder to feed the balls
 				Robot.shooter.enableFeederPID();
@@ -144,6 +144,9 @@ public class ShooterManualShoot extends Command
 			{
 				// Set the feeder speed
 				Robot.shooter.setFeederSpeed(Constants.DEFAULT_FEEDER_SPEED);
+				
+				Robot.ballPickup.setTransport(Constants.TRANSPORT_SLOW_VOLTAGE);
+
 				break;
 			}
 			

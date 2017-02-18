@@ -54,6 +54,7 @@ public class OI
     public JoystickButton shifterLowGear;
     public JoystickButton encoderControl;
     public JoystickButton autoGearPlace;
+    public JoystickButton backToShoot;
     public Joystick driveJoystick;
     public JoystickButton ballPickupForward;
     public JoystickButton ballPickupReverse;
@@ -114,16 +115,18 @@ public class OI
         shooterSpeedHigh.whenPressed(new ShooterSetSpeedHigh());
         shoot = new JoystickButton(controllerJoystick, 20);
         shoot.whenPressed(new ShooterManualShoot());
-        ballPickupReverseDisable = new JoystickButton(controllerJoystick, 7);
+        ballPickupReverseDisable = new JoystickButton(controllerJoystick, 6);
         ballPickupReverseDisable.whenReleased(new BallPickupEnableDisable(false, false));
-        ballPickupForwardDisable = new JoystickButton(controllerJoystick, 6);
+        ballPickupForwardDisable = new JoystickButton(controllerJoystick, 7);
         ballPickupForwardDisable.whenReleased(new BallPickupEnableDisable(false, false));
-        ballPickupReverse = new JoystickButton(controllerJoystick, 7);
+        ballPickupReverse = new JoystickButton(controllerJoystick, 6);
         ballPickupReverse.whenPressed(new BallPickupEnableDisable(true, true));
-        ballPickupForward = new JoystickButton(controllerJoystick, 6);
+        ballPickupForward = new JoystickButton(controllerJoystick, 7);
         ballPickupForward.whenPressed(new BallPickupEnableDisable(true, false));
         driveJoystick = new Joystick(0);
         
+        backToShoot = new JoystickButton(driveJoystick, 1);
+        backToShoot.whenPressed(new ChassisBackToShoot());
         autoGearPlace = new JoystickButton(driveJoystick, 3);
         autoGearPlace.whenPressed(new AutoPlaceGear());
         encoderControl = new JoystickButton(driveJoystick, 8);
