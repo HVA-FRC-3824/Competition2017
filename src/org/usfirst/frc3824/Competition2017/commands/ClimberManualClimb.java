@@ -50,11 +50,7 @@ public class ClimberManualClimb extends Command
 		{
 			Robot.climber.climbControl(Constants.CLIMBER_SPEED_FAST);
 		} 
-		else if (Robot.oi.controllerJoystick.getRawButton(Constants.CLIMBER_BUTTON_OFF))
-		{
-			Robot.climber.climbControl(0.0);
-		} 
-		else
+		else if (Robot.oi.controllerJoystick.getRawButton(Constants.CLIMBER_BUTTON_SLOW))
 		{
 			// switch off, middle "slow" position
 			Robot.climber.climbControl(Constants.CLIMBER_SPEED_SLOW);
@@ -64,7 +60,8 @@ public class ClimberManualClimb extends Command
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished()
 	{
-		return false;
+		// finished when auto button is on
+		return Robot.oi.controllerJoystick.getRawButton(Constants.CLIMBER_BUTTON_AUTO);
 	}
 
 	// Called once after isFinished returns true

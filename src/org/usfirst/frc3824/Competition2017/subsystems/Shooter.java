@@ -206,6 +206,7 @@ public class Shooter extends Subsystem
 		
 		// Update the shooter speed
 		m_shooter_speed = speed;
+		SmartDashboard.putNumber("Shooter Setpoint", m_shooter_speed);
 		 
 		// Set the desired speed
 		shooterA.set(m_shooter_speed);

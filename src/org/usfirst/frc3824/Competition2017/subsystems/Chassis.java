@@ -183,7 +183,7 @@ public class Chassis extends Subsystem
 	{
 		// Cube twist to decrease sensitivity
 		double twist = stick.getTwist();
-		twist = twist * twist * twist;
+		twist = Constants.TWIST_MULTIPLIER * twist * twist * twist;
 
 		// Square forward/backward to decrease sensitivity
 		double moveValue = stick.getY();

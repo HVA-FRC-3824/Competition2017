@@ -72,7 +72,8 @@ public class ClimberControl extends Command
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished()
 	{
-		return false;
+		// Return finished when Climber Button Auto is not on
+		return !Robot.oi.controllerJoystick.getRawButton(Constants.CLIMBER_BUTTON_AUTO);
 		
 		// return Robot.climber.getClimberCurrent() > 25.0;
 	}

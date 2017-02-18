@@ -4,7 +4,7 @@ public class Constants
 {
 	// ***************************************************************************************
 	// Drive straight constants
-	
+		
 	public static double DRIVETRAIN_DRIVE_STRAIGHT_P		= 0.1;
 	public static double DRIVETRAIN_DRIVE_STRAIGHT_I		= 0.0;
 	public static double DRIVETRAIN_DRIVE_STRAIGHT_D		= 0.0;
@@ -13,6 +13,7 @@ public class Constants
 	public static double DRIVETRAIN_DRIVE_MAXIMUM_OUTPUT	=  1.0;
 
 	public static double DRIVETRAIN_DRIVE_TOLERANCE			= 0.0;
+	public static double TWIST_MULTIPLIER = 0.5;
 
 	// ***************************************************************************************
 	// Chassis turn constants
@@ -29,8 +30,9 @@ public class Constants
 	// ***************************************************************************************
 	// Climber constants
 		
-	public static int    CLIMBER_BUTTON_OFF                 =  15;
+	public static int    CLIMBER_BUTTON_SLOW                =  15;
 	public static int    CLIMBER_BUTTON_FAST                =  14;
+	public static int    CLIMBER_BUTTON_AUTO                =  4;
 	
 	public static double CLIMBER_SPEED_FAST                 = -0.5;
 	public static double CLIMBER_SPEED_SLOW                 = -0.35;
@@ -52,9 +54,10 @@ public class Constants
 	public static double SHOOTER_F							= 0.0050;
 	public static double DEFAULT_SHOOTER_SPEED              = 1500.0;
 	
-	public static double SHOOTER_SPEED_HIGH                 = 3000.0;
-	public static double SHOOTER_SPEED_MED                  = 2000.0;
-	public static double SHOOTER_SPEED_LOW                  = 1000.0;
+	public static double SHOOTER_SPEED_HIGH                 = 4000.0;
+	public static double SHOOTER_SPEED_MEDHIGH              = 3500.0;
+	public static double SHOOTER_SPEED_MEDLOW               = 3000.0;
+	public static double SHOOTER_SPEED_LOW                  = 2000.0;
 	public static double SHOOTER_JOG_SPEED                  = 200.0;
 	
 	public static double FEEDER_CLEAR_BALLS_TIME            = 0.5;

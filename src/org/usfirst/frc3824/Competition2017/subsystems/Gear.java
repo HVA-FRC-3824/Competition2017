@@ -41,6 +41,14 @@ public class Gear extends Subsystem
 	{
 		rotator.set(up);
 	}
+	
+	/**
+	 * 
+	 */
+	public boolean getRotate()
+	{
+		return rotator.get();
+	}
 
 	/**
 	 * 
@@ -48,6 +56,14 @@ public class Gear extends Subsystem
 	public void setGrab(boolean in)
 	{
 		grabber.set(in);
+	}
+
+	/**
+	 * 
+	 */
+	public boolean getGrab()
+	{
+		return grabber.get();
 	}
 
 	/**
