@@ -10,6 +10,8 @@
 
 package org.usfirst.frc3824.Competition2017;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -101,6 +103,11 @@ public class Robot extends IterativeRobot
 		
 		rpi = RPiDataSource.getInstance();
         rpi.start();
+        
+		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+
+	    // Setup the camera
+		camera.setResolution(640, 480);
 	}
 
 	/**

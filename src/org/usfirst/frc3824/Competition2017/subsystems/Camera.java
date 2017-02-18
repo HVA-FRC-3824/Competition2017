@@ -17,6 +17,7 @@ import org.usfirst.frc3824.Competition2017.commands.*;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
@@ -49,7 +50,8 @@ public class Camera extends Subsystem {
     }
     
     public void controlCameraRotate(double value) {
-    	cameraRotate.setAngle(value);
+    	cameraRotate.set(value);;
+    	SmartDashboard.putNumber("Servo position", value);
     }
 }
 
