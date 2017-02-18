@@ -46,6 +46,12 @@ public class ClimberManualClimb extends Command
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute()
 	{
+		if (Robot.oi.controllerJoystick.getRawButton(Constants.CLIMBER_BUTTON_AUTO))
+		{
+			// Auto switch on, don't do anything
+			return;
+		}
+		
 		if (Robot.oi.controllerJoystick.getRawButton(Constants.CLIMBER_BUTTON_FAST))
 		{
 			Robot.climber.climbControl(Constants.CLIMBER_SPEED_FAST);
@@ -61,12 +67,18 @@ public class ClimberManualClimb extends Command
 	protected boolean isFinished()
 	{
 		// finished when auto button is on
-		return Robot.oi.controllerJoystick.getRawButton(Constants.CLIMBER_BUTTON_AUTO);
+		return false;
 	}
 
 	// Called once after isFinished returns true
 	protected void end()
 	{
+		if (Robot.oi.controllerJoystick.getRawButton(Constants.CLIMBER_BUTTON_AUTO))
+		{
+			// Auto switch on, don't do anything
+			return;
+		}
+		
 		// Turn off climber when done
 		Robot.climber.climbControl(0.0);
 	}
