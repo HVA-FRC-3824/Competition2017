@@ -45,7 +45,8 @@ public class RobotMap
     public static Encoder chassisEncoderRight;
     public static Solenoid chassisTransmission;
     public static Compressor chassisCompressor;
-    public static SpeedController climberClimberMotor;
+    public static SpeedController climberClimberMotorA;
+    public static SpeedController climberClimberMotorB;
     public static CANTalon shooterShooterA;
     public static CANTalon shooterShooterB;
     public static CANTalon shooterFeeder;
@@ -95,8 +96,11 @@ public class RobotMap
         chassisCompressor = new Compressor(0);
         
         
-        climberClimberMotor = new Talon(4);
-        LiveWindow.addActuator("Climber", "Climber Motor", (Talon) climberClimberMotor);
+        climberClimberMotorA = new Talon(4);
+        LiveWindow.addActuator("Climber", "Climber Motor A", (Talon) climberClimberMotorA);
+        
+        climberClimberMotorB = new Talon(5);
+        LiveWindow.addActuator("Climber", "Climber Motor B", (Talon) climberClimberMotorB);
         
         shooterShooterA = new CANTalon(1);
         LiveWindow.addActuator("Shooter", "Shooter A", shooterShooterA);
