@@ -59,7 +59,7 @@ public class AutoPlaceGear extends Command {
     	
     	Robot.chassis.updateEncoderSetpointWithTarget(target);
     	
-		double distanceDelta = target.calculateDistanceFromTarget() - Constants.LIFT_DISTANCE;
+		double distanceDelta = Robot.chassis.getUltrasonicDistance() - Constants.LIFT_DISTANCE;
 
 		if (distanceDelta < 0)
 		{
