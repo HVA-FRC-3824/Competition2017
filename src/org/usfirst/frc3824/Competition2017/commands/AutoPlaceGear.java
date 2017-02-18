@@ -64,7 +64,7 @@ public class AutoPlaceGear extends Command {
 		if (distanceDelta < 0)
 		{
 			// Arrived at lift
-			Robot.chassis.updateMagnitude(0); // stop driving
+			Robot.chassis.updateMagnitude(0.0); // stop driving
 			Robot.gear.setGrab(false); // release gear
 			
 			done = true;

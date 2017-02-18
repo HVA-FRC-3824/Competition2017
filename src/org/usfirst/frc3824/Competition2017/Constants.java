@@ -65,10 +65,11 @@ public class Constants
 	// ***************************************************************************************
 	// Feeder constants
 	
-	public static double FEEDER_P							=  0.1000;
-	public static double FEEDER_I							=  0.0010;
-	public static double FEEDER_D							=  4.0000;
-	public static double FEEDER_F							=  0.1000;
+	// PIDF constants are multiplied by 1000 when displayed on the SmartDashboard
+	public static double FEEDER_P							=  0.0400;
+	public static double FEEDER_I							=  0.0004;
+	public static double FEEDER_D							=  1.6000;
+	public static double FEEDER_F							=  0.0400;
 	public static double DEFAULT_FEEDER_SPEED               =  800.0;
 	public static double FEEDER_REVERSE_SPEED               = -200.0;
 	
