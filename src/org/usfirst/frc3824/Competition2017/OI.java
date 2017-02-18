@@ -53,6 +53,7 @@ public class OI
     public JoystickButton shifterHighGear;
     public JoystickButton shifterLowGear;
     public JoystickButton encoderControl;
+    public JoystickButton autoGearPlace;
     public Joystick driveJoystick;
     public JoystickButton ballPickupForward;
     public JoystickButton ballPickupReverse;
@@ -123,6 +124,8 @@ public class OI
         ballPickupForward.whenPressed(new BallPickupEnableDisable(true, false));
         driveJoystick = new Joystick(0);
         
+        autoGearPlace = new JoystickButton(driveJoystick, 3);
+        autoGearPlace.whenPressed(new AutoPlaceGear());
         encoderControl = new JoystickButton(driveJoystick, 8);
         encoderControl.whileHeld(new DriveWithEncoders());
         shifterLowGear = new JoystickButton(driveJoystick, 2);
