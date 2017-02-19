@@ -123,18 +123,9 @@ public class Robot extends IterativeRobot
 	{
 		Scheduler.getInstance().run();
 
-		SmartDashboard.putNumber("Chassis Encoder Left", RobotMap.chassisEncoderLeft.getDistance());
-		SmartDashboard.putNumber("Chassis Encoder Right", RobotMap.chassisEncoderRight.getDistance());
-		
-		// Show the shooter and feeder speeds
-		SmartDashboard.putNumber("Shooter A Speed", Robot.shooter.getShooterASpeed());
-		SmartDashboard.putNumber("Shooter B Speed", Robot.shooter.getShooterBSpeed());
-		SmartDashboard.putNumber("Feeder Speed", Robot.shooter.getFeederSpeed());
-		
-		// Update the SmartDashboard data about the image processing
-        rpi.updateSmartDashboardData();
-        rpi.updateSmartDashboardActive();
-//        
+		// Update parameters on the SmartDashboard
+		updateSmartdashBoard();
+       
 //		// Determine if a button is pressed
 //		for (int button = 1; button <= 20; button++)
 //			SmartDashboard.putBoolean("Button" + button, Robot.oi.getControllerJoystick().getRawButton(button));
@@ -202,19 +193,8 @@ public class Robot extends IterativeRobot
 	{
 		Scheduler.getInstance().run();
 		
-		SmartDashboard.putNumber("Average Climber Current", Robot.climber.getClimberCurrent());
-				
-		SmartDashboard.putNumber("Chassis Encoder Left", RobotMap.chassisEncoderLeft.getDistance());
-		SmartDashboard.putNumber("Chassis Encoder Right", RobotMap.chassisEncoderRight.getDistance());
-		
-		// Show the shooter and feeder speeds
-		SmartDashboard.putNumber("Shooter A Speed", Robot.shooter.getShooterASpeed());
-		SmartDashboard.putNumber("Shooter B Speed", Robot.shooter.getShooterBSpeed());
-		SmartDashboard.putNumber("Feeder Speed", Robot.shooter.getFeederSpeed());
-		
-		// Update the SmartDashboard data about the image processing
-        rpi.updateSmartDashboardData();
-        rpi.updateSmartDashboardActive();
+		// Update parameters on the SmartDashboard
+		updateSmartdashBoard();
 	}
 
 	/**
@@ -223,5 +203,28 @@ public class Robot extends IterativeRobot
 	public void testPeriodic()
 	{
 		LiveWindow.run();
+	}
+	
+	/**
+	 * Method to update parameters to the SmartDashboard in disabled and teleop
+	 */
+	public void updateSmartdashBoard()
+	{
+		SmartDashboard.putNumber("Average Climber Current", Robot.climber.getClimberCurrent());
+		
+		SmartDashboard.putNumber("Chassis Encoder Left",  RobotMap.chassisEncoderLeft.getDistance());
+		SmartDashboard.putNumber("Chassis Encoder Right", RobotMap.chassisEncoderRight.getDistance());
+		
+		// Show the shooter and feeder speeds
+		SmartDashboard.putNumber("Shooter A Speed", Robot.shooter.getShooterASpeed());
+		SmartDashboard.putNumber("Shooter B Speed", Robot.shooter.getShooterBSpeed());
+		SmartDashboard.putNumber("Feeder Speed",    Robot.shooter.getFeederSpeed());
+		
+		SmartDashboard.putNumber("Ultrasonic Distance", Robot.chassis.getUltrasonicDistance());
+		SmartDashboard.putNumber("Chassis Encoder Distance", Robot.chassis.getEncoderDistance());
+		
+		// Update the SmartDashboard data about the image processing
+        rpi.updateSmartDashboardData();
+        rpi.updateSmartDashboardActive();
 	}
 }

@@ -1,6 +1,7 @@
 package org.usfirst.frc3824.Competition2017.utils;
 
-public class Point {
+public class Point 
+{
 	public double x;
 	public double y;
 

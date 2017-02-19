@@ -11,7 +11,6 @@
 package org.usfirst.frc3824.Competition2017.subsystems;
 
 import org.usfirst.frc3824.Competition2017.RobotMap;
-import org.usfirst.frc3824.Competition2017.commands.*;
 import edu.wpi.first.wpilibj.Solenoid;
 
 import edu.wpi.first.wpilibj.command.Subsystem;

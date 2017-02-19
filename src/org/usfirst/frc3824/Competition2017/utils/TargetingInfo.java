@@ -5,7 +5,8 @@ import java.util.List;
 
 import org.usfirst.frc3824.Competition2017.Constants;
 
-public class TargetingInfo {
+public class TargetingInfo 
+{
 	public int    offsetFromTargetX;	// pixels from targeting point in the X direction
 	public int    offsetFromTargetY;	// pixels from targeting point in the Y direction
 	public double distanceToTarget;		// robot's distance to the target
@@ -31,7 +32,10 @@ public class TargetingInfo {
 		return (9e-6 * area * area) - (0.1589 * area) + 583.49;
 	}
 
-	private TargetingInfo() { }
+	private TargetingInfo() 
+	{ 
+		
+	}
 	
 	/**
 	 * Static method to calculate targeting info from a list of lines and targets
@@ -44,17 +48,18 @@ public class TargetingInfo {
 		TargetingInfo targetInfo = new TargetingInfo();
 		
 		// if there are no targets or no lines just exit
-		if (targets.size() == 0 || lines.size() == 0) return null;
+		if (targets.size() == 0 || lines.size() == 0) 
+			return null;
 		
 		// ***************************************************************************************
 		// Calculate largest target data
-		targets.sort(Target.AreaComparatorDescending);	// sort from largest to smallest
-		Target largestTarget      = targets.get(0);		            // get the largest target
-		targetInfo.centerX = largestTarget.centerX;             // copy it into the TargetInfo object
-		targetInfo.centerY = largestTarget.centerY;
-		targetInfo.height  = largestTarget.height;
-		targetInfo.width   = largestTarget.width;
-		targetInfo.area    = largestTarget.area;
+		targets.sort(Target.AreaComparatorDescending);	 // sort from largest to smallest
+		Target largestTarget = targets.get(0);		     // get the largest target
+		targetInfo.centerX   = largestTarget.centerX;    // copy it into the TargetInfo object
+		targetInfo.centerY   = largestTarget.centerY;
+		targetInfo.height    = largestTarget.height;
+		targetInfo.width     = largestTarget.width;
+		targetInfo.area      = largestTarget.area;
 
 		// ***************************************************************************************
 		// Calculate line information
@@ -77,8 +82,6 @@ public class TargetingInfo {
 			{
 				lineIterator.remove();
 			}
-
-
 		}
 		
 		// There should be exactly two lines left, but lets verify and not assume
@@ -231,6 +234,4 @@ public class TargetingInfo {
 		       (Constants.DISTANCE_B * length) + 
 				Constants.DISTANCE_C;
 	}
-
-	
 }

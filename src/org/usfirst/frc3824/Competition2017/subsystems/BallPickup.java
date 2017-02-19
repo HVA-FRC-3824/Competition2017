@@ -47,7 +47,7 @@ public class BallPickup extends Subsystem
 	 */
 	public void setTransport(double speed)
 	{
-		// Enable the ball transpot motor
+		// Enable the ball transport motor
 		transport.set(speed);
 	}
 

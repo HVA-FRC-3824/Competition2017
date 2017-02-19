@@ -176,7 +176,4 @@ public class Target
 		// Return the distance from the target
 		return distanceFromTarget;
 	}
-
-	
-
 }

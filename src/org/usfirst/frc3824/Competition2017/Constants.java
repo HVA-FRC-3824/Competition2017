@@ -4,10 +4,10 @@ public class Constants
 {
 	// ***************************************************************************************
 	// Drivetrain constants
-	public static double TWIST_MULTIPLIER = 0.90;
-	public static int    DRIVER_REVERSE_BUTTON = 11;
+	public static double TWIST_MULTIPLIER     				= 0.90;
+	public static int    DRIVER_REVERSE_BUTTON				= 11;
 
-	public static double BACK_TO_SHOOT_DISTANCE = 48.0;
+	public static double BACK_TO_SHOOT_DISTANCE 			= 48.0;
 	
 	// ***************************************************************************************
 	// Drive straight constants
@@ -20,7 +20,6 @@ public class Constants
 	public static double DRIVETRAIN_DRIVE_MAXIMUM_OUTPUT	=  1.0;
 
 	public static double DRIVETRAIN_DRIVE_TOLERANCE			= 0.0;
-	
 
 	// ***************************************************************************************
 	// Chassis turn constants
@@ -115,7 +114,6 @@ public class Constants
 	public static double IMAGE_ANGLE_MAXIMUM_OUTPUT         =  0.4;	
 		
 	public static double IMAGE_ANGLE_JOG_DISTANCE           =  5.0;
-
 	
 	// ***************************************************************************************
 	// Target constants
@@ -123,7 +121,6 @@ public class Constants
 	public static double CAM_FOV                            = 48.0;
 
 	public static double LIFT_DISTANCE                      = 20.0;
-	
 	
 	public static double DISTANCE_A                         =  0.0839;  //  0.0838;   // x^2
 	public static double DISTANCE_B                         = -16.762;  // -16.665;   // x
@@ -137,5 +134,4 @@ public class Constants
 	//                                                       2016: Thing 1  // Thing 2  // Thing 1
 	public static int    IMAGE_ON_TARGET_X_POSITION         =   170;  // 170;        // X location of the "onTarget" position
 	public static int    IMAGE_ON_TARGET_Y_OFFSET           =   -25;  // -25;
-
 }
