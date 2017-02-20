@@ -39,7 +39,7 @@ public class GearRelease extends Command
 	protected void initialize()
 	{
 		// Release the gear
-		Robot.gear.setGrab(false);
+		Robot.gear.setGrab(true);
 	}
 
 	// Called repeatedly when this Command is scheduled to run

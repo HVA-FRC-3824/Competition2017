@@ -43,21 +43,19 @@ public class AutonomousPlaceGear extends CommandGroup
 
 		if (GearLocation == "Left")
 		{
-			addSequential(new ChassisDriveDistance(120.0, 0.6, false));
-			addSequential(new ChassisTurnAngle(45.0, 0.5, false));
-			addSequential(new ChassisDriveRange(50.0, 0.5, false));
+			addSequential(new ChassisDriveDistance(72.0, -0.8, false));
+			addSequential(new ChassisTurnAngle(60.0, 0.0, false));
 		} 
 		else if (GearLocation == "Center")
 		{
-			addSequential(new ChassisDriveDistance(40.0, 0.6, false));
+			addSequential(new ChassisDriveDistance(40.0, -0.8, false));
 		} 
 		else
 		{
-			addSequential(new ChassisDriveDistance(120.0, 0.6, false));
-			addSequential(new ChassisTurnAngle(-45.0, 0.5, false));
-			addSequential(new ChassisDriveRange(50.0, 0.5, false));
+			addSequential(new ChassisDriveDistance(72.0, -0.8, false));
+			addSequential(new ChassisTurnAngle(-60.0, 0.0, false));
 		}
 
-		addSequential(new AutoPlaceGear());
+		addSequential(new AutoDeliverGear());
 	}
 }

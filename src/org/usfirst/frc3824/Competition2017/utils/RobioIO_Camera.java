@@ -48,14 +48,14 @@ public class RobioIO_Camera
 	static double V_min =  60;
 	static double V_max = 255;
 	
-	static Rect largestTargetRect;
-	static Rect secondLargestTargetRect;
+	static Rect largestTargetRect = new Rect();
+	static Rect secondLargestTargetRect = new Rect();
 	
 	/*
 	 * Thread to process the camera images and determine the targets based on the reflective tape
 	 */
 	private static Thread thread = new Thread(() ->
-	{
+	{		
 		int loopcounter = 0;
 	
 		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
@@ -78,7 +78,8 @@ public class RobioIO_Camera
 		SmartDashboard.putNumber("V Max", V_max);
 
 		// Continuously run the image processing thread
-		while (!Thread.interrupted())
+//		while (!Thread.interrupted())
+		while (true)
 		{
 			SmartDashboard.putNumber("loopcounter", loopcounter++);
 					
@@ -107,12 +108,13 @@ public class RobioIO_Camera
 			findTwoLargestRectangles();
 			
 			SmartDashboard.putNumber("Target A area",   largestTargetRect.area());
-			SmartDashboard.putNumber("Target B area",   secondLargestTargetRect.area());
 			
 			SmartDashboard.putNumber("Target A X",      largestTargetRect.x);			
 			SmartDashboard.putNumber("Target A Y",      largestTargetRect.y);
 			SmartDashboard.putNumber("Target A width",  largestTargetRect.width);
 			SmartDashboard.putNumber("Target A height", largestTargetRect.height);
+			
+			SmartDashboard.putNumber("Target B area",   secondLargestTargetRect.area());
 			
 			SmartDashboard.putNumber("Target B X",      secondLargestTargetRect.x);			
 			SmartDashboard.putNumber("Target B Y",      secondLargestTargetRect.y);

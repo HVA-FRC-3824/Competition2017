@@ -39,7 +39,7 @@ public class GearGrab extends Command
 	protected void initialize()
 	{
 		// Grab the gear
-		Robot.gear.setGrab(true);
+		Robot.gear.setGrab(false);
 	}
 
 	// Called repeatedly when this Command is scheduled to run

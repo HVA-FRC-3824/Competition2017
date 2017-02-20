@@ -47,11 +47,13 @@ public class AutonomousGearPlaceCenter extends CommandGroup
 		addSequential(new Delay(1.0));
 		addSequential(new ChassisDriveRange(10.0, -0.3, false));
 		addSequential(new Delay(1.0));
-		addSequential(new GearGrab());
+		addSequential(new GearRelease());
 		addSequential(new Delay(1.0));
 		addSequential(new GearRotateDown());
-		addSequential(new ChassisDriveDistance(36.0, 0.4, false));
-//		addSequential(new ChassisTurnAngle(-45.0, 0.4, false));
-//		addSequential(new ChassisDriveDistance(60.0, -0.4, false));
+		addSequential(new ChassisDriveDistance(48.0, 0.5, false));
+		addSequential(new ChassisTurnAngle(-75.0, 0.0, false));
+		addSequential(new ChassisDriveDistance(60.0, -0.8, false));
+		addSequential(new ChassisTurnAngle(60.0, 0.0, false));
+		addSequential(new ChassisDriveDistance(60.0, -0.8, false));
 	}
 }

@@ -52,12 +52,12 @@ public class Gear extends Subsystem
 
 	/**
 	 * Method to set the gear grab
-	 *    true  - grab
-	 *    false - release
+	 *    true  - open
+	 *    false - close
 	 */
-	public void setGrab(boolean in)
+	public void setGrab(boolean open)
 	{
-		grabber.set(in);
+		grabber.set(open);
 	}
 
 	/**

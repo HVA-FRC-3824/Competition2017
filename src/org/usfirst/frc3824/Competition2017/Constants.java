@@ -12,19 +12,32 @@ public class Constants
 	// ***************************************************************************************
 	// Drive straight constants
 
-	public static double DRIVETRAIN_DRIVE_STRAIGHT_P		=  0.1;
-	public static double DRIVETRAIN_DRIVE_STRAIGHT_I		=  0.0;
+	public static double DRIVETRAIN_DRIVE_STRAIGHT_P		=  0.05;
+	public static double DRIVETRAIN_DRIVE_STRAIGHT_I		=  0.00005;
 	public static double DRIVETRAIN_DRIVE_STRAIGHT_D		=  0.0;
 
 	public static double DRIVETRAIN_DRIVE_MINIMUM_OUTPUT	= -1.0;
 	public static double DRIVETRAIN_DRIVE_MAXIMUM_OUTPUT	=  1.0;
 
 	public static double DRIVETRAIN_DRIVE_TOLERANCE			=  0.0;
+	
+	// ***************************************************************************************
+	// Automatic gear place constants
+	
+	public static double PLACE_GEAR_AUTO_POWER				=  0.4; //0.2;
+	public static double PLACE_GEAR_AUTO_WALL_DISTANCE		=  30.0;
+	public static double PLACE_GEAR_AUTO_UPDATE_TIME		=  0.25;
+	
+	public static double PLACE_GEAR_AUTO_A					=  6194.3;
+	public static double PLACE_GEAR_AUTO_E					=  -1.011;
+	
+	public static double PLACE_GEAR_AUTO_CAMERA_CENTER		=  300.0;
+
 
 	// ***************************************************************************************
 	// Chassis turn constants
 
-	public static double TURN_ANGLE_P						=  0.05;
+	public static double TURN_ANGLE_P						=  0.07;
 	public static double TURN_ANGLE_I						=  0.0;
 	public static double TURN_ANGLE_D						=  0.0;
 
@@ -42,8 +55,9 @@ public class Constants
 	
 	public static double CLIMBER_SPEED_FAST                 = -0.6;
 	public static double CLIMBER_SPEED_SLOW                 = -0.45;
-	public static double CLIMBER_SPEED_HOLD                 = -0.2;
+	public static double CLIMBER_SPEED_HOLD                 = -0.3;
 	
+	public static double CLIMBER_STOP_CURRENT               =  28.0;
 	public static double CLIMBER_JOG_TIME                 	=  0.50;
 
 	// ***************************************************************************************

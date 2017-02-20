@@ -39,7 +39,11 @@ public class TeleopDrive extends Command
 	protected void initialize()
 	{
 		// Stop the robot and reset the encoders
-		Robot.chassis.resetChassisPIDcontrollersAndEncoders();		
+		Robot.chassis.resetChassisPIDcontrollersAndEncoders();
+		
+		// set gear positions back to match switch positions
+		Robot.gear.setGrab(Robot.oi.grabGear.get());
+		Robot.gear.setRotate(!Robot.oi.rotateGearDown.get());
 	}
 
 	// Called repeatedly when this Command is scheduled to run

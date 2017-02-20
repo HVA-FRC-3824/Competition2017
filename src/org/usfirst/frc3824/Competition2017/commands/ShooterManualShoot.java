@@ -10,6 +10,7 @@
 
 package org.usfirst.frc3824.Competition2017.commands;
 
+import edu.wpi.first.wpilibj.RobotState;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -75,10 +76,10 @@ public class ShooterManualShoot extends Command
 	protected boolean isFinished()
 	{
 		// Determine when the user releases the shoot button
-		if (Robot.oi.controllerJoystick.getRawButton(20) == true)
-			return false;
+		if (RobotState.isOperatorControl() && Robot.oi.controllerJoystick.getRawButton(20) == false)
+			return true;
 			
-		return true;
+		return false;
 	}
 
 	// Called once after isFinished returns true

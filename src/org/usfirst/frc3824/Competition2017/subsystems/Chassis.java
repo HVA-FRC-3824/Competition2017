@@ -399,7 +399,7 @@ public class Chassis extends Subsystem
 		SmartDashboard.putNumber("Error", angleGyroPID.getError());
 		
 		// Return if the gyro is within the specified range
-		return angleGyroPID.getError() < threshold;
+		return Math.abs(angleGyroPID.getError()) < threshold;
 	}
 
 	/**

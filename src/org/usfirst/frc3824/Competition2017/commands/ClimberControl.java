@@ -50,7 +50,7 @@ public class ClimberControl extends Command
 	protected void execute()
 	{		
 		// Set the climber motor		
-		if (Robot.climber.getClimberCurrent() > 25.0)
+		if (Robot.climber.getClimberCurrent() > Constants.CLIMBER_STOP_CURRENT)
 		{
 			// High current so must be at the top of the rope
 			atTop = true;
