@@ -90,6 +90,7 @@ public class Robot extends IterativeRobot
 		commandChooser.addObject("Baseline", "Baseline");
 		commandChooser.addObject("Gear Simple", "Gear Simple");
 		commandChooser.addObject("Gear",     "Gear");
+		commandChooser.addObject("Gear Shoot",    "Gear Shoot");
 		commandChooser.addObject("Shoot",    "Shoot");
 		SmartDashboard.putData("Command", commandChooser);
 		
@@ -157,6 +158,9 @@ public class Robot extends IterativeRobot
 			break;
 		case "Gear Simple":
 			autonomousCommand = new AutonomousGearPlaceCenter();
+			break;
+		case "Gear Shoot":
+			autonomousCommand = new AutonomousGearAndShoot(allianceChooser.getSelected());
 			break;
 		case "Shoot":
 			autonomousCommand = new AutonomousShoot(startPosition);

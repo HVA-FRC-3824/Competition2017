@@ -81,9 +81,7 @@ public class ChassisTurnAngle extends Command
 		}
 
 		if (Robot.chassis.gyroWithin(Constants.TURN_THRESHOLD))
-		{
-			System.out.println("In threshold" + m_OnTargetTimer.get());
-			
+		{			
 			// Ensure hold position for time out time
 			if (m_OnTargetTimer.get() > 1.0)
 			{
@@ -91,9 +89,7 @@ public class ChassisTurnAngle extends Command
 			}
 		} 
 		else
-		{
-			System.out.println("Reset timer");
-			
+		{			
 			// Reset the timer since the move did not complete
 			m_OnTargetTimer.reset();
 		}

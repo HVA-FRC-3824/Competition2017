@@ -44,9 +44,7 @@ public class AutoPlaceGearGyro extends Command
 
 	// Called just before this Command runs the first time
 	protected void initialize()
-	{		
-		System.out.println("ChassisDriveDistance initialize");
-
+	{	
 		// Set the PID up for driving straight
 		Robot.chassis.driveStraightPID(-Constants.PLACE_GEAR_AUTO_POWER, false);
 

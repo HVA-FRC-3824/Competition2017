@@ -81,6 +81,7 @@ public class RobioIO_Camera
 //		while (!Thread.interrupted())
 		while (true)
 		{
+			try {
 			SmartDashboard.putNumber("loopcounter", loopcounter++);
 					
 			// Grab a camera frame
@@ -125,6 +126,11 @@ public class RobioIO_Camera
 					         (secondLargestTargetRect.x + (secondLargestTargetRect.width / 2))) / 2;
 			
 			SmartDashboard.putNumber("Target Center", center);
+			}
+			catch (Exception exception)
+			{
+				System.err.println(exception);
+			}
 		}
 	});
 	

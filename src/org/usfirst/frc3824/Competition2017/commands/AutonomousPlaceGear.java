@@ -57,5 +57,13 @@ public class AutonomousPlaceGear extends CommandGroup
 		}
 
 		addSequential(new AutoDeliverGear());
+		
+		if (GearLocation == "Center")
+		{
+			// on center run away to cross baseline
+			addSequential(new ChassisDriveDistance(12.0, -0.8, false));
+			addSequential(new ChassisTurnAngle(60.0, 0.0, false));
+			addSequential(new ChassisDriveDistance(60.0, -0.8, false));
+		}
 	}
 }
