@@ -67,8 +67,8 @@ public class BallPickup extends Subsystem
 	public void enableBallPickup()
 	{
 		// Enable the sweeper and transport motors
-		sweeper.set(Constants.SWEEPER_VOLTAGE);
-		transport.set(Constants.TRANSPORT_VOLTAGE);
+		sweeper.set(Constants.SWEEPER_VOLTAGE_PICKUP);
+		transport.set(-Constants.TRANSPORT_VOLTAGE_PICKUP);
 	}
 	
 	/**
@@ -77,8 +77,8 @@ public class BallPickup extends Subsystem
 	public void enableBallPickupReversed()
 	{
 		// Enable the sweeper and transport motors in reverse to clear the ball pickup
-		sweeper.set(-Constants.SWEEPER_VOLTAGE);
-		transport.set(-Constants.TRANSPORT_VOLTAGE);
+		sweeper.set(-Constants.SWEEPER_VOLTAGE_REVERSE);
+		transport.set(Constants.TRANSPORT_VOLTAGE_REVERSE);
 	}
 	
 	/**

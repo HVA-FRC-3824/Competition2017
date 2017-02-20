@@ -29,6 +29,8 @@ public class ShooterManualShoot extends Command
 	private final int STATE_START_SHOOTER = 2;
 	private final int STATE_SHOOT         = 3;
 	
+	private boolean agitate = false;
+	
 	private int    state;
 	private double nextStateChangeTime;
 
@@ -109,7 +111,7 @@ public class ShooterManualShoot extends Command
 			case STATE_CLEAR_BALLS:
 			{
 				// Enable the ball transport to help feed the balls
-				Robot.ballPickup.setTransport(-Constants.TRANSPORT_SLOW_VOLTAGE);
+				Robot.ballPickup.setTransport(Constants.TRANSPORT_SLOW_VOLTAGE);
 			
 				// Enable the feeder to feed the balls
 				Robot.shooter.enableFeederPID();
@@ -145,8 +147,22 @@ public class ShooterManualShoot extends Command
 				// Set the feeder speed
 				Robot.shooter.setFeederSpeed(Constants.DEFAULT_FEEDER_SPEED);
 				
-				Robot.ballPickup.setTransport(Constants.TRANSPORT_SLOW_VOLTAGE);
+				if (!agitate)
+				{
+					Robot.ballPickup.setTransport(-Constants.TRANSPORT_SLOW_VOLTAGE);
+				} else
+				{
+					Robot.ballPickup.setTransport(Constants.TRANSPORT_SLOW_VOLTAGE);
+				}
 
+				// Reverse the transport direction
+				agitate = !agitate;
+				
+				// Determine the transport direction
+				if (agitate)
+				   nextStateChangeTime += 1.0;
+				else
+				   nextStateChangeTime += 0.5;			
 				break;
 			}
 			

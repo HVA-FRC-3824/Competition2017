@@ -7,7 +7,7 @@ public class Constants
 	public static double TWIST_MULTIPLIER     				= 0.90;
 	public static int    DRIVER_REVERSE_BUTTON				= 11;
 
-	public static double BACK_TO_SHOOT_DISTANCE 			= 48.0;
+	public static double BACK_TO_SHOOT_DISTANCE 			= 18.0;
 	
 	// ***************************************************************************************
 	// Drive straight constants
@@ -40,8 +40,8 @@ public class Constants
 	public static int    CLIMBER_BUTTON_FAST                =  15;
 	public static int    CLIMBER_BUTTON_AUTO                =  4;
 	
-	public static double CLIMBER_SPEED_FAST                 = -0.5;
-	public static double CLIMBER_SPEED_SLOW                 = -0.35;
+	public static double CLIMBER_SPEED_FAST                 = -0.6;
+	public static double CLIMBER_SPEED_SLOW                 = -0.45;
 	public static double CLIMBER_SPEED_HOLD                 = -0.2;
 	
 	public static double CLIMBER_JOG_TIME                 	=  0.25;
@@ -60,8 +60,8 @@ public class Constants
 	public static double SHOOTER_F							= 0.0050;
 	public static double DEFAULT_SHOOTER_SPEED              = 3500.0;
 	
-	public static double SHOOTER_SPEED_HIGH                 = 4500.0;
-	public static double SHOOTER_SPEED_MEDHIGH              = 4000.0;
+	public static double SHOOTER_SPEED_HIGH                 = 4500.0; // Max speed
+	public static double SHOOTER_SPEED_MEDHIGH              = 3800.0;
 	public static double SHOOTER_SPEED_MEDLOW               = 3500.0;
 	public static double SHOOTER_SPEED_LOW                  = 3200.0;
 	public static double SHOOTER_JOG_SPEED                  = 50.0;
@@ -87,8 +87,12 @@ public class Constants
 	// ***************************************************************************************
 	// Ball Pickup constants
 	
-	public static double SWEEPER_VOLTAGE					= 1.0;
-	public static double TRANSPORT_VOLTAGE					= 1.5;
+	public static double SWEEPER_VOLTAGE_PICKUP				= 1.0;
+	public static double TRANSPORT_VOLTAGE_PICKUP			= 1.5;
+	
+	public static double SWEEPER_VOLTAGE_REVERSE			= 1.0;
+	public static double TRANSPORT_VOLTAGE_REVERSE			= 1.5;
+	
 	public static double TRANSPORT_SLOW_VOLTAGE             = 0.5;
 	
 	// ***************************************************************************************

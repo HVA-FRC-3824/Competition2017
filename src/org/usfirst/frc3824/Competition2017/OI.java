@@ -64,13 +64,15 @@ public class OI
     public JoystickButton shooterSpeedHigh;
     public JoystickButton shooterSpeedMedHigh;
     public JoystickButton shooterSpeedMedLow;
-    public JoystickButton shooterSpeedLow;
     public JoystickButton shooterUnjamButton;
     public JoystickButton autoClimb;
     public JoystickButton manualClimbFast;
     public JoystickButton manualClimbSlow;
-    public JoystickButton rotateGear;
+    public JoystickButton rotateGearUp;
+    public JoystickButton rotateGearDown;
     public JoystickButton grabGear;
+    public JoystickButton releaseGear;
+    public JoystickButton pushGear;
     public JoystickButton jogUp;
     public JoystickButton jogDown;
     public JoystickButton climberJogUp;
@@ -93,10 +95,16 @@ public class OI
         jogDown.whenPressed(new ShooterJogSpeedDown());
         jogUp = new JoystickButton(controllerJoystick, 18);
         jogUp.whenPressed(new ShooterJogSpeedUp());
+        pushGear = new JoystickButton(controllerJoystick, 13);
+        pushGear.whenPressed(new GearPush());
+        releaseGear = new JoystickButton(controllerJoystick, 16);
+        releaseGear.whenReleased(new GearRelease());
         grabGear = new JoystickButton(controllerJoystick, 16);
         grabGear.whenPressed(new GearGrab());
-        rotateGear = new JoystickButton(controllerJoystick, 5);
-        rotateGear.whenPressed(new GearRotate());
+        rotateGearDown = new JoystickButton(controllerJoystick, 5);
+        rotateGearDown.whenPressed(new GearRotateDown());
+        rotateGearUp = new JoystickButton(controllerJoystick, 5);
+        rotateGearUp.whenReleased(new GearRotateUp());
         manualClimbSlow = new JoystickButton(controllerJoystick, 15);
         manualClimbSlow.whileHeld(new ClimberManualClimb());
         manualClimbFast = new JoystickButton(controllerJoystick, 14);
@@ -105,8 +113,6 @@ public class OI
         autoClimb.whenPressed(new ClimberControl());
         shooterUnjamButton = new JoystickButton(controllerJoystick, 3);
         shooterUnjamButton.whenPressed(new ShooterUnjam());
-        shooterSpeedLow = new JoystickButton(controllerJoystick, 13);
-        shooterSpeedLow.whenPressed(new ShooterSetSpeedLow());
         shooterSpeedMedLow = new JoystickButton(controllerJoystick, 12);
         shooterSpeedMedLow.whenPressed(new ShooterSetSpeedMedLow());
         shooterSpeedMedHigh = new JoystickButton(controllerJoystick, 11);
@@ -138,8 +144,9 @@ public class OI
 
 
         // SmartDashboard Buttons
-        SmartDashboard.putData("Chassis Drive Distance: FiveFeet", new ChassisDriveDistance(60.0, .75, false));
-        SmartDashboard.putData("Chassis Turn Angle: Right", new ChassisTurnAngle(90.0, 0.5, false));
+        SmartDashboard.putData("Autonomous Gear Place Center", new AutonomousGearPlaceCenter());
+        SmartDashboard.putData("Chassis Drive Distance: FiveFeet", new ChassisDriveDistance(60.0, .2, false));
+        SmartDashboard.putData("Chassis Turn Angle: Right", new ChassisTurnAngle(90.0, 0.15, false));
         SmartDashboard.putData("Chassis Drive Range: TwelveInches", new ChassisDriveRange(12.0, 0.75, false));
         SmartDashboard.putData("Shooter Manual Shoot", new ShooterManualShoot());
         SmartDashboard.putData("Shooter Update PID Parameters", new ShooterUpdatePIDParameters());

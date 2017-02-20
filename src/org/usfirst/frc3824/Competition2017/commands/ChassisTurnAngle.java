@@ -75,21 +75,25 @@ public class ChassisTurnAngle extends Command
 	protected boolean isFinished()
 	{
 		// Ensure the command ends after the watchdog time even if not on target
-		if (m_WatchdogTimer.get() > 1.2)
+		if (m_WatchdogTimer.get() > 10.0)
 		{
 			return true;
 		}
 
 		if (Robot.chassis.gyroWithin(Constants.TURN_THRESHOLD))
 		{
+			System.out.println("In threshold" + m_OnTargetTimer.get());
+			
 			// Ensure hold position for time out time
-			if (m_OnTargetTimer.get() > 0.1)
+			if (m_OnTargetTimer.get() > 1.0)
 			{
 				return true;
 			}
 		} 
 		else
 		{
+			System.out.println("Reset timer");
+			
 			// Reset the timer since the move did not complete
 			m_OnTargetTimer.reset();
 		}
