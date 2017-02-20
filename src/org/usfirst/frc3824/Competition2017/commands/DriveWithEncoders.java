@@ -49,9 +49,9 @@ public class DriveWithEncoders extends Command
 	{
 		Robot.chassis.updateEncoderSetpoint(Robot.chassis.getEncoderSetpoint() + Robot.oi.driveJoystick.getX());
 
-		SmartDashboard.putNumber("Encoder Setpoint", Robot.chassis.getEncoderSetpoint());
-		SmartDashboard.putNumber("Encoder Error Left", Robot.chassis.getLeftEncoderPIDError());
-		SmartDashboard.putNumber("Encoder Error Right", Robot.chassis.getRightEncoderPIDError());
+//		SmartDashboard.putNumber("Encoder Setpoint", Robot.chassis.getEncoderSetpoint());
+//		SmartDashboard.putNumber("Encoder Error Left", Robot.chassis.getLeftEncoderPIDError());
+//		SmartDashboard.putNumber("Encoder Error Right", Robot.chassis.getRightEncoderPIDError());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

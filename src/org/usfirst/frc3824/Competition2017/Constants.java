@@ -4,7 +4,7 @@ public class Constants
 {
 	// ***************************************************************************************
 	// Drivetrain constants
-	public static double TWIST_MULTIPLIER     				= 0.90;
+	public static double TWIST_MULTIPLIER     				=  0.90;
 	public static int    DRIVER_REVERSE_BUTTON				= 11;
 
 	public static double BACK_TO_SHOOT_DISTANCE 			= 18.0;
@@ -12,39 +12,39 @@ public class Constants
 	// ***************************************************************************************
 	// Drive straight constants
 
-	public static double DRIVETRAIN_DRIVE_STRAIGHT_P		= 0.1;
-	public static double DRIVETRAIN_DRIVE_STRAIGHT_I		= 0.0;
-	public static double DRIVETRAIN_DRIVE_STRAIGHT_D		= 0.0;
+	public static double DRIVETRAIN_DRIVE_STRAIGHT_P		=  0.1;
+	public static double DRIVETRAIN_DRIVE_STRAIGHT_I		=  0.0;
+	public static double DRIVETRAIN_DRIVE_STRAIGHT_D		=  0.0;
 
 	public static double DRIVETRAIN_DRIVE_MINIMUM_OUTPUT	= -1.0;
 	public static double DRIVETRAIN_DRIVE_MAXIMUM_OUTPUT	=  1.0;
 
-	public static double DRIVETRAIN_DRIVE_TOLERANCE			= 0.0;
+	public static double DRIVETRAIN_DRIVE_TOLERANCE			=  0.0;
 
 	// ***************************************************************************************
 	// Chassis turn constants
 
-	public static double TURN_ANGLE_P						= 0.05;
-	public static double TURN_ANGLE_I						= 0.0;
-	public static double TURN_ANGLE_D						= 0.0;
+	public static double TURN_ANGLE_P						=  0.05;
+	public static double TURN_ANGLE_I						=  0.0;
+	public static double TURN_ANGLE_D						=  0.0;
 
-	public static double TURN_ANGLE_MINIMUM_OUTPUT			= -0.9;
-	public static double TURN_ANGLE_MAXIMUM_OUTPUT			=  0.9;
+	public static double TURN_ANGLE_MINIMUM_OUTPUT			= -0.4;
+	public static double TURN_ANGLE_MAXIMUM_OUTPUT			=  0.4;
 
-	public static double TURN_THRESHOLD						= 5.0;
+	public static double TURN_THRESHOLD						=  5.0;
 	
 	// ***************************************************************************************
 	// Climber constants
 		
 	public static int    CLIMBER_BUTTON_SLOW                =  14;
 	public static int    CLIMBER_BUTTON_FAST                =  15;
-	public static int    CLIMBER_BUTTON_AUTO                =  4;
+	public static int    CLIMBER_BUTTON_AUTO                =   4;
 	
 	public static double CLIMBER_SPEED_FAST                 = -0.6;
 	public static double CLIMBER_SPEED_SLOW                 = -0.45;
 	public static double CLIMBER_SPEED_HOLD                 = -0.2;
 	
-	public static double CLIMBER_JOG_TIME                 	=  0.25;
+	public static double CLIMBER_JOG_TIME                 	=  0.50;
 
 	// ***************************************************************************************
 	// Gear constants
@@ -131,9 +131,9 @@ public class Constants
 	public static double DISTANCE_C                         =  967.84;  //  952.25;   // offset
 	
 	// y = 0.0003x2 - 0.0462x + 183.46
-	public static double IMAGE_Y_A                          =   0.0003;  // 0.0001;    //0.00005; //   0.0001;    // x^2
-	public static double IMAGE_Y_B                          =  -0.0462;  // 0.0534;    //0.1887;  //   0.0534;    // x
-	public static double IMAGE_Y_C                          =   183.46;  // 172.81;    //141.11;  //   172.81;    // offset
+	public static double IMAGE_Y_A                          =  0.0003;  // 0.0001;    //0.00005; //   0.0001;    // x^2
+	public static double IMAGE_Y_B                          = -0.0462;  // 0.0534;    //0.1887;  //   0.0534;    // x
+	public static double IMAGE_Y_C                          =  183.46;  // 172.81;    //141.11;  //   172.81;    // offset
 	
 	//                                                       2016: Thing 1  // Thing 2  // Thing 1
 	public static int    IMAGE_ON_TARGET_X_POSITION         =   170;  // 170;        // X location of the "onTarget" position

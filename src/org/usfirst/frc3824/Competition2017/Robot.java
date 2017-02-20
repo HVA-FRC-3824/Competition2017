@@ -212,8 +212,8 @@ public class Robot extends IterativeRobot
 	{
 		SmartDashboard.putNumber("Average Climber Current", Robot.climber.getClimberCurrent());
 		
-		SmartDashboard.putNumber("Chassis Encoder Left",  RobotMap.chassisEncoderLeft.getDistance());
-		SmartDashboard.putNumber("Chassis Encoder Right", RobotMap.chassisEncoderRight.getDistance());
+//		SmartDashboard.putNumber("Chassis Encoder Left",  RobotMap.chassisEncoderLeft.getDistance());
+//		SmartDashboard.putNumber("Chassis Encoder Right", RobotMap.chassisEncoderRight.getDistance());
 		
 		// Show the shooter and feeder speeds
 		SmartDashboard.putNumber("Shooter A Speed", Robot.shooter.getShooterASpeed());

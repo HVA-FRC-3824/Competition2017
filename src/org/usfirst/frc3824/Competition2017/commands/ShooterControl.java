@@ -42,10 +42,10 @@ public class ShooterControl extends Command
 		System.out.println("In Shooter Control Initialize");
 		
 		// Setup the shooter PID control and start the shooter motor
-//		Robot.shooter.setShooterPID_ParametersFromSmartdashboard();
-//		Robot.shooter.setShooterSpeedFromSmartdashboard();
-//		Robot.shooter.enableShooterPIDs();
-//		Robot.shooter.setShooterSpeedFromSmartdashboard();
+		Robot.shooter.setShooterPID_ParametersFromSmartdashboard();
+		Robot.shooter.setShooterSpeedFromSmartdashboard();
+		Robot.shooter.enableShooterPIDs();
+		Robot.shooter.setShooterSpeedFromSmartdashboard();
 		
 		// Setup the feeder PID control and start the feeder motor
 		Robot.shooter.setFeederPID_ParametersFromSmartdashboard();		
