@@ -52,7 +52,6 @@ public class Robot extends IterativeRobot
 
 	public static SendableChooser<String> startingLocationChooser;
 	public static SendableChooser<String> commandChooser;
-	public static SendableChooser<String> allianceChooser;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -100,13 +99,7 @@ public class Robot extends IterativeRobot
 		startingLocationChooser.addObject("Center", "Center");
 		startingLocationChooser.addObject("Left",   "Left");
 		SmartDashboard.putData("Starting Location", startingLocationChooser );
-		
-		// set up the chooser for the alliance
-		allianceChooser = new SendableChooser<>();
-		allianceChooser.addDefault("Blue", "Blue");
-		allianceChooser.addObject("Red", "Red");
-		SmartDashboard.putData("Alliance", allianceChooser);
-		
+				
 		// Start the compressor
 		RobotMap.chassisCompressor.setClosedLoopControl(true);
 		
@@ -160,7 +153,7 @@ public class Robot extends IterativeRobot
 			autonomousCommand = new AutonomousGearPlaceCenter();
 			break;
 		case "Gear Shoot":
-			autonomousCommand = new AutonomousGearAndShoot(allianceChooser.getSelected());
+			autonomousCommand = new AutonomousGearAndShoot(startPosition);
 			break;
 		case "Shoot":
 			autonomousCommand = new AutonomousShoot(startPosition);

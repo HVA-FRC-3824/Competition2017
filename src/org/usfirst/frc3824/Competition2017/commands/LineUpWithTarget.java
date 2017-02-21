@@ -68,7 +68,7 @@ public class LineUpWithTarget extends Command
 
 				double deviationFromTarget = target.deviationFromTarget();
 
-				SmartDashboard.putNumber("Deviation from target", deviationFromTarget);
+				// SmartDashboard.putNumber("Deviation from target", deviationFromTarget);
 
 				if (deviationFromTarget > -Constants.DEVIATION_FROM_TARGET && 
 					deviationFromTarget < Constants.DEVIATION_FROM_TARGET)

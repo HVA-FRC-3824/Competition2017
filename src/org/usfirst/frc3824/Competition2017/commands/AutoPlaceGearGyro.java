@@ -65,16 +65,14 @@ public class AutoPlaceGearGyro extends Command
 			double center = SmartDashboard.getNumber("Target Center", -1);
 			
 			if(center != -1)
-			{
-				SmartDashboard.putNumber("Update Time", m_UpdateTime);
-				
+			{				
 				double theta = getTheta();
 				
 				double distanceFromTarget = getDistanceFromTarget();
 				
-				SmartDashboard.putNumber("DistanceFromTarget", distanceFromTarget);
+				// SmartDashboard.putNumber("DistanceFromTarget", distanceFromTarget);
 				
-				SmartDashboard.putNumber("Theta", theta);
+				// SmartDashboard.putNumber("Theta", theta);
 				
 				Robot.chassis.updateHeadingPID_Setpoint(theta);
 			}

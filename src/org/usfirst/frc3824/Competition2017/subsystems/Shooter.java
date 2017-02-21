@@ -44,18 +44,18 @@ public class Shooter extends Subsystem
     public Shooter()
 	{
 		// Set closed loop gains in slot0
-		SmartDashboard.putNumber("Shooter P",        Constants.SHOOTER_P * 1000.0);
-		SmartDashboard.putNumber("Shooter I",        Constants.SHOOTER_I * 1000.0);
-		SmartDashboard.putNumber("Shooter D",        Constants.SHOOTER_D * 1000.0);
-		SmartDashboard.putNumber("Shooter F",        Constants.SHOOTER_F * 1000.0);
-		SmartDashboard.putNumber("Shooter Setpoint", Constants.DEFAULT_SHOOTER_SPEED);
+//		SmartDashboard.putNumber("Shooter P",        Constants.SHOOTER_P * 1000.0);
+//		SmartDashboard.putNumber("Shooter I",        Constants.SHOOTER_I * 1000.0);
+//		SmartDashboard.putNumber("Shooter D",        Constants.SHOOTER_D * 1000.0);
+//		SmartDashboard.putNumber("Shooter F",        Constants.SHOOTER_F * 1000.0);
+//		SmartDashboard.putNumber("Shooter Setpoint", Constants.DEFAULT_SHOOTER_SPEED);
 		
 		// Set closed loop gains in slot0
-		SmartDashboard.putNumber("Feeder P",        Constants.FEEDER_P * 1000.0);
-		SmartDashboard.putNumber("Feeder I",        Constants.FEEDER_I * 1000.0);
-		SmartDashboard.putNumber("Feeder D",        Constants.FEEDER_D * 1000.0);
-		SmartDashboard.putNumber("Feeder F",        Constants.FEEDER_F * 1000.0);
-		SmartDashboard.putNumber("Feeder Setpoint", Constants.DEFAULT_FEEDER_SPEED);
+//		SmartDashboard.putNumber("Feeder P",        Constants.FEEDER_P * 1000.0);
+//		SmartDashboard.putNumber("Feeder I",        Constants.FEEDER_I * 1000.0);
+//		SmartDashboard.putNumber("Feeder D",        Constants.FEEDER_D * 1000.0);
+//		SmartDashboard.putNumber("Feeder F",        Constants.FEEDER_F * 1000.0);
+//		SmartDashboard.putNumber("Feeder Setpoint", Constants.DEFAULT_FEEDER_SPEED);
 		
 		//********************************************************************
 		// Configure the Shooter A Talon SRX

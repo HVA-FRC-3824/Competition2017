@@ -1532,7 +1532,7 @@ Children:
           - {name: Power, type: double, value: '.2'}
           - {name: HighGear, type: boolean, value: 'false'}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
-        name: Button on SmartDashboard, validators: null, value: true}
+        name: Button on SmartDashboard, validators: null, value: false}
     Base: Command
     Name: Chassis Drive Distance
   - Children: []
@@ -1559,7 +1559,7 @@ Children:
           - {name: Power, type: double, value: '0.0'}
           - {name: HighGear, type: boolean, value: 'false'}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
-        name: Button on SmartDashboard, validators: null, value: true}
+        name: Button on SmartDashboard, validators: null, value: false}
     Base: Command
     Name: Chassis Turn Angle
   - Children: []
@@ -1586,7 +1586,7 @@ Children:
           - {name: Power, type: double, value: '0.75'}
           - {name: HighGear, type: boolean, value: 'false'}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
-        name: Button on SmartDashboard, validators: null, value: true}
+        name: Button on SmartDashboard, validators: null, value: false}
     Base: Command
     Name: Chassis Drive Range
   - Children: []
@@ -1856,7 +1856,7 @@ Children:
         validators: null
         value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
-        name: Button on SmartDashboard, validators: null, value: true}
+        name: Button on SmartDashboard, validators: null, value: false}
     Base: Command
     Name: Shooter Update PID Parameters
   - Children: []
@@ -1963,7 +1963,7 @@ Children:
         validators: null
         value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
-        name: Button on SmartDashboard, validators: null, value: true}
+        name: Button on SmartDashboard, validators: null, value: false}
     Base: Command
     Name: Line Up With Target
   - Children: []
@@ -1999,7 +1999,7 @@ Children:
         validators: null
         value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
-        name: Button on SmartDashboard, validators: null, value: true}
+        name: Button on SmartDashboard, validators: null, value: false}
     Base: Command
     Name: Auto Place Gear Gyro
   - Children: []
@@ -2107,7 +2107,7 @@ Children:
         validators: null
         value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
-        name: Button on SmartDashboard, validators: null, value: true}
+        name: Button on SmartDashboard, validators: null, value: false}
     Base: Command
     Name: Camera Servo Control
   - Children: []
@@ -2136,17 +2136,17 @@ Children:
         validators: null
         value: []
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: &id022 []
+        default: []
         name: Parameter presets
         validators: null
-        value: *id022
+        value: []
       Commands: !!robotbuilder.data.properties.ListProperty
-        default: &id023 []
+        default: []
         name: Commands
         validators: *id021
-        value: *id023
+        value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
-        name: Button on SmartDashboard, validators: null, value: true}
+        name: Button on SmartDashboard, validators: null, value: false}
     Base: Command Group
     Name: Auto Deliver Gear
   - Children: []
@@ -2159,12 +2159,12 @@ Children:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Requires, type: Subsystem, validators: null, value: Chassis}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: &id024 []
+        default: []
         name: Parameter presets
         validators: null
-        value: *id024
+        value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
-        name: Button on SmartDashboard, validators: null, value: true}
+        name: Button on SmartDashboard, validators: null, value: false}
     Base: Command
     Name: TurnToTarget
   - Children: []
@@ -2176,19 +2176,19 @@ Children:
         value:
         - !!robotbuilder.data.properties.ParameterDescriptor {name: Alliance, type: String}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: &id025
+        default: []
+        name: Parameter presets
+        validators: null
+        value:
         - !!robotbuilder.data.properties.ParameterSet
           name: Blue
           parameters:
           - {name: Alliance, type: String, value: Blue}
-        name: Parameter presets
-        validators: null
-        value: *id025
       Commands: !!robotbuilder.data.properties.ListProperty
-        default: &id026 []
+        default: []
         name: Commands
         validators: *id021
-        value: *id026
+        value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: false}
     Base: Command Group

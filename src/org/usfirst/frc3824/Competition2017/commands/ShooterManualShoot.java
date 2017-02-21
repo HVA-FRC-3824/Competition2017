@@ -146,14 +146,15 @@ public class ShooterManualShoot extends Command
 			case STATE_SHOOT:
 			{
 				// Set the feeder speed
-				Robot.shooter.setFeederSpeed(Constants.DEFAULT_FEEDER_SPEED);
 				
 				if (!agitate)
 				{
 					Robot.ballPickup.setTransport(-Constants.TRANSPORT_SLOW_VOLTAGE);
+					Robot.shooter.setFeederSpeed(0.0);
 				} else
 				{
 					Robot.ballPickup.setTransport(Constants.TRANSPORT_SLOW_VOLTAGE);
+					Robot.shooter.setFeederSpeed(Constants.DEFAULT_FEEDER_SPEED);
 				}
 
 				// Reverse the transport direction

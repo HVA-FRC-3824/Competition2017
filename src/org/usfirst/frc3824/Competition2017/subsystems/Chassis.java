@@ -76,9 +76,9 @@ public class Chassis extends Subsystem
 	public Chassis()
 	{
 		// Configure angleEncoderPIDs
-		SmartDashboard.putNumber("angleEncoderPID P", angleEncoderPID_Left.getP());
-		SmartDashboard.putNumber("angleEncoderPID I", angleEncoderPID_Left.getI());
-		SmartDashboard.putNumber("angleEncoderPID D", angleEncoderPID_Left.getD());
+		// SmartDashboard.putNumber("angleEncoderPID P", angleEncoderPID_Left.getP());
+		// SmartDashboard.putNumber("angleEncoderPID I", angleEncoderPID_Left.getI());
+		// SmartDashboard.putNumber("angleEncoderPID D", angleEncoderPID_Left.getD());
 
 		// Set the encoder input value range
 		angleEncoderPID_Left.setInputRange(Constants.IMAGE_ANGLE_MINIMUM_INPUT, Constants.IMAGE_ANGLE_MAXIMUM_INPUT);
@@ -396,7 +396,7 @@ public class Chassis extends Subsystem
 	 */
 	public boolean gyroWithin(double threshold)
 	{
-		SmartDashboard.putNumber("Error", angleGyroPID.getError());
+		// SmartDashboard.putNumber("Error", angleGyroPID.getError());
 		
 		// Return if the gyro is within the specified range
 		return Math.abs(angleGyroPID.getError()) < threshold;
@@ -492,7 +492,7 @@ public class Chassis extends Subsystem
 		{
 			driveRight.set(PIDoutput + m_magnitude);
 
-			SmartDashboard.putNumber("Right Output", PIDoutput);
+			// SmartDashboard.putNumber("Right Output", PIDoutput);
 		}
 	}
 
@@ -508,7 +508,7 @@ public class Chassis extends Subsystem
 		{
 			driveLeft.set(-PIDoutput + m_magnitude);
 
-			SmartDashboard.putNumber("Left Output", -PIDoutput);
+			// SmartDashboard.putNumber("Left Output", -PIDoutput);
 		}
 	}
 }

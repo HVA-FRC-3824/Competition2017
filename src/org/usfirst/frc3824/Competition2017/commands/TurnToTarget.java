@@ -56,7 +56,7 @@ public class TurnToTarget extends Command
 		{				
 			double theta = getTheta();
 			
-			SmartDashboard.putNumber("Theta", theta);
+			// SmartDashboard.putNumber("Theta", theta);
 			
 			// Set the PID up for rotation
 			Robot.chassis.turnAnglePID(theta, 0.0, false);
