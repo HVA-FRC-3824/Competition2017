@@ -11,7 +11,6 @@
 package org.usfirst.frc3824.Competition2017;
 
 import org.usfirst.frc3824.Competition2017.commands.*;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.*;
 

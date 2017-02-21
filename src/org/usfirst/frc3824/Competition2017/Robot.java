@@ -23,7 +23,7 @@ import org.usfirst.frc3824.Competition2017.RobotMap;
 import org.usfirst.frc3824.Competition2017.RPiDataSource;
 import org.usfirst.frc3824.Competition2017.commands.*;
 import org.usfirst.frc3824.Competition2017.subsystems.*;
-import org.usfirst.frc3824.Competition2017.utils.RobioIO_Camera;
+import org.usfirst.frc3824.Competition2017.utils.RIOCamera;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -106,7 +106,7 @@ public class Robot extends IterativeRobot
 		rpi = RPiDataSource.getInstance();
         rpi.start();
 
-        RobioIO_Camera.GetThread().start();
+        RIOCamera.GetThread().start();
 		
 //		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 //

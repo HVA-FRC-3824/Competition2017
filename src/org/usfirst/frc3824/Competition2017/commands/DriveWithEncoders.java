@@ -11,7 +11,6 @@
 package org.usfirst.frc3824.Competition2017.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc3824.Competition2017.Robot;
 

@@ -19,7 +19,7 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class RobioIO_Camera
+public class RIOCamera
 {
 	static int MIN_CONTOUR_WIDTH     =  10;
 	static int MAX_CONTOUR_WIDTH     = 640;

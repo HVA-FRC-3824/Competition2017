@@ -68,7 +68,7 @@ public class AutoPlaceGearGyro extends Command
 			{				
 				double theta = getTheta();
 				
-				double distanceFromTarget = getDistanceFromTarget();
+//				double distanceFromTarget = getDistanceFromTarget();
 				
 				// SmartDashboard.putNumber("DistanceFromTarget", distanceFromTarget);
 				
