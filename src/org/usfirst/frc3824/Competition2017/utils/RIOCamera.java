@@ -62,13 +62,14 @@ public class RIOCamera
 		int loopcounter = 0;
 	
 		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-
-	    // Setup the camera
+		
+		// Setup the camera
 		camera.setResolution(640, 480);
 		camera.setBrightness(0);
 		camera.setExposureManual(0);
 		
 		SmartDashboard.putBoolean("Camera Bright", false);
+		SmartDashboard.putNumber("Line Position", 280);
 
 		// Setup the video stream
 		CvSink   cvSink       = CameraServer.getInstance().getVideo();
@@ -102,50 +103,54 @@ public class RIOCamera
 				// Grab a camera frame
 				cvSink.grabFrame(source);
 
-			// Read the HSV values from the SmartDashboard
-				H_min = SmartDashboard.getNumber("H Min",  60);
-				H_max = SmartDashboard.getNumber("H Max",  80);
-				S_min = SmartDashboard.getNumber("S Min", 150);
-				S_max = SmartDashboard.getNumber("S Max", 255);
-				V_min = SmartDashboard.getNumber("V Min",  60);
-				V_max = SmartDashboard.getNumber("V Max", 255);
-
-				// Blurs image from camera to make colors run together
-				Imgproc.blur(source, cameraFrameImage, new Size(10, 10));
-//				outputStream.putFrame(cameraFrameImage);
-			
-				// Determine the reflective tape regions
-				findTapeRegion(cameraFrameImage);
+				if (isCameraBright) {
+					addCenterLine(source);
+				}
+				else
+				{
+				// Read the HSV values from the SmartDashboard
+					H_min = SmartDashboard.getNumber("H Min",  60);
+					H_max = SmartDashboard.getNumber("H Max",  80);
+					S_min = SmartDashboard.getNumber("S Min", 150);
+					S_max = SmartDashboard.getNumber("S Max", 255);
+					V_min = SmartDashboard.getNumber("V Min",  60);
+					V_max = SmartDashboard.getNumber("V Max", 255);
 	
-				// Find the region contours
-				findRectangles(contourImg);
-
-				// Find the two largest rectangles
-				findTwoLargestRectangles();
+					// Blurs image from camera to make colors run together
+					Imgproc.blur(source, cameraFrameImage, new Size(10, 10));
+	//				outputStream.putFrame(cameraFrameImage);
 				
-				addCenterLine(source);
-			
+					// Determine the reflective tape regions
+					findTapeRegion(cameraFrameImage);
+		
+					// Find the region contours
+					findRectangles(contourImg);
+	
+					// Find the two largest rectangles
+					findTwoLargestRectangles();
+					
+					
+	//				SmartDashboard.putNumber("Target A area",   largestTargetRect.area());
+	//			
+					SmartDashboard.putNumber("Target A X",      largestTargetRect.x);			
+	//				SmartDashboard.putNumber("Target A Y",      largestTargetRect.y);
+					SmartDashboard.putNumber("Target A width",  largestTargetRect.width);
+	//				SmartDashboard.putNumber("Target A height", largestTargetRect.height);
+	//			
+	//				SmartDashboard.putNumber("Target B area",   secondLargestTargetRect.area());
+	//			
+					SmartDashboard.putNumber("Target B X",      secondLargestTargetRect.x);			
+	//				SmartDashboard.putNumber("Target B Y",      secondLargestTargetRect.y);
+					SmartDashboard.putNumber("Target B width",  secondLargestTargetRect.width);
+	//				SmartDashboard.putNumber("Target B height", secondLargestTargetRect.height);
+				
+					double center = ((largestTargetRect.x       + (largestTargetRect.width / 2)) +
+						         	 (secondLargestTargetRect.x + (secondLargestTargetRect.width / 2))) / 2;
+				
+					SmartDashboard.putNumber("Target Center", center);
+				}
 				// display centerline
 				outputStream.putFrame(source);
-				
-//				SmartDashboard.putNumber("Target A area",   largestTargetRect.area());
-//			
-				SmartDashboard.putNumber("Target A X",      largestTargetRect.x);			
-//				SmartDashboard.putNumber("Target A Y",      largestTargetRect.y);
-				SmartDashboard.putNumber("Target A width",  largestTargetRect.width);
-//				SmartDashboard.putNumber("Target A height", largestTargetRect.height);
-//			
-//				SmartDashboard.putNumber("Target B area",   secondLargestTargetRect.area());
-//			
-				SmartDashboard.putNumber("Target B X",      secondLargestTargetRect.x);			
-//				SmartDashboard.putNumber("Target B Y",      secondLargestTargetRect.y);
-				SmartDashboard.putNumber("Target B width",  secondLargestTargetRect.width);
-//				SmartDashboard.putNumber("Target B height", secondLargestTargetRect.height);
-			
-				double center = ((largestTargetRect.x       + (largestTargetRect.width / 2)) +
-					         	 (secondLargestTargetRect.x + (secondLargestTargetRect.width / 2))) / 2;
-			
-				SmartDashboard.putNumber("Target Center", center);
 			}
 			catch (Exception exception)
 			{
@@ -173,7 +178,7 @@ public class RIOCamera
 	
 	private static void addCenterLine(Mat image)
 	{
-		int center = 310;
+		int center = (int) SmartDashboard.getNumber("Line Position", 280);
 		Imgproc.line(image, new Point(center, 0), new Point(center, image.rows()), new Scalar(255, 0, 0));
 	}
 
