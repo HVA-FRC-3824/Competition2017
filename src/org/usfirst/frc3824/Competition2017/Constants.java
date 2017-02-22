@@ -24,7 +24,7 @@ public class Constants
 	// ***************************************************************************************
 	// Automatic gear place constants
 	
-	public static double PLACE_GEAR_AUTO_POWER				=  0.4; //0.2;
+	public static double PLACE_GEAR_AUTO_POWER				=  0.4;
 	public static double PLACE_GEAR_AUTO_WALL_DISTANCE		=  30.0;
 	public static double PLACE_GEAR_AUTO_UPDATE_TIME		=  0.25;
 	
@@ -55,10 +55,12 @@ public class Constants
 	
 	public static double CLIMBER_SPEED_FAST                 = -0.6;
 	public static double CLIMBER_SPEED_SLOW                 = -0.45;
-	public static double CLIMBER_SPEED_HOLD                 = -0.3;
+	public static double CLIMBER_SPEED_HOLD                 =  0.0;
 	
 	public static double CLIMBER_STOP_CURRENT               =  28.0;
-	public static double CLIMBER_JOG_TIME                 	=  0.50;
+	public static double CLIMBER_JOG_TIME                 	=  1.0;
+	
+	public static double CLIMBER_AFTER_LIMIT_SWITCH_TIME    = 0.0;
 
 	// ***************************************************************************************
 	// Gear constants
@@ -72,12 +74,17 @@ public class Constants
 	public static double SHOOTER_I							= 0.0004;
 	public static double SHOOTER_D							= 4.0000;
 	public static double SHOOTER_F							= 0.0050;
-	public static double DEFAULT_SHOOTER_SPEED              = 3500.0;
 	
+
 	public static double SHOOTER_SPEED_HIGH                 = 4500.0; // Max speed
-	public static double SHOOTER_SPEED_MEDHIGH              = 3800.0;
+	public static double SHOOTER_SPEED_MEDHIGH              = 3750.0;
 	public static double SHOOTER_SPEED_MEDLOW               = 3500.0;
 	public static double SHOOTER_SPEED_LOW                  = 3200.0;
+	
+	public static double DEFAULT_SHOOTER_SPEED              = SHOOTER_SPEED_MEDHIGH;
+	
+	public static double SHOOTER_B_OFFSET                   = -50.0;
+	
 	public static double SHOOTER_JOG_SPEED                  = 50.0;
 	
 	public static double FEEDER_CLEAR_BALLS_TIME            = 0.5;
@@ -121,7 +128,7 @@ public class Constants
 	// ***************************************************************************************
 	// Automated aim and shoot constants
 	
-	public static double IMAGE_ANGLE_ENCODER_P              =  0.01; //0.03;
+	public static double IMAGE_ANGLE_ENCODER_P              =  0.01;
 	public static double IMAGE_ANGLE_ENCODER_I              =  0.000;
 	public static double IMAGE_ANGLE_ENCODER_D              =  0.0;
 
@@ -140,16 +147,15 @@ public class Constants
 
 	public static double LIFT_DISTANCE                      = 20.0;
 	
-	public static double DISTANCE_A                         =  0.0839;  //  0.0838;   // x^2
-	public static double DISTANCE_B                         = -16.762;  // -16.665;   // x
-	public static double DISTANCE_C                         =  967.84;  //  952.25;   // offset
+	public static double DISTANCE_A                         =  0.0839;
+	public static double DISTANCE_B                         = -16.762;
+	public static double DISTANCE_C                         =  967.84;
 	
-	// y = 0.0003x2 - 0.0462x + 183.46
-	public static double IMAGE_Y_A                          =  0.0003;  // 0.0001;    //0.00005; //   0.0001;    // x^2
-	public static double IMAGE_Y_B                          = -0.0462;  // 0.0534;    //0.1887;  //   0.0534;    // x
-	public static double IMAGE_Y_C                          =  183.46;  // 172.81;    //141.11;  //   172.81;    // offset
+	// y = Ax2 + Bx + C
+	public static double IMAGE_Y_A                          =  0.0003;
+	public static double IMAGE_Y_B                          = -0.0462;
+	public static double IMAGE_Y_C                          =  183.46;
 	
-	//                                                       2016: Thing 1  // Thing 2  // Thing 1
-	public static int    IMAGE_ON_TARGET_X_POSITION         =   170;  // 170;        // X location of the "onTarget" position
-	public static int    IMAGE_ON_TARGET_Y_OFFSET           =   -25;  // -25;
+	public static int    IMAGE_ON_TARGET_X_POSITION         =   170;
+	public static int    IMAGE_ON_TARGET_Y_OFFSET           =   -25;
 }

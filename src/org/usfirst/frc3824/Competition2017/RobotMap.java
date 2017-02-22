@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -48,6 +49,7 @@ public class RobotMap
     public static Compressor chassisCompressor;
     public static SpeedController climberClimberMotorA;
     public static SpeedController climberClimberMotorB;
+    public static DigitalInput climberClimberLimitSwitch;
     public static CANTalon shooterShooterA;
     public static CANTalon shooterShooterB;
     public static CANTalon shooterFeeder;
@@ -104,6 +106,9 @@ public class RobotMap
         
         climberClimberMotorB = new Talon(5);
         LiveWindow.addActuator("Climber", "Climber Motor B", (Talon) climberClimberMotorB);
+        
+        climberClimberLimitSwitch = new DigitalInput(4);
+        LiveWindow.addSensor("Climber", "Climber Limit Switch", climberClimberLimitSwitch);
         
         shooterShooterA = new CANTalon(1);
         LiveWindow.addActuator("Shooter", "Shooter A", shooterShooterA);

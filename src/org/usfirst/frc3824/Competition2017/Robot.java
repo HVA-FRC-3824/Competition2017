@@ -98,6 +98,7 @@ public class Robot extends IterativeRobot
 		startingLocationChooser.addDefault("Right", "Right");
 		startingLocationChooser.addObject("Center", "Center");
 		startingLocationChooser.addObject("Left",   "Left");
+		startingLocationChooser.addObject("Center No Run",   "Center No Run");
 		SmartDashboard.putData("Starting Location", startingLocationChooser );
 				
 		// Start the compressor
@@ -128,7 +129,7 @@ public class Robot extends IterativeRobot
 		Scheduler.getInstance().run();
 
 		// Update parameters on the SmartDashboard
-		updateSmartdashBoard();
+		updateSmartDashboard();
        
 //		// Determine if a button is pressed
 //		for (int button = 1; button <= 20; button++)
@@ -137,6 +138,9 @@ public class Robot extends IterativeRobot
 
 	public void autonomousInit()
 	{
+		// set camera to be dark for autonomous
+    	SmartDashboard.putBoolean("Camera Bright", false);
+
 		// Determine the starting position from the position chooser
 		String startPosition = startingLocationChooser.getSelected();
 		
@@ -191,6 +195,9 @@ public class Robot extends IterativeRobot
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
+		
+		// switch camera back to higher brightness so driver can see
+		SmartDashboard.putBoolean("Camera Bright", true);
 	}
 
 	/**
@@ -201,7 +208,7 @@ public class Robot extends IterativeRobot
 		Scheduler.getInstance().run();
 		
 		// Update parameters on the SmartDashboard
-		updateSmartdashBoard();
+		updateSmartDashboard();
 		
 		SmartDashboard.putNumber("Average Climber Current", Robot.climber.getClimberCurrent());
 	}
@@ -217,18 +224,21 @@ public class Robot extends IterativeRobot
 	/**
 	 * Method to update parameters to the SmartDashboard in disabled and teleop
 	 */
-	public void updateSmartdashBoard()
+	public void updateSmartDashboard()
 	{		
+//		// Show the chasses encoders
 //		SmartDashboard.putNumber("Chassis Encoder Left",  RobotMap.chassisEncoderLeft.getDistance());
 //		SmartDashboard.putNumber("Chassis Encoder Right", RobotMap.chassisEncoderRight.getDistance());
 		
-		// Show the shooter and feeder speeds
-		SmartDashboard.putNumber("Shooter A Speed", Robot.shooter.getShooterASpeed());
-		SmartDashboard.putNumber("Shooter B Speed", Robot.shooter.getShooterBSpeed());
-		SmartDashboard.putNumber("Feeder Speed",    Robot.shooter.getFeederSpeed());
-		
+//		// Show the shooter and feeder speeds
+//		SmartDashboard.putNumber("Shooter A Speed", Robot.shooter.getShooterASpeed());
+//		SmartDashboard.putNumber("Shooter B Speed", Robot.shooter.getShooterBSpeed());
+//		SmartDashboard.putNumber("Feeder Speed",    Robot.shooter.getFeederSpeed());
+//		
 		SmartDashboard.putNumber("Ultrasonic Distance", Robot.chassis.getUltrasonicDistance());
 		SmartDashboard.putNumber("Chassis Encoder Distance", Robot.chassis.getEncoderDistance());
+		
+		SmartDashboard.putBoolean("Climber Switch", Robot.climber.getClimberLimitSwitch());
 		
 		// Update the SmartDashboard data about the image processing
         rpi.updateSmartDashboardData();

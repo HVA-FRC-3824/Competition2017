@@ -87,7 +87,7 @@ public class OI
         controllerJoystick = new Joystick(1);
         
         dONOTPRESS = new JoystickButton(controllerJoystick, 19);
-        dONOTPRESS.whenPressed(new ShooterControl());
+        dONOTPRESS.whenPressed(new DONOTPRESS());
         climberJogUp = new JoystickButton(controllerJoystick, 2);
         climberJogUp.whenPressed(new ClimbJog());
         jogDown = new JoystickButton(controllerJoystick, 17);

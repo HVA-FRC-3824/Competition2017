@@ -15,6 +15,7 @@ import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
 
 import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -51,6 +52,8 @@ public class RIOCamera
 	static Rect largestTargetRect = new Rect();
 	static Rect secondLargestTargetRect = new Rect();
 	
+	static boolean isCameraBright = false;
+	
 	/*
 	 * Thread to process the camera images and determine the targets based on the reflective tape
 	 */
@@ -64,10 +67,12 @@ public class RIOCamera
 		camera.setResolution(640, 480);
 		camera.setBrightness(0);
 		camera.setExposureManual(0);
+		
+		SmartDashboard.putBoolean("Camera Bright", false);
 
 		// Setup the video stream
 		CvSink   cvSink       = CameraServer.getInstance().getVideo();
-//		CvSource outputStream = CameraServer.getInstance().putVideo("Processed", 640, 480);
+		CvSource outputStream = CameraServer.getInstance().putVideo("Processed", 640, 480);
 
 		// Setup the HSV minimum/maximum values on the SmartDashboard
 		SmartDashboard.putNumber("H Min", H_min);
@@ -81,51 +86,66 @@ public class RIOCamera
 //		while (!Thread.interrupted())
 		while (true)
 		{
-			try {
-			SmartDashboard.putNumber("loopcounter", loopcounter++);
+			try 
+			{
+				SmartDashboard.putNumber("loopcounter", loopcounter++);
+				
+				// update camera settings
+				boolean shouldBeBright = SmartDashboard.getBoolean("Camera Bright", false);
+				if (isCameraBright != shouldBeBright) {
+					// camera setting has changed, update
 					
-			// Grab a camera frame
-			cvSink.grabFrame(source);
+					updateCameraSettings(camera, shouldBeBright);
+					isCameraBright = shouldBeBright;
+				}
+				
+				// Grab a camera frame
+				cvSink.grabFrame(source);
 
 			// Read the HSV values from the SmartDashboard
-			H_min = SmartDashboard.getNumber("H Min",  60);
-			H_max = SmartDashboard.getNumber("H Max",  80);
-			S_min = SmartDashboard.getNumber("S Min", 150);
-			S_max = SmartDashboard.getNumber("S Max", 255);
-			V_min = SmartDashboard.getNumber("V Min",  60);
-			V_max = SmartDashboard.getNumber("V Max", 255);
+				H_min = SmartDashboard.getNumber("H Min",  60);
+				H_max = SmartDashboard.getNumber("H Max",  80);
+				S_min = SmartDashboard.getNumber("S Min", 150);
+				S_max = SmartDashboard.getNumber("S Max", 255);
+				V_min = SmartDashboard.getNumber("V Min",  60);
+				V_max = SmartDashboard.getNumber("V Max", 255);
 
-			// Blurs image from camera to make colors run together
-			Imgproc.blur(source, cameraFrameImage, new Size(10, 10));
-//			outputStream.putFrame(cameraFrameImage);
+				// Blurs image from camera to make colors run together
+				Imgproc.blur(source, cameraFrameImage, new Size(10, 10));
+//				outputStream.putFrame(cameraFrameImage);
 			
-			// Determine the reflective tape regions
-			findTapeRegion(cameraFrameImage);
+				// Determine the reflective tape regions
+				findTapeRegion(cameraFrameImage);
 	
-			// Find the region contours
-			findRectangles(contourImg);
+				// Find the region contours
+				findRectangles(contourImg);
 
-			// Find the two largest rectangles
-			findTwoLargestRectangles();
+				// Find the two largest rectangles
+				findTwoLargestRectangles();
+				
+				addCenterLine(source);
 			
-			SmartDashboard.putNumber("Target A area",   largestTargetRect.area());
+				// display centerline
+				outputStream.putFrame(source);
+				
+//				SmartDashboard.putNumber("Target A area",   largestTargetRect.area());
+//			
+				SmartDashboard.putNumber("Target A X",      largestTargetRect.x);			
+//				SmartDashboard.putNumber("Target A Y",      largestTargetRect.y);
+				SmartDashboard.putNumber("Target A width",  largestTargetRect.width);
+//				SmartDashboard.putNumber("Target A height", largestTargetRect.height);
+//			
+//				SmartDashboard.putNumber("Target B area",   secondLargestTargetRect.area());
+//			
+				SmartDashboard.putNumber("Target B X",      secondLargestTargetRect.x);			
+//				SmartDashboard.putNumber("Target B Y",      secondLargestTargetRect.y);
+				SmartDashboard.putNumber("Target B width",  secondLargestTargetRect.width);
+//				SmartDashboard.putNumber("Target B height", secondLargestTargetRect.height);
 			
-			SmartDashboard.putNumber("Target A X",      largestTargetRect.x);			
-			SmartDashboard.putNumber("Target A Y",      largestTargetRect.y);
-			SmartDashboard.putNumber("Target A width",  largestTargetRect.width);
-			SmartDashboard.putNumber("Target A height", largestTargetRect.height);
+				double center = ((largestTargetRect.x       + (largestTargetRect.width / 2)) +
+					         	 (secondLargestTargetRect.x + (secondLargestTargetRect.width / 2))) / 2;
 			
-			SmartDashboard.putNumber("Target B area",   secondLargestTargetRect.area());
-			
-			SmartDashboard.putNumber("Target B X",      secondLargestTargetRect.x);			
-			SmartDashboard.putNumber("Target B Y",      secondLargestTargetRect.y);
-			SmartDashboard.putNumber("Target B width",  secondLargestTargetRect.width);
-			SmartDashboard.putNumber("Target B height", secondLargestTargetRect.height);
-			
-			double center = ((largestTargetRect.x       + (largestTargetRect.width / 2)) +
-					         (secondLargestTargetRect.x + (secondLargestTargetRect.width / 2))) / 2;
-			
-			SmartDashboard.putNumber("Target Center", center);
+				SmartDashboard.putNumber("Target Center", center);
 			}
 			catch (Exception exception)
 			{
@@ -151,6 +171,12 @@ public class RIOCamera
 		Core.inRange(HSVimage, MINCOLOR, MAXCOLOR, contourImg);
 	}
 	
+	private static void addCenterLine(Mat image)
+	{
+		int center = 310;
+		Imgproc.line(image, new Point(center, 0), new Point(center, image.rows()), new Scalar(255, 0, 0));
+	}
+
 	/*
 	 * Method to find the regions in the image (as rectangles)
 	 */
@@ -242,6 +268,18 @@ public class RIOCamera
 			largestTargetRect = targetRectangles.get(largestAreaIndex);
 		if (secondLargestAreaIndex != -1)
 			secondLargestTargetRect = targetRectangles.get(secondLargestAreaIndex);		
+	}
+	
+	public static void updateCameraSettings(UsbCamera camera, boolean bright)
+	{
+		if (bright)
+		{
+			camera.setBrightness(50);
+			camera.setExposureManual(50);
+		} else {
+			camera.setBrightness(0);
+			camera.setExposureManual(0);
+		}
 	}
 	
 	/*
