@@ -226,19 +226,17 @@ public class Robot extends IterativeRobot
 	 * Method to update parameters to the SmartDashboard in disabled and teleop
 	 */
 	public void updateSmartDashboard()
-	{		
-//		// Show the chasses encoders
-//		SmartDashboard.putNumber("Chassis Encoder Left",  RobotMap.chassisEncoderLeft.getDistance());
-//		SmartDashboard.putNumber("Chassis Encoder Right", RobotMap.chassisEncoderRight.getDistance());
-		
+	{				
 //		// Show the shooter and feeder speeds
 //		SmartDashboard.putNumber("Shooter A Speed", Robot.shooter.getShooterASpeed());
 //		SmartDashboard.putNumber("Shooter B Speed", Robot.shooter.getShooterBSpeed());
 //		SmartDashboard.putNumber("Feeder Speed",    Robot.shooter.getFeederSpeed());
-//		
+
+		// Show chassis sensor values
 		SmartDashboard.putNumber("Ultrasonic Distance", Robot.chassis.getUltrasonicDistance());
 		SmartDashboard.putNumber("Chassis Encoder Distance", Robot.chassis.getEncoderDistance());
-		
+		SmartDashboard.putNumber("Gyro Angle", RobotMap.chassisGyro.getAngle());
+	
 		SmartDashboard.putBoolean("Climber Switch", Robot.climber.getClimberLimitSwitch());
 		
 		// Update the SmartDashboard data about the image processing
