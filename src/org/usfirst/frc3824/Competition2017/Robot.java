@@ -101,8 +101,9 @@ public class Robot extends IterativeRobot
 		startingLocationChooser.addObject("Center No Run",   "Center No Run");
 		SmartDashboard.putData("Starting Location", startingLocationChooser );
 				
+		// ** Moved to chassis **
 		// Start the compressor
-		RobotMap.chassisCompressor.setClosedLoopControl(true);
+		// RobotMap.chassisCompressor.setClosedLoopControl(true);
 		
 		rpi = RPiDataSource.getInstance();
         rpi.start();

@@ -75,7 +75,10 @@ public class Chassis extends Subsystem
 
 	public Chassis()
 	{
-		// Configure angleEncoderPIDs
+		// Start the compressor
+		compressor.setClosedLoopControl(true);
+
+		// Display angleEncoderPIDs on smart dashboard
 		// SmartDashboard.putNumber("angleEncoderPID P", angleEncoderPID_Left.getP());
 		// SmartDashboard.putNumber("angleEncoderPID I", angleEncoderPID_Left.getI());
 		// SmartDashboard.putNumber("angleEncoderPID D", angleEncoderPID_Left.getD());
