@@ -127,7 +127,7 @@ public class Chassis extends Subsystem
 		angleEncoderPID_Left.reset();
 
 		// Reset the gyro angle
-		gyro.reset();
+//		gyro.reset();
 
 		// Clear the drive magnitude
 		// Note: The calling routine must reset the magnitude to the desired value
@@ -404,6 +404,23 @@ public class Chassis extends Subsystem
 		// Return if the gyro is within the specified range
 		return Math.abs(angleGyroPID.getError()) < threshold;
 	}
+	
+	/**
+	 * Method to return a relative gyro angle (between 0 and 360)
+	 */
+	private double getRelativeAngle(double angle)
+	{
+		// Adjust the angle if negative
+		while (angle < 0.0)
+			angle += 360.0;
+
+		// Adjust the angle if greater than 360
+		while (angle >= 360.0)
+			angle -= 360.0;
+
+		// Return the angle between 0 and 360
+		return angle;
+	}
 
 	/**
 	 * Method to return the maximum of the two chassas wheel encoders
@@ -449,7 +466,7 @@ public class Chassis extends Subsystem
 		angleGyroPID.setPID(P, I, D);
 
 		// Set the desired chassis heading
-		angleGyroPID.setSetpoint(desiredHeading);
+		angleGyroPID.setSetpoint(gyro.pidGet() + desiredHeading);
 
 		// Limit the output power when turning
 		angleGyroPID.setOutputRange(minimumOutput, maximumOutput);
@@ -464,7 +481,17 @@ public class Chassis extends Subsystem
 	public void updateHeadingPID_Setpoint(double desiredHeading)
 	{
 		// Set the desired chassis heading
-		angleGyroPID.setSetpoint(desiredHeading);
+		angleGyroPID.setSetpoint(gyro.pidGet() + desiredHeading);
+	}
+	
+	/** 
+	 * Method to set the desired heading
+	 */
+	public void updateHeadingPID_SetpointAbsolute(double desiredHeading)
+	{
+		// Set the desired chassis heading
+		// TODO: Make this work
+		angleGyroPID.setSetpoint(getRelativeAngle(desiredHeading));
 	}
 	
 	/**
