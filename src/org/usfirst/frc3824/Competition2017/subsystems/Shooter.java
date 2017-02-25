@@ -44,18 +44,18 @@ public class Shooter extends Subsystem
     public Shooter()
 	{
 		// Set closed loop gains in slot0
-		SmartDashboard.putNumber("Shooter P",        Constants.SHOOTER_P * 1000.0);
-		SmartDashboard.putNumber("Shooter I",        Constants.SHOOTER_I * 1000.0);
-		SmartDashboard.putNumber("Shooter D",        Constants.SHOOTER_D * 1000.0);
-		SmartDashboard.putNumber("Shooter F",        Constants.SHOOTER_F * 1000.0);
-		SmartDashboard.putNumber("Shooter Setpoint", Constants.DEFAULT_SHOOTER_SPEED);
+//		SmartDashboard.putNumber("Shooter P",        Constants.SHOOTER_P * 1000.0);
+//		SmartDashboard.putNumber("Shooter I",        Constants.SHOOTER_I * 1000.0);
+//		SmartDashboard.putNumber("Shooter D",        Constants.SHOOTER_D * 1000.0);
+//		SmartDashboard.putNumber("Shooter F",        Constants.SHOOTER_F * 1000.0);
+//		SmartDashboard.putNumber("Shooter Setpoint", Constants.DEFAULT_SHOOTER_SPEED);
 		
 		// Set closed loop gains in slot0
-		SmartDashboard.putNumber("Feeder P",        Constants.FEEDER_P * 1000.0);
-		SmartDashboard.putNumber("Feeder I",        Constants.FEEDER_I * 1000.0);
-		SmartDashboard.putNumber("Feeder D",        Constants.FEEDER_D * 1000.0);
-		SmartDashboard.putNumber("Feeder F",        Constants.FEEDER_F * 1000.0);
-		SmartDashboard.putNumber("Feeder Setpoint", Constants.DEFAULT_FEEDER_SPEED);
+//		SmartDashboard.putNumber("Feeder P",        Constants.FEEDER_P * 1000.0);
+//		SmartDashboard.putNumber("Feeder I",        Constants.FEEDER_I * 1000.0);
+//		SmartDashboard.putNumber("Feeder D",        Constants.FEEDER_D * 1000.0);
+//		SmartDashboard.putNumber("Feeder F",        Constants.FEEDER_F * 1000.0);
+//		SmartDashboard.putNumber("Feeder Setpoint", Constants.DEFAULT_FEEDER_SPEED);
 		
 		//********************************************************************
 		// Configure the Shooter A Talon SRX
@@ -81,7 +81,7 @@ public class Shooter extends Subsystem
 		shooterA.changeControlMode(CANTalon.TalonControlMode.Speed);
 		
 		shooterA.disable();
-		shooterA.set(Constants.DEFAULT_SHOOTER_SPEED);
+		shooterA.set(m_shooter_speed);
 
 		//********************************************************************
 		// Configure the Shooter B Talon SRX
@@ -107,7 +107,7 @@ public class Shooter extends Subsystem
 		shooterB.changeControlMode(CANTalon.TalonControlMode.Speed);
 	
 		shooterB.disable();
-		shooterB.set(Constants.DEFAULT_SHOOTER_SPEED);
+		shooterB.set(m_shooter_speed + Constants.SHOOTER_B_OFFSET);
 		
 		m_shooter_mode_PID = true;
 		
@@ -206,10 +206,11 @@ public class Shooter extends Subsystem
 		
 		// Update the shooter speed
 		m_shooter_speed = speed;
+		SmartDashboard.putNumber("Shooter Setpoint", m_shooter_speed);
 		 
 		// Set the desired speed
 		shooterA.set(m_shooter_speed);
-		shooterB.set(m_shooter_speed);
+		shooterB.set(m_shooter_speed + Constants.SHOOTER_B_OFFSET);
 		
 		// Determine if the motor is running
 		if (m_shooter_speed != 0.0)
@@ -356,7 +357,7 @@ public class Shooter extends Subsystem
 		shooterB.setP(SmartDashboard.getNumber("Shooter P", 0.0) / 1000);
 		shooterB.setI(SmartDashboard.getNumber("Shooter I", 0.0) / 1000);
 		shooterB.setD(SmartDashboard.getNumber("Shooter D", 0.0) / 1000);
-		shooterB.set(m_shooter_speed);
+		shooterB.set(m_shooter_speed + Constants.SHOOTER_B_OFFSET);
 	}
 
 	/**

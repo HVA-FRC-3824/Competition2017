@@ -10,6 +10,7 @@
 
 package org.usfirst.frc3824.Competition2017.commands;
 
+import edu.wpi.first.wpilibj.RobotState;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -28,6 +29,8 @@ public class ShooterManualShoot extends Command
 	private final int STATE_CLEAR_BALLS   = 1;
 	private final int STATE_START_SHOOTER = 2;
 	private final int STATE_SHOOT         = 3;
+	
+	private boolean agitate_forward = true;
 	
 	private int    state;
 	private double nextStateChangeTime;
@@ -73,10 +76,10 @@ public class ShooterManualShoot extends Command
 	protected boolean isFinished()
 	{
 		// Determine when the user releases the shoot button
-		if (Robot.oi.controllerJoystick.getRawButton(20) == true)
-			return false;
+		if (RobotState.isOperatorControl() && Robot.oi.controllerJoystick.getRawButton(20) == false)
+			return true;
 			
-		return true;
+		return false;
 	}
 
 	// Called once after isFinished returns true
@@ -109,7 +112,7 @@ public class ShooterManualShoot extends Command
 			case STATE_CLEAR_BALLS:
 			{
 				// Enable the ball transport to help feed the balls
-				Robot.ballPickup.enableTransport();
+//				Robot.ballPickup.setTransport(Constants.TRANSPORT_SLOW_VOLTAGE);
 			
 				// Enable the feeder to feed the balls
 				Robot.shooter.enableFeederPID();
@@ -143,7 +146,21 @@ public class ShooterManualShoot extends Command
 			case STATE_SHOOT:
 			{
 				// Set the feeder speed
-				Robot.shooter.setFeederSpeed(Constants.DEFAULT_FEEDER_SPEED);
+				if (agitate_forward == true)
+				{
+					Robot.ballPickup.setTransport(-Constants.TRANSPORT_SLOW_VOLTAGE);
+					Robot.shooter.setFeederSpeed(Constants.DEFAULT_FEEDER_SPEED);
+					nextStateChangeTime += 3.0;
+				} 
+				else
+				{
+					Robot.ballPickup.setTransport(Constants.TRANSPORT_SLOW_VOLTAGE);
+					Robot.shooter.setFeederSpeed(Constants.DEFAULT_FEEDER_SPEED);
+					nextStateChangeTime += 0.5;	
+				}
+
+				// Reverse the transport direction
+				agitate_forward = !agitate_forward;
 				break;
 			}
 			

@@ -1,9 +1,12 @@
 package org.usfirst.frc3824.Competition2017;
 
+import org.usfirst.frc3824.Competition2017.Constants;
+
 public class Target
 {
 	private boolean	mValid;
 	private int		mFrameIndex;
+
 	private int		mTargetAX;
 	private int     mTargetAWidth;
 	private int		mTargetBX;
@@ -100,9 +103,9 @@ public class Target
 	{
 		return mTargetBX;
 	}
-	
+
 	/**
-	 * Method to return the target A X value
+	 * Method to return the target height
 	 */
 	public double getTargetBWidth()
 	{

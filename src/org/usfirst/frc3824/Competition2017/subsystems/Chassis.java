@@ -13,6 +13,7 @@ package org.usfirst.frc3824.Competition2017.subsystems;
 import org.usfirst.frc3824.Competition2017.Robot;
 import org.usfirst.frc3824.Competition2017.Constants;
 import org.usfirst.frc3824.Competition2017.RobotMap;
+import org.usfirst.frc3824.Competition2017.Target;
 import org.usfirst.frc3824.Competition2017.commands.*;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
@@ -27,6 +28,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedController;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The Chassis class contains all the methods and members for the Chassis subassembly
@@ -56,31 +58,30 @@ public class Chassis extends Subsystem
 	private boolean					m_highGear;
 
 	// PID controller for driving based on Gyro
-	private PIDController angleGyroPID = new PIDController(Constants.DRIVETRAIN_DRIVE_STRAIGHT_P,
-														   Constants.DRIVETRAIN_DRIVE_STRAIGHT_I, 
-                                                           Constants.DRIVETRAIN_DRIVE_STRAIGHT_D, 
-                                                           gyro, new AnglePIDOutput()
-    );
-	
-	private PIDController angleEncoderPID_Right = new PIDController(Constants.IMAGE_ANGLE_ENCODER_P,
-                                                                    Constants.IMAGE_ANGLE_ENCODER_I, 
-                                                                    Constants.IMAGE_ANGLE_ENCODER_D, 
-                                                                    encoderRight, 
-                                                                    new EncoderPIDOutputRight());
+	private PIDController			angleGyroPID			= new PIDController(Constants.DRIVETRAIN_DRIVE_STRAIGHT_P,
+			                                                                    Constants.DRIVETRAIN_DRIVE_STRAIGHT_I, 
+			                                                                    Constants.DRIVETRAIN_DRIVE_STRAIGHT_D, 
+			                                                                    gyro, new AnglePIDOutput());
 
-	private PIDController angleEncoderPID_Left = new PIDController(Constants.IMAGE_ANGLE_ENCODER_P,
-                                                                   Constants.IMAGE_ANGLE_ENCODER_I, 
-                                                                   Constants.IMAGE_ANGLE_ENCODER_D, 
-                                                                   encoderLeft,
-                                                                   new EncoderPIDOutputLeft());
-	
-	public Chassis() 
+	private PIDController			angleEncoderPID_Right	= new PIDController(Constants.IMAGE_ANGLE_ENCODER_P,
+			                                                                    Constants.IMAGE_ANGLE_ENCODER_I, 
+			                                                                    Constants.IMAGE_ANGLE_ENCODER_D, 
+			                                                                    encoderRight, new EncoderPIDOutputRight());
+
+	private PIDController			angleEncoderPID_Left	= new PIDController(Constants.IMAGE_ANGLE_ENCODER_P,
+			                                                                    Constants.IMAGE_ANGLE_ENCODER_I, 
+			                                                                    Constants.IMAGE_ANGLE_ENCODER_D, 
+			                                                                    encoderLeft, new EncoderPIDOutputLeft());
+
+	public Chassis()
 	{
-		// Configure angleEncoderPIDs
-		
-		// Set the PID gains
-		angleEncoderPID_Left.setPID(Constants.IMAGE_ANGLE_ENCODER_P, Constants.IMAGE_ANGLE_ENCODER_I, Constants.IMAGE_ANGLE_ENCODER_D);
-		angleEncoderPID_Right.setPID(Constants.IMAGE_ANGLE_ENCODER_P, Constants.IMAGE_ANGLE_ENCODER_I, Constants.IMAGE_ANGLE_ENCODER_D);
+		// Start the compressor
+		compressor.setClosedLoopControl(true);
+
+		// Display angleEncoderPIDs on smart dashboard
+		// SmartDashboard.putNumber("angleEncoderPID P", angleEncoderPID_Left.getP());
+		// SmartDashboard.putNumber("angleEncoderPID I", angleEncoderPID_Left.getI());
+		// SmartDashboard.putNumber("angleEncoderPID D", angleEncoderPID_Left.getD());
 
 		// Set the encoder input value range
 		angleEncoderPID_Left.setInputRange(Constants.IMAGE_ANGLE_MINIMUM_INPUT, Constants.IMAGE_ANGLE_MAXIMUM_INPUT);
@@ -90,7 +91,7 @@ public class Chassis extends Subsystem
 		angleEncoderPID_Left.setOutputRange(Constants.IMAGE_ANGLE_MINIMUM_OUTPUT, Constants.IMAGE_ANGLE_MAXIMUM_OUTPUT);
 		angleEncoderPID_Right.setOutputRange(Constants.IMAGE_ANGLE_MINIMUM_OUTPUT, Constants.IMAGE_ANGLE_MAXIMUM_OUTPUT);
 	}
-	
+
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 
@@ -118,17 +119,24 @@ public class Chassis extends Subsystem
 		// Initialize the gyro PID controller
 		angleGyroPID.disable();
 		angleGyroPID.reset();
+		
 		angleEncoderPID_Right.disable();
 		angleEncoderPID_Right.reset();
+		
 		angleEncoderPID_Left.disable();
 		angleEncoderPID_Left.reset();
-		
-		gyro.reset();
-		
+
+		// Reset the gyro angle
+//		gyro.reset();
+
+		// Clear the drive magnitude
+		// Note: The calling routine must reset the magnitude to the desired value
+		m_magnitude = 0;
+
 		// Reset the drive encoders
 		encoderLeft.reset();
 		encoderRight.reset();
-		
+
 		// Ensure the robot is stopped
 		Robot.chassis.robotDrive.arcadeDrive(0, 0);
 	}
@@ -165,7 +173,6 @@ public class Chassis extends Subsystem
 
 	/**
 	 * Method to return the state of the transmission
-	 * @return
 	 */
 	public boolean isGearHigh()
 	{
@@ -177,20 +184,36 @@ public class Chassis extends Subsystem
 	 */
 	public void driveWithJoystick(Joystick stick)
 	{
-		// Cube twist to decrease sensitivity
-		double twist = stick.getTwist();
-		twist = twist * twist * twist;
+		// Square twist to decrease sensitivity
+		double twist = stick.getTwist() * Constants.TWIST_MULTIPLIER;
+		
+		// Determine if the twist is negative to allow restoring the sign
+		if (twist < 0)
+		{
+			// Remember to preserve direction, it is lost when squaring
+			twist = -1.0 * (twist * twist);
+		} 
+		else
+		{
+			twist = twist * twist;
+		}
 
 		// Square forward/backward to decrease sensitivity
 		double moveValue = stick.getY();
 		if (moveValue < 0)
 		{
-			// remember to preserve direction, it is lost when squaring
+			// Remember to preserve direction, it is lost when squaring
 			moveValue = -1.0 * (moveValue * moveValue);
 		} 
 		else
 		{
 			moveValue = moveValue * moveValue;
+		}
+
+		// Determine if the robot "front" should be the back
+		if (stick.getRawButton(Constants.DRIVER_REVERSE_BUTTON))
+		{
+			moveValue = -1.0 * moveValue; // reverse moveValue
 		}
 
 		// Drive with arcade control
@@ -202,9 +225,6 @@ public class Chassis extends Subsystem
 	 */
 	public void driveStraightPID(double power, boolean highGear)
 	{
-		// update the drive power
-		m_magnitude = power;
-		
 		// Set the transmission to the specified gear
 		if (highGear == true)
 		{
@@ -217,8 +237,11 @@ public class Chassis extends Subsystem
 
 		// Drive straight means keep current heading
 		startGyroPID(Constants.DRIVETRAIN_DRIVE_STRAIGHT_P, Constants.DRIVETRAIN_DRIVE_STRAIGHT_I,
-				     Constants.DRIVETRAIN_DRIVE_STRAIGHT_D, Constants.DRIVETRAIN_DRIVE_MINIMUM_OUTPUT,
-				     Constants.DRIVETRAIN_DRIVE_MAXIMUM_OUTPUT,	getCurrentHeading());
+					 Constants.DRIVETRAIN_DRIVE_STRAIGHT_D, Constants.DRIVETRAIN_DRIVE_MINIMUM_OUTPUT,
+					 Constants.DRIVETRAIN_DRIVE_MAXIMUM_OUTPUT, getCurrentHeading());
+		
+		// Update the drive power
+		m_magnitude = power;
 	}
 
 	/**
@@ -226,9 +249,6 @@ public class Chassis extends Subsystem
 	 */
 	public void turnAnglePID(double desiredHeading, double power, boolean highGear)
 	{
-		// update the drive power
-		m_magnitude = power;
-		
 		// Set the transmission to the specified gear
 		if (highGear == true)
 		{
@@ -240,50 +260,120 @@ public class Chassis extends Subsystem
 		}
 
 		// Turn to the desired heading current heading
-		startGyroPID(Constants.DRIVETRAIN_DRIVE_STRAIGHT_P, Constants.DRIVETRAIN_DRIVE_STRAIGHT_I,
-					 Constants.DRIVETRAIN_DRIVE_STRAIGHT_D, Constants.DRIVETRAIN_DRIVE_MINIMUM_OUTPUT,
-					 Constants.DRIVETRAIN_DRIVE_MAXIMUM_OUTPUT, desiredHeading);
+		startGyroPID(Constants.TURN_ANGLE_P, 
+				     Constants.TURN_ANGLE_I,
+					 Constants.TURN_ANGLE_D, 
+					 Constants.TURN_ANGLE_MINIMUM_OUTPUT,
+					 Constants.TURN_ANGLE_MAXIMUM_OUTPUT, desiredHeading);
+		
+		// Update the drive power
+		m_magnitude = power;
 	}
 
 	/**
 	 * method to enable the encoderPID
-	 * @param desiredEncoderValue
 	 */
-	public void encoderPID(double desiredEncoderValue)
+	public void resetAndEnableEncoderPID(double desiredEncoderValue)
 	{
-		// reset other PIDS
+		// Reset other PIDS
 		resetChassisPIDcontrollersAndEncoders();
-		
+
+		// Set the desired Encoder values
 		updateEncoderSetpoint(desiredEncoderValue);
 
+		// Enable the chassis PID position controllers
 		angleEncoderPID_Left.enable();
 		angleEncoderPID_Right.enable();
 	}
-	
+
 	/**
 	 * Method to update the encoder PID target value (heading)
 	 */
 	public void updateEncoderSetpoint(double desiredEncoderValue)
 	{
+		// Update the chassis position set points
 		angleEncoderPID_Left.setSetpoint(-desiredEncoderValue);
 		angleEncoderPID_Right.setSetpoint(desiredEncoderValue);
 	}
-	
+
+	/**
+	 * Method to update the chassis encoders set points from the image target
+	 */
+	public void updateEncoderSetpointWithTarget(Target target)
+	{
+		// Get the present set point
+		double encoderPosition = Robot.chassis.getEncoderSetpoint();
+
+		// Get the deviation from the target based on the camera image
+		double deviationFromTarget = target.deviationFromTarget();
+
+		// Determine which way to turn
+		if (deviationFromTarget < -Constants.DEVIATION_FROM_TARGET)
+		{
+			encoderPosition += Constants.IMAGE_ANGLE_JOG_DISTANCE;
+		} 
+		else if (deviationFromTarget > Constants.DEVIATION_FROM_TARGET)
+		{
+			encoderPosition -= Constants.IMAGE_ANGLE_JOG_DISTANCE;
+		}
+
+		// If the deviation is really large, jog the encoder position a second time
+		if (deviationFromTarget < (-2 * Constants.DEVIATION_FROM_TARGET))
+		{
+			encoderPosition += Constants.IMAGE_ANGLE_JOG_DISTANCE;
+		} 
+		else if (deviationFromTarget > (2 * Constants.DEVIATION_FROM_TARGET))
+		{
+			encoderPosition -= Constants.IMAGE_ANGLE_JOG_DISTANCE;
+		}
+
+		// Update the encode set points
+		updateEncoderSetpoint(encoderPosition);
+	}
+
 	/**
 	 * Method to get the encoder PID target value (heading)
 	 */
 	public double getEncoderSetpoint()
 	{
-		// Return the Right set point
-		// Note: The Left set point should just be the negative of the Left
 		return angleEncoderPID_Right.getSetpoint();
 	}
-	
+
 	/**
-	 * Method to update output power while under PID control
-	 * ie. after startGyroPID() is called
 	 * 
-	 * @param magnitude
+	 * Method to get the encoder PID error
+	 */
+	public double getLeftEncoderPIDError()
+	{
+		return angleEncoderPID_Left.getError();
+	}
+
+	/**
+	 * 
+	 * Method to get the encoder PID error
+	 */
+	public double getRightEncoderPIDError()
+	{
+		// Return the Right set point
+		// Note: The Left set point should just be the negative of the Left
+		return angleEncoderPID_Right.getError();
+	}
+
+	/**
+	 * Method to set the angle encoder PID controller PID values from the SmartDashboard
+	 */
+	public void setEncoderPID_ParametersFromSmartdashboard()
+	{
+		double P = SmartDashboard.getNumber("angleEncoderPID P", angleEncoderPID_Left.getP());
+		double I = SmartDashboard.getNumber("angleEncoderPID I", angleEncoderPID_Left.getI());
+		double D = SmartDashboard.getNumber("angleEncoderPID D", angleEncoderPID_Left.getD());
+
+		angleEncoderPID_Left.setPID(P, I, D);
+		angleEncoderPID_Right.setPID(P, I, D);
+	}
+
+	/**
+	 * Method to update output power while under PID control ie. after startGyroPID() is called
 	 */
 	public void updateMagnitude(double magnitude)
 	{
@@ -309,8 +399,27 @@ public class Chassis extends Subsystem
 	 */
 	public boolean gyroWithin(double threshold)
 	{
+		// SmartDashboard.putNumber("Error", angleGyroPID.getError());
+		
 		// Return if the gyro is within the specified range
-		return angleGyroPID.getError() < threshold;
+		return Math.abs(angleGyroPID.getError()) < threshold;
+	}
+	
+	/**
+	 * Method to return a relative gyro angle (between 0 and 360)
+	 */
+	private double getRelativeAngle(double angle)
+	{
+		// Adjust the angle if negative
+		while (angle < 0.0)
+			angle += 360.0;
+
+		// Adjust the angle if greater than 360
+		while (angle >= 360.0)
+			angle -= 360.0;
+
+		// Return the angle between 0 and 360
+		return angle;
 	}
 
 	/**
@@ -328,9 +437,8 @@ public class Chassis extends Subsystem
 	public double getUltrasonicDistance()
 	{
 		// Return the distance in inches
-		return ((Constants.ULTRASONIC_Y2 - Constants.ULTRASONIC_Y1) / 
-				(Constants.ULTRASONIC_X2 - Constants.ULTRASONIC_X1)) *
-				(ultrasound.getVoltage() - Constants.ULTRASONIC_X1) + Constants.ULTRASONIC_Y1;
+		return ((Constants.ULTRASONIC_Y2 - Constants.ULTRASONIC_Y1)	/ (Constants.ULTRASONIC_X2 - Constants.ULTRASONIC_X1)) *
+			    (ultrasound.getVoltage() - Constants.ULTRASONIC_X1) + Constants.ULTRASONIC_Y1;
 	}
 
 	// ************************************
@@ -349,8 +457,7 @@ public class Chassis extends Subsystem
 	 * @param desiredHeading
 	 *            (relative to current heading, 0 is keep current heading)
 	 */
-	private void startGyroPID(double P, double I, double D, 
-			                  double minimumOutput, double maximumOutput, double desiredHeading)
+	private void startGyroPID(double P, double I, double D, double minimumOutput, double maximumOutput, double desiredHeading)
 	{
 		// reset other PIDS
 		resetChassisPIDcontrollersAndEncoders();
@@ -359,7 +466,7 @@ public class Chassis extends Subsystem
 		angleGyroPID.setPID(P, I, D);
 
 		// Set the desired chassis heading
-		angleGyroPID.setSetpoint(desiredHeading);
+		angleGyroPID.setSetpoint(gyro.pidGet() + desiredHeading);
 
 		// Limit the output power when turning
 		angleGyroPID.setOutputRange(minimumOutput, maximumOutput);
@@ -368,6 +475,25 @@ public class Chassis extends Subsystem
 		angleGyroPID.enable();
 	}
 
+	/** 
+	 * Method to set the desired heading
+	 */
+	public void updateHeadingPID_Setpoint(double desiredHeading)
+	{
+		// Set the desired chassis heading
+		angleGyroPID.setSetpoint(gyro.pidGet() + desiredHeading);
+	}
+	
+	/** 
+	 * Method to set the desired heading
+	 */
+	public void updateHeadingPID_SetpointAbsolute(double desiredHeading)
+	{
+		// Set the desired chassis heading
+		// TODO: Make this work
+		angleGyroPID.setSetpoint(getRelativeAngle(desiredHeading));
+	}
+	
 	/**
 	 * Class declaration for the PIDOutput
 	 */
@@ -383,18 +509,20 @@ public class Chassis extends Subsystem
 			robotDrive.arcadeDrive(-m_magnitude, PIDoutput, false);
 		}
 	}
-	
+
 	/**
 	 * Class declaration for the PIDOutput
 	 */
 	public class EncoderPIDOutputRight implements PIDOutput
-	{		
+	{
 		/**
-		 * Virtual function to receive the PID output and set the drive direction 
+		 * Virtual function to receive the PID output and set the drive direction
 		 */
 		public void pidWrite(double PIDoutput)
 		{
-			driveRight.set(PIDoutput);
+			driveRight.set(PIDoutput + m_magnitude);
+
+			// SmartDashboard.putNumber("Right Output", PIDoutput);
 		}
 	}
 
@@ -408,7 +536,9 @@ public class Chassis extends Subsystem
 		 */
 		public void pidWrite(double PIDoutput)
 		{
-			driveLeft.set(-PIDoutput);
+			driveLeft.set(-PIDoutput + m_magnitude);
+
+			// SmartDashboard.putNumber("Left Output", -PIDoutput);
 		}
 	}
 }

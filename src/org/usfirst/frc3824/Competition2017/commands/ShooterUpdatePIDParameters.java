@@ -40,6 +40,8 @@ public class ShooterUpdatePIDParameters extends Command
 	{
 		Robot.shooter.setShooterPID_ParametersFromSmartdashboard();
 		Robot.shooter.setFeederPID_ParametersFromSmartdashboard();
+		
+		Robot.chassis.setEncoderPID_ParametersFromSmartdashboard();
 	}
 
 	// Called repeatedly when this Command is scheduled to run

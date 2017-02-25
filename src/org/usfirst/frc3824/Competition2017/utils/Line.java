@@ -20,7 +20,8 @@ public class Line
 	/**
 	 * Method to get the average of the x points in a line
 	 */
-	public double midpointX() {
+	public double midpointX() 
+	{
 		return Math.abs(p2.x + p1.x) / 2.0;
 	}
 			
