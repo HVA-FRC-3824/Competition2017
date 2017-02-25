@@ -143,10 +143,10 @@ public class RPiDataSource
 				// Send the target information to the SmartDashboard
 				SmartDashboard.putString("Target",
 						new String("Idx: " + getTarget().getFrameIndex() + 
-								"  Type: " + getTarget().getTargetType() +
-								"  Center: " + getTarget().getXCenter() + ", " + 
-								getTarget().getYCenter() +
-								"  Height: " + getTarget().getHeight()));
+								"RPITargetAX: " + getTarget().getTargetAX() +
+								"RPITargetAWidth: " + getTarget().getTargetAWidth() +
+								"RPITargetBX: " + getTarget().getTargetBX() +
+								"RPITargetBWidth: " + getTarget().getTargetBWidth()));
 			} else
 			{
 				SmartDashboard.putString("NO VALID TARGET", null);
