@@ -58,7 +58,7 @@ public class Constants
 	public static double CLIMBER_SPEED_HOLD                 =  0.0;
 	
 	public static double CLIMBER_STOP_CURRENT               =  28.0;
-	public static double CLIMBER_JOG_TIME                 	=  1.0;
+	public static double CLIMBER_JOG_TIME                 	=  0.3;
 	
 	public static double CLIMBER_AFTER_LIMIT_SWITCH_TIME    = 0.0;
 
@@ -158,4 +158,8 @@ public class Constants
 	
 	public static int    IMAGE_ON_TARGET_X_POSITION         =   170;
 	public static int    IMAGE_ON_TARGET_Y_OFFSET           =   -25;
+	
+	// ***************************************************************************************
+	// Gyro constants
+	public static int    DEFAULT_GYRO_CENTER                = 100000;
 }

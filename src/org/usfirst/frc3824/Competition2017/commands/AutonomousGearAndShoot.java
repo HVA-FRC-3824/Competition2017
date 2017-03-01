@@ -32,10 +32,19 @@ public class AutonomousGearAndShoot extends CommandGroup
 			addSequential(new ChassisDriveDistance(80.0, -0.8, false));
 			addSequential(new ChassisTurnAngle(-65.0, 0.0, false));
 		}
+		else
+		{
+			// Start from center so just place gear (no shoot)
+			addSequential(new ChassisDriveDistance(40.0, -0.8, false));
+		}
 
 		// Deliver the gear
 		addSequential(new AutoDeliverGear());
 		
+		// Don't try to shoot from the center
+		if (StartPosition.equals("Center"))
+			return;
+					
 		// Start the shooter early, so it has time to spin up and start shooting
 		addParallel(new ShooterSetSpeedMedHigh());
 		addParallel(new ShooterManualShoot());

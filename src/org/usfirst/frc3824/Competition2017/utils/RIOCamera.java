@@ -279,8 +279,8 @@ public class RIOCamera
 	{
 		if (bright)
 		{
-			camera.setBrightness(50);
-			camera.setExposureManual(50);
+			camera.setBrightness(25);      // 50
+			camera.setExposureManual(25);  // 50
 		} else {
 			camera.setBrightness(0);
 			camera.setExposureManual(0);
