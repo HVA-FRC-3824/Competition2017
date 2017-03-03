@@ -54,18 +54,18 @@ public class AutonomousGearAndShoot extends CommandGroup
 			addSequential(new ChassisTurnAngle(20.0, 0.0, false));
 			addSequential(new ChassisDriveDistance(24, 0.4, false));
 		}
-		else if (StartPosition.equals("Center"))
-		{
-			if (Alliance.equals("Red")) 
-			{
-				addSequential(new ChassisTurnAngle(-85.0, 0.0, false));				
-			}
-			else
-			{
-				addSequential(new ChassisTurnAngle(85.0, 0.0, false));
-			}
-			addSequential(new ChassisDriveDistance(35.0, 0.4, false));
-		}
+//		else if (StartPosition.equals("Center"))
+//		{
+//			if (Alliance.equals("Red")) 
+//			{
+//				addSequential(new ChassisTurnAngle(-85.0, 0.0, false));				
+//			}
+//			else
+//			{
+//				addSequential(new ChassisTurnAngle(85.0, 0.0, false));
+//			}
+//			addSequential(new ChassisDriveDistance(35.0, 0.4, false));
+//		}
 		else
 		{
 			addSequential(new ChassisTurnAngle(-20.0, 0.0, false));
