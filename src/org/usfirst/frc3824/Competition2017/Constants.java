@@ -55,12 +55,13 @@ public class Constants
 	
 	public static double CLIMBER_SPEED_FAST                 = -0.6;
 	public static double CLIMBER_SPEED_SLOW                 = -0.45;
-	public static double CLIMBER_SPEED_HOLD                 =  0.0;
+	public static double CLIMBER_SPEED_HOLD                 = -0.0;
+	public static double CLIMBER_SPEED_JOG                  = -0.5;
 	
 	public static double CLIMBER_STOP_CURRENT               =  28.0;
-	public static double CLIMBER_JOG_TIME                 	=  0.3;
+	public static double CLIMBER_JOG_TIME                 	=  0.4;
 	
-	public static double CLIMBER_AFTER_LIMIT_SWITCH_TIME    = 0.0;
+	public static double CLIMBER_AFTER_LIMIT_SWITCH_TIME    = 0.2;
 
 	// ***************************************************************************************
 	// Gear constants
@@ -108,7 +109,7 @@ public class Constants
 	// ***************************************************************************************
 	// Ball Pickup constants
 	
-	public static double SWEEPER_VOLTAGE_PICKUP				= 1.0;
+	public static double SWEEPER_VOLTAGE_PICKUP				= 2.5;
 	public static double TRANSPORT_VOLTAGE_PICKUP			= 1.5;
 	
 	public static double SWEEPER_VOLTAGE_REVERSE			= 1.0;
@@ -161,5 +162,5 @@ public class Constants
 	
 	// ***************************************************************************************
 	// Gyro constants
-	public static int    DEFAULT_GYRO_CENTER                = 100000;
+	public static int    DEFAULT_GYRO_CENTER                = 2079475;
 }

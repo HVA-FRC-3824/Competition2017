@@ -129,7 +129,7 @@ public class Chassis extends Subsystem
 		angleEncoderPID_Left.reset();
 
 		// Reset the gyro angle
-//		gyro.reset();
+		gyro.reset();
 
 		// Clear the drive magnitude
 		// Note: The calling routine must reset the magnitude to the desired value
@@ -266,7 +266,7 @@ public class Chassis extends Subsystem
 				     Constants.TURN_ANGLE_I,
 					 Constants.TURN_ANGLE_D, 
 					 Constants.TURN_ANGLE_MINIMUM_OUTPUT,
-					 Constants.TURN_ANGLE_MAXIMUM_OUTPUT, getCurrentHeading() + desiredHeading);
+					 Constants.TURN_ANGLE_MAXIMUM_OUTPUT, desiredHeading);
 		
 		// Update the drive power
 		m_magnitude = power;
@@ -512,7 +512,7 @@ public class Chassis extends Subsystem
 	public void updateHeadingPID_Setpoint(double desiredHeading)
 	{
 		// Set the desired chassis heading
-		angleGyroPID.setSetpoint(gyro.pidGet() + desiredHeading);
+		angleGyroPID.setSetpoint(desiredHeading);
 	}
 	
 	/** 

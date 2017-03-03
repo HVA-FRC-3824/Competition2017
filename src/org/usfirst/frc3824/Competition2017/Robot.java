@@ -53,6 +53,7 @@ public class Robot extends IterativeRobot
 
 	public static SendableChooser<String> startingLocationChooser;
 	public static SendableChooser<String> commandChooser;
+	public static SendableChooser<String> allianceChooser;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -101,6 +102,12 @@ public class Robot extends IterativeRobot
 		startingLocationChooser.addObject("Left",          "Left");
 		startingLocationChooser.addObject("Center No Run", "Center No Run");
 		SmartDashboard.putData("Starting Location", startingLocationChooser );
+		
+		// set up the chooser for the alliance
+		allianceChooser = new SendableChooser<>();
+		allianceChooser.addDefault("Red", "Red");
+		allianceChooser.addObject("Blue", "Blue");
+		SmartDashboard.putData("Alliance", allianceChooser );
 				
 //		rpi = RPiDataSource.getInstance();
 //        rpi.start();
@@ -143,6 +150,7 @@ public class Robot extends IterativeRobot
 
 		// Determine the starting position from the position chooser
 		String startPosition = startingLocationChooser.getSelected();
+		String alliance = allianceChooser.getSelected();
 		
 		// Determine the autonomous command from the command chooser
 		switch (commandChooser.getSelected())
@@ -157,7 +165,7 @@ public class Robot extends IterativeRobot
 			autonomousCommand = new AutonomousGearPlaceCenter();
 			break;
 		case "Gear Shoot":
-			autonomousCommand = new AutonomousGearAndShoot(startPosition);
+			autonomousCommand = new AutonomousGearAndShoot(startPosition, alliance);
 			break;
 		case "Shoot":
 			autonomousCommand = new AutonomousShoot(startPosition);

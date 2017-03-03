@@ -42,11 +42,11 @@ public class AutoDeliverGear extends CommandGroup
 		
 		// Release the gear
 		addSequential(new GearRelease(), 1.0);
-		addSequential(new Delay(0.75));
+		addSequential(new Delay(0.5)); // 0.75
 		
 		// Rotate the gear handler down
 		addSequential(new GearRotateDown(), 1.0);
-		addSequential(new Delay(0.5));
+//		addSequential(new Delay(0.5));
 		
 		if (shouldPushBackOn) 
 		{
