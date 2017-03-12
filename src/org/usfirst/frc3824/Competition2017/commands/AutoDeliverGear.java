@@ -42,12 +42,16 @@ public class AutoDeliverGear extends CommandGroup
 		
 		// Release the gear
 		addSequential(new GearRelease(), 1.0);
-		addSequential(new Delay(0.5)); // 0.75
+		//addSequential(new Delay(0.25)); // 0.75
+
+		// Back up to allow the gear to rotate down
+		addSequential(new ChassisDriveDistance(1.0, 0.2, false), 2.0);
+		addSequential(new Delay(0.25));	
 		
 		// Rotate the gear handler down
 		addSequential(new GearRotateDown(), 1.0);
-//		addSequential(new Delay(0.5));
-		
+		addSequential(new Delay(0.5));
+			
 		if (shouldPushBackOn) 
 		{
 			// Backup to get ready to push the gear on

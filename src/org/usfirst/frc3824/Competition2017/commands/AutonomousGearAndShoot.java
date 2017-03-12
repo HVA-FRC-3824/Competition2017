@@ -52,7 +52,7 @@ public class AutonomousGearAndShoot extends CommandGroup
 		if (StartPosition.equals("Right"))
 		{
 			addSequential(new ChassisTurnAngle(20.0, 0.0, false));
-			addSequential(new ChassisDriveDistance(24, 0.4, false));
+			addSequential(new ChassisDriveDistance(84.0, 0.4, false));
 		}
 //		else if (StartPosition.equals("Center"))
 //		{
@@ -69,7 +69,7 @@ public class AutonomousGearAndShoot extends CommandGroup
 		else
 		{
 			addSequential(new ChassisTurnAngle(-20.0, 0.0, false));
-			addSequential(new ChassisDriveDistance(24, 0.4, false));
+			addSequential(new ChassisDriveDistance(84.0, 0.4, false));
 		}
 		
 

@@ -73,7 +73,7 @@ public class RIOCamera
 
 		// Setup the video stream
 		CvSink   cvSink       = CameraServer.getInstance().getVideo();
-		CvSource outputStream = CameraServer.getInstance().putVideo("Processed", 640, 480);
+//		CvSource outputStream = CameraServer.getInstance().putVideo("Processed", 640, 480);
 
 		// Setup the HSV minimum/maximum values on the SmartDashboard
 		SmartDashboard.putNumber("H Min", H_min);
@@ -104,7 +104,7 @@ public class RIOCamera
 				cvSink.grabFrame(source);
 
 				if (isCameraBright) {
-					addCenterLine(source);
+//					addCenterLine(source);
 				}
 				else
 				{
@@ -150,7 +150,7 @@ public class RIOCamera
 					SmartDashboard.putNumber("Target Center", center);
 				}
 				// display centerline
-				outputStream.putFrame(source);
+//				outputStream.putFrame(source);
 			}
 			catch (Exception exception)
 			{
