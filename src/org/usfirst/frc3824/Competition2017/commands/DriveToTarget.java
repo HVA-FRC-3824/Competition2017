@@ -12,7 +12,6 @@ package org.usfirst.frc3824.Competition2017.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-import org.usfirst.frc3824.Competition2017.Constants;
 import org.usfirst.frc3824.Competition2017.RPiDataSource;
 import org.usfirst.frc3824.Competition2017.Robot;
 

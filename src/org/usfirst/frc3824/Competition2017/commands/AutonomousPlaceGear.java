@@ -48,7 +48,7 @@ public class AutonomousPlaceGear extends CommandGroup
 		} 
 		else if (GearLocation == "Center" || GearLocation == "Center No Run")
 		{
-			addSequential(new ChassisDriveDistance(40.0, -0.8, false));
+			addSequential(new ChassisDriveDistance(30.0, -0.8, false));  // 40 
 		} 
 		else if (GearLocation == "Right")
 		{
@@ -69,7 +69,7 @@ public class AutonomousPlaceGear extends CommandGroup
 		else if (GearLocation == "Center No Run")
 		{
 			// straight forward to cross baseline
-			addSequential(new ChassisDriveDistance(20.0, -0.2, false));
+			//addSequential(new ChassisDriveDistance(20.0, -0.2, false));
 		}
 	}
 }

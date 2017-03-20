@@ -75,21 +75,20 @@ public class Constants
 	public static double SHOOTER_I							= 0.0004;
 	public static double SHOOTER_D							= 4.0000;
 	public static double SHOOTER_F							= 0.0050;
-	
 
 	public static double SHOOTER_SPEED_HIGH                 = 4500.0; // Max speed
-	public static double SHOOTER_SPEED_MEDHIGH              = 3750.0;
+	public static double SHOOTER_SPEED_MEDHIGH              = 3900.0;
 	public static double SHOOTER_SPEED_MEDLOW               = 3500.0;
 	public static double SHOOTER_SPEED_LOW                  = 3200.0;
 	
 	public static double DEFAULT_SHOOTER_SPEED              = SHOOTER_SPEED_MEDHIGH;
 	
-	public static double SHOOTER_B_OFFSET                   = -50.0;
+	public static double SHOOTER_B_OFFSET                   = -200;
 	
 	public static double SHOOTER_JOG_SPEED                  = 50.0;
 	
 	public static double FEEDER_CLEAR_BALLS_TIME            = 0.5;
-	public static double SHOOTER_SPINUP_TIME                = 1.0;
+	public static double SHOOTER_SPINUP_TIME                = 2.0;
 	
 	public static double SHOOTER_UNJAM_SPEED                = -600.0;
 	
@@ -101,7 +100,7 @@ public class Constants
 	public static double FEEDER_I							=  0.0004;
 	public static double FEEDER_D							=  1.6000;
 	public static double FEEDER_F							=  0.0400;
-	public static double DEFAULT_FEEDER_SPEED               =  800.0;
+	public static double DEFAULT_FEEDER_SPEED               =  1000.0;   // 800
 	public static double FEEDER_REVERSE_SPEED               = -200.0;
 	
 	public static double FEEDER_UNJAM_SPEED                 = -400.0;
@@ -157,10 +156,21 @@ public class Constants
 	public static double IMAGE_Y_B                          = -0.0462;
 	public static double IMAGE_Y_C                          =  183.46;
 	
-	public static int    IMAGE_ON_TARGET_X_POSITION         =   170;
+	public static int    IMAGE_ON_TARGET_X_POSITION         =   266;  // 170
 	public static int    IMAGE_ON_TARGET_Y_OFFSET           =   -25;
 	
 	// ***************************************************************************************
+	// Autonomous Shoot constants
+	public static double AUTONOMOUS_DRIVE_FROM_WALL_DISTANCE = 18;
+	public static double AUTONOMOUS_DRIVE_FROM_WALL_SPEED    = 0.6;
+	public static double AUTONOMOUS_TURN_SHOOT_ANGLE         = 45.0;
+	
+	// ***************************************************************************************
+	// Camera constants
+	public static int    CAMERA_BRIGHTNESS                  = 38;   // 50
+	public static int 	 CAMERA_EXPOSURE                    = 38;   // 50
+	
+	// ***************************************************************************************
 	// Gyro constants
-	public static int    DEFAULT_GYRO_CENTER                = 2079000;
+	public static int    DEFAULT_GYRO_CENTER                = 2075393;  // 2079000;
 }

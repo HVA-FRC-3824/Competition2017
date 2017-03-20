@@ -13,6 +13,8 @@ import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
+import org.usfirst.frc3824.Competition2017.Constants;
+import org.usfirst.frc3824.Competition2017.subsystems.Camera;
 
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
@@ -64,7 +66,8 @@ public class RIOCamera
 		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 		
 		// Setup the camera
-		camera.setResolution(640, 480);
+		camera.setResolution(640, 480);  // Competition resolution
+		
 		camera.setBrightness(0);
 		camera.setExposureManual(0);
 		
@@ -93,22 +96,25 @@ public class RIOCamera
 				
 				// update camera settings
 				boolean shouldBeBright = SmartDashboard.getBoolean("Camera Bright", false);
-				if (isCameraBright != shouldBeBright) {
+				if (isCameraBright != shouldBeBright) 
+				{
 					// camera setting has changed, update
-					
 					updateCameraSettings(camera, shouldBeBright);
+					
+					// Indicate that the camera is set to bright mode
 					isCameraBright = shouldBeBright;
 				}
 				
 				// Grab a camera frame
 				cvSink.grabFrame(source);
 
-				if (isCameraBright) {
+				if (isCameraBright) 
+				{
 //					addCenterLine(source);
 				}
 				else
 				{
-				// Read the HSV values from the SmartDashboard
+					// Read the HSV values from the SmartDashboard
 					H_min = SmartDashboard.getNumber("H Min",  60);
 					H_max = SmartDashboard.getNumber("H Max",  80);
 					S_min = SmartDashboard.getNumber("S Min", 150);
@@ -118,7 +124,8 @@ public class RIOCamera
 	
 					// Blurs image from camera to make colors run together
 					Imgproc.blur(source, cameraFrameImage, new Size(10, 10));
-	//				outputStream.putFrame(cameraFrameImage);
+					
+//					outputStream.putFrame(cameraFrameImage);  // Remove after testing
 				
 					// Determine the reflective tape regions
 					findTapeRegion(cameraFrameImage);
@@ -128,7 +135,6 @@ public class RIOCamera
 	
 					// Find the two largest rectangles
 					findTwoLargestRectangles();
-					
 					
 	//				SmartDashboard.putNumber("Target A area",   largestTargetRect.area());
 	//			
@@ -149,6 +155,7 @@ public class RIOCamera
 				
 					SmartDashboard.putNumber("Target Center", center);
 				}
+				
 				// display centerline
 //				outputStream.putFrame(source);
 			}
@@ -279,9 +286,11 @@ public class RIOCamera
 	{
 		if (bright)
 		{
-			camera.setBrightness(38);      // 50
-			camera.setExposureManual(38);  // 50
-		} else {
+			camera.setBrightness(Constants.CAMERA_BRIGHTNESS);
+			camera.setExposureManual(Constants.CAMERA_EXPOSURE);
+		} 
+		else 
+		{
 			camera.setBrightness(0);
 			camera.setExposureManual(0);
 		}

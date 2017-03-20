@@ -92,7 +92,7 @@ public class Robot extends IterativeRobot
 		commandChooser.addObject("Gear Simple", "Gear Simple");
 		commandChooser.addObject("Gear",        "Gear");
 		commandChooser.addObject("Gear Shoot",  "Gear Shoot");
-//		commandChooser.addObject("Shoot",       "Shoot");
+		commandChooser.addObject("Shoot",       "Shoot");
 		SmartDashboard.putData("Command", commandChooser);
 		
 		// set up the chooser for the starting location a
@@ -107,7 +107,7 @@ public class Robot extends IterativeRobot
 		allianceChooser = new SendableChooser<>();
 		allianceChooser.addDefault("Red", "Red");
 		allianceChooser.addObject("Blue", "Blue");
-		SmartDashboard.putData("Alliance", allianceChooser );
+		SmartDashboard.putData("Alliance", allianceChooser);
 				
 //		rpi = RPiDataSource.getInstance();
 //        rpi.start();
@@ -145,6 +145,12 @@ public class Robot extends IterativeRobot
 
 	public void autonomousInit()
 	{
+		// Set the gear to the correct position
+		Robot.gear.setGrab(false);
+		Robot.gear.setRotate(false);
+		
+		Robot.camera.controlCameraRotate(true);
+		
 		// set camera to be dark for autonomous
     	SmartDashboard.putBoolean("Camera Bright", false);
 
@@ -203,6 +209,12 @@ public class Robot extends IterativeRobot
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
+
+		// Set the gear to the correct position
+		Robot.gear.setGrab(false);
+		Robot.gear.setRotate(false);
+		
+		Robot.camera.controlCameraRotate(true);
 		
 		// switch camera back to higher brightness so driver can see
 		SmartDashboard.putBoolean("Camera Bright", true);
@@ -234,10 +246,13 @@ public class Robot extends IterativeRobot
 	 */
 	public void updateSmartDashboard()
 	{				
-//		// Show the shooter and feeder speeds
-//		SmartDashboard.putNumber("Shooter A Speed", Robot.shooter.getShooterASpeed());
-//		SmartDashboard.putNumber("Shooter B Speed", Robot.shooter.getShooterBSpeed());
-//		SmartDashboard.putNumber("Feeder Speed",    Robot.shooter.getFeederSpeed());
+		// Show the shooter and feeder speeds
+		SmartDashboard.putNumber("Shooter A Speed", Robot.shooter.getShooterASpeed());
+		SmartDashboard.putNumber("Shooter B Speed", Robot.shooter.getShooterBSpeed());
+		SmartDashboard.putNumber("Shooter A Setpoint", Robot.shooter.getShooterASetpoint());
+		SmartDashboard.putNumber("Shooter B Setpoint", Robot.shooter.getShooterBSetpoint());
+		
+		SmartDashboard.putNumber("Feeder Speed",    Robot.shooter.getFeederSpeed());
 
 		// Show chassis sensor values
 		SmartDashboard.putNumber("Ultrasonic Distance", Robot.chassis.getUltrasonicDistance());

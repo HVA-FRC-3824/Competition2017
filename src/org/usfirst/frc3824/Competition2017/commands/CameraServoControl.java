@@ -44,9 +44,14 @@ public class CameraServoControl extends Command
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute()
 	{
-		// change setpoint from -1:1 to 0:1
-		double setpoint = (Robot.oi.driveJoystick.getRawAxis(3) + 1) / 2;
-		Robot.camera.controlCameraRotate(setpoint);
+//		// change setpoint from -1:1 to 0:1
+//		double setpoint = (Robot.oi.driveJoystick.getRawAxis(3) + 1) / 2;
+//		Robot.camera.controlCameraRotate(setpoint);
+		
+		if (Robot.oi.driveJoystick.getRawAxis(3) < 0)
+			Robot.camera.controlCameraRotate(false);
+		else
+			Robot.camera.controlCameraRotate(true);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
