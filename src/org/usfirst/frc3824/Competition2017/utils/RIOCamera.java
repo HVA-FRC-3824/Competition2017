@@ -55,6 +55,7 @@ public class RIOCamera
 	static Rect secondLargestTargetRect = new Rect();
 	
 	static boolean isCameraBright = false;
+	static boolean doImageProcessing = true;
 	
 	/*
 	 * Thread to process the camera images and determine the targets based on the reflective tape
@@ -66,7 +67,9 @@ public class RIOCamera
 		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 		
 		// Setup the camera
-		camera.setResolution(640, 480);  // Competition resolution
+		// 640 x 480 will crop the 16x9 aspect ratio to 4x3
+		// 640 x 360 will keep the 16x9 aspect ratio
+		camera.setResolution(640, 360);  // Competition resolution
 		
 		camera.setBrightness(0);
 		camera.setExposureManual(0);
@@ -88,7 +91,7 @@ public class RIOCamera
 
 		// Continuously run the image processing thread
 //		while (!Thread.interrupted())
-		while (true)
+		while (doImageProcessing)
 		{
 			try 
 			{
@@ -286,11 +289,14 @@ public class RIOCamera
 	{
 		if (bright)
 		{
+			camera.setFPS(15);
 			camera.setBrightness(Constants.CAMERA_BRIGHTNESS);
 			camera.setExposureManual(Constants.CAMERA_EXPOSURE);
+			doImageProcessing = false; 	// this will stop the image processin thread
 		} 
 		else 
 		{
+			camera.setFPS(30);
 			camera.setBrightness(0);
 			camera.setExposureManual(0);
 		}
