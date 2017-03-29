@@ -54,7 +54,7 @@ public class ClimberManualClimb extends Command
 		
 		if (Robot.oi.controllerJoystick.getRawButton(Constants.CLIMBER_BUTTON_FAST))
 		{
-			Robot.climber.climbControl(Constants.CLIMBER_SPEED_FAST);
+			Robot.climber.climbControl(0.85);
 		} 
 		else if (Robot.oi.controllerJoystick.getRawButton(Constants.CLIMBER_BUTTON_SLOW))
 		{

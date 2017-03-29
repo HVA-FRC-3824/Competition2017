@@ -124,16 +124,16 @@ public class RobotMap
         ballPickupTransport = new Talon(3);
         LiveWindow.addActuator("Ball Pickup", "Transport", (Talon) ballPickupTransport);
         
-        gearGrabber = new Solenoid(0, 4);
+        gearGrabber = new Solenoid(0, 1);
         LiveWindow.addActuator("Gear", "Grabber", gearGrabber);
         
-        gearRotator = new Solenoid(0, 6);
+        gearRotator = new Solenoid(0, 2);
         LiveWindow.addActuator("Gear", "Rotator", gearRotator);
         
         gearFeeder = new Talon(7);
         LiveWindow.addActuator("Gear", "Feeder", (Talon) gearFeeder);
         
-        cameraCameraPosition = new Solenoid(0, 1);
+        cameraCameraPosition = new Solenoid(0, 3);
         LiveWindow.addActuator("Camera", "Camera Position", cameraCameraPosition);
         
 

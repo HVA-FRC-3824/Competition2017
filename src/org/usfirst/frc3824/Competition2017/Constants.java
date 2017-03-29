@@ -53,15 +53,15 @@ public class Constants
 	public static int    CLIMBER_BUTTON_FAST                =  15;
 	public static int    CLIMBER_BUTTON_AUTO                =   4;
 	
-	public static double CLIMBER_SPEED_FAST                 = -0.7;
+	public static double CLIMBER_SPEED_FAST                 = -0.75;
 	public static double CLIMBER_SPEED_SLOW                 = -0.45;
 	public static double CLIMBER_SPEED_HOLD                 = -0.0;
 	public static double CLIMBER_SPEED_JOG                  = -0.5;
 	
-	public static double CLIMBER_STOP_CURRENT               =  34.0;
+	public static double CLIMBER_STOP_CURRENT               =  45.0;
 	public static double CLIMBER_JOG_TIME                 	=   0.4;
 	
-	public static double CLIMBER_AFTER_LIMIT_SWITCH_TIME    = 0.15;
+	public static double CLIMBER_AFTER_LIMIT_SWITCH_TIME    = 0.25;
 
 	// ***************************************************************************************
 	// Gear constants
@@ -77,13 +77,13 @@ public class Constants
 	public static double SHOOTER_F							= 0.0050;
 
 	public static double SHOOTER_SPEED_HIGH                 = 4500.0; // Max speed
-	public static double SHOOTER_SPEED_MEDHIGH              = 3900.0;
+	public static double SHOOTER_SPEED_MEDHIGH              = 3700.0;
 	public static double SHOOTER_SPEED_MEDLOW               = 3500.0;
 	public static double SHOOTER_SPEED_LOW                  = 3200.0;
 	
 	public static double DEFAULT_SHOOTER_SPEED              = SHOOTER_SPEED_MEDHIGH;
 	
-	public static double SHOOTER_B_OFFSET                   = -200;
+	public static double SHOOTER_B_OFFSET                   = -100; //-50;
 	
 	public static double SHOOTER_JOG_SPEED                  = 50.0;
 	
@@ -100,7 +100,7 @@ public class Constants
 	public static double FEEDER_I							=  0.0004;
 	public static double FEEDER_D							=  1.6000;
 	public static double FEEDER_F							=  0.0400;
-	public static double DEFAULT_FEEDER_SPEED               =  1000.0;   // 800
+	public static double DEFAULT_FEEDER_SPEED               =  700.0; // 1000.0;   // 800
 	public static double FEEDER_REVERSE_SPEED               = -200.0;
 	
 	public static double FEEDER_UNJAM_SPEED                 = -400.0;
@@ -172,5 +172,5 @@ public class Constants
 	
 	// ***************************************************************************************
 	// Gyro constants
-	public static int    DEFAULT_GYRO_CENTER                = 2075393;  // 2079000;
+	public static int    DEFAULT_GYRO_CENTER                = 2079300; // 2079480; // 2079000;
 }

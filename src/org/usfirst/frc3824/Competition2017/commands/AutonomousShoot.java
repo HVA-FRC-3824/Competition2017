@@ -26,23 +26,34 @@ public class AutonomousShoot extends CommandGroup
 		addParallel(new ShooterSetSpeedMedHigh());
 		addParallel(new ShooterManualShoot(), 10.0);
 		
+		addSequential(new ChassisDriveDistance(Constants.AUTONOMOUS_DRIVE_FROM_WALL_DISTANCE,
+                -Constants.AUTONOMOUS_DRIVE_FROM_WALL_SPEED, false));
+		
 		if (StartPosition == "Left")
 		{
-			addSequential(new ChassisDriveDistance(Constants.AUTONOMOUS_DRIVE_FROM_WALL_DISTANCE,
-					                              -Constants.AUTONOMOUS_DRIVE_FROM_WALL_SPEED, false));
 			addSequential(new ChassisTurnAngle(Constants.AUTONOMOUS_TURN_SHOOT_ANGLE, 0.0, false));
 		} 
 		else if (StartPosition == "Right")
 		{
-			addSequential(new ChassisDriveDistance(Constants.AUTONOMOUS_DRIVE_FROM_WALL_DISTANCE, 
-					                              -Constants.AUTONOMOUS_DRIVE_FROM_WALL_SPEED, false));
 			addSequential(new ChassisTurnAngle(-Constants.AUTONOMOUS_TURN_SHOOT_ANGLE, 0.0, false));
 		} 
 		
 		addSequential(new Delay(2));
-		addSequential(new ChassisTurnAngle(20.0, 0.0, false));
-		addSequential(new ChassisDriveDistance(50.0, -0.8, false));
-		addSequential(new ChassisTurnAngle(-30.0, 0.0, false));
+		
+		if (StartPosition == "Left")
+		{
+			addSequential(new ChassisTurnAngle(-20.0, 0.0, false));
+			addSequential(new ChassisDriveDistance(74.0, -0.8, false));
+			addSequential(new ChassisTurnAngle(30.0, 0.0, false));
+		} 
+		else if (StartPosition == "Right")
+		{
+			
+			// Turn and deliver gear red side
+			addSequential(new ChassisTurnAngle(20.0, 0.0, false));
+			addSequential(new ChassisDriveDistance(50.0, -0.8, false));
+			addSequential(new ChassisTurnAngle(-30.0, 0.0, false));
+		} 
 		
 		// Deliver the gear
 		addSequential(new AutoDeliverGear());

@@ -100,7 +100,7 @@ public class Robot extends IterativeRobot
 		startingLocationChooser.addDefault("Right",        "Right");
 		startingLocationChooser.addObject("Center",        "Center");
 		startingLocationChooser.addObject("Left",          "Left");
-		startingLocationChooser.addObject("Center No Run", "Center No Run");
+//		startingLocationChooser.addObject("Center No Run", "Center No Run");
 		SmartDashboard.putData("Starting Location", startingLocationChooser );
 		
 		// set up the chooser for the alliance

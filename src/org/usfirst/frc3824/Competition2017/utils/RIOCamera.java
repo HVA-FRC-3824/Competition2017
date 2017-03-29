@@ -67,6 +67,7 @@ public class RIOCamera
 		
 		// Setup the camera
 		camera.setResolution(640, 480);  // Competition resolution
+		camera.setFPS(15);               // Default is 30
 		
 		camera.setBrightness(0);
 		camera.setExposureManual(0);
