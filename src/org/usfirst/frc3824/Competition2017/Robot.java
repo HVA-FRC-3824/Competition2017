@@ -56,6 +56,8 @@ public class Robot extends IterativeRobot
 	public static SendableChooser<String> startingLocationChooser;
 	public static SendableChooser<String> commandChooser;
 	public static SendableChooser<String> allianceChooser;
+	
+	public static RIOCamera rioCamera;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -117,12 +119,8 @@ public class Robot extends IterativeRobot
         SmartDashboard.putNumber("Gyro Center", Constants.DEFAULT_GYRO_CENTER);
         
         // Start the roboRIO based image processing thread
-        RIOCamera.GetThread().start();
-		
-//		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-//
-//	    // Setup the camera
-//		camera.setResolution(640, 480);
+        rioCamera = RIOCamera.getInstance();
+        rioCamera.configAutonomous(true);
 	}
 
 	/**
@@ -220,7 +218,7 @@ public class Robot extends IterativeRobot
 		Robot.camera.controlCameraRotate(true);
 		
 		// switch camera back to higher brightness so driver can see
-		SmartDashboard.putBoolean("Camera Bright", true);
+		rioCamera.configAutonomous(false);
 	}
 
 	/**
@@ -266,6 +264,8 @@ public class Robot extends IterativeRobot
 		SmartDashboard.putNumber("Calculated Gryo Center", RobotMap.chassisGyro.getCenter());
 		
 		SmartDashboard.putBoolean("Climber Switch", Robot.climber.getClimberLimitSwitch());
+		
+		rioCamera.updateSmartDashboard();
 		
 //		// Update the SmartDashboard data about the image processing
 //        rpi.updateSmartDashboardData();
