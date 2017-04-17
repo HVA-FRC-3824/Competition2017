@@ -55,10 +55,10 @@ public class AutonomousGearPlaceCenter extends CommandGroup
 		addSequential(new Delay(1.0));
 		addSequential(new GearRotateDown());
 		
-		// drive back
+		// Drive back
 		addSequential(new ChassisDriveDistance(48.0, 0.5, false));
 		
-		// run away to cross baseline
+		// Run away to cross baseline
 		addSequential(new ChassisTurnAngle(-75.0, 0.0, false));
 		addSequential(new ChassisDriveDistance(60.0, -0.8, false));
 		addSequential(new ChassisTurnAngle(60.0, 0.0, false));

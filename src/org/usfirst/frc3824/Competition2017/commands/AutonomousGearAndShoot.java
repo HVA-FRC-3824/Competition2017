@@ -19,13 +19,16 @@ public class AutonomousGearAndShoot extends CommandGroup
 {
     public AutonomousGearAndShoot(String StartPosition, String Alliance) {
 
+    	// Determine the starting position
 		if (StartPosition == "Left")
 		{
+			// Drive and turn towards gear
 			addSequential(new ChassisDriveDistance(80.0, -0.8, false));
 			addSequential(new ChassisTurnAngle(65.0, 0.0, false));
 		} 
 		else if (StartPosition == "Right")
 		{
+			// Drive and turn towards gear
 			addSequential(new ChassisDriveDistance(80.0, -0.8, false));
 			addSequential(new ChassisTurnAngle(-65.0, 0.0, false));
 		}
