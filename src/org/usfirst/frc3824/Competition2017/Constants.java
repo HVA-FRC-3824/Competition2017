@@ -172,5 +172,5 @@ public class Constants
 	
 	// ***************************************************************************************
 	// Gyro constants
-	public static int    DEFAULT_GYRO_CENTER                = 2079300; // 2079480; // 2079000;
+	public static int    DEFAULT_GYRO_CENTER                = 2079600; // 2079480; // 2079000;
 }

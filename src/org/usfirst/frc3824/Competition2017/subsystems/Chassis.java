@@ -218,6 +218,20 @@ public class Chassis extends Subsystem
 			moveValue = -1.0 * moveValue; // reverse moveValue
 		}
 
+		if (m_highGear == true)
+		{
+			if (moveValue > 0.1)
+				twist += 0.4;
+			else if (moveValue < -0.1)
+				twist -= 0.6;
+		}
+		else
+		{
+			if (moveValue > 0.1)
+				twist += 0.2;
+			else if (moveValue < -0.1)
+				twist -= 0.3;
+		}
 		// Drive with arcade control
 		Robot.chassis.robotDrive.arcadeDrive(moveValue, twist);
 	}

@@ -107,7 +107,11 @@ public class RIOCamera
 				}
 				
 				// Grab a camera frame
-				cvSink.grabFrame(source);
+				if (cvSink.grabFrame(source) == 0)
+				{
+					System.out.println("cv failed to get frame");
+					continue;
+				}
 
 				if (isCameraBright) 
 				{
