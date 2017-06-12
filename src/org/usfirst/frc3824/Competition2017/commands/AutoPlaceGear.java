@@ -94,7 +94,7 @@ public class AutoPlaceGear extends Command
 		Robot.chassis.updateMagnitude(0.8);
 
 		// Make sure gear is up
-		Robot.gear.setRotate(true);
+		//Robot.gear.setRotator("Place");
 	}
 	
 	/**
@@ -117,7 +117,7 @@ public class AutoPlaceGear extends Command
 		{
 			// Arrived at lift
 			Robot.chassis.updateMagnitude(0.0);  // Stop driving
-			Robot.gear.setGrab(false);           // Release gear
+			Robot.gear.place();                  // Release gear
 
 			// Gear placement done
 			return true;  

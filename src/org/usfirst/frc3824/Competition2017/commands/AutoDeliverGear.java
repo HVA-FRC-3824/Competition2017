@@ -32,7 +32,7 @@ public class AutoDeliverGear extends CommandGroup
     	
     	// Turn to lift and rotate up while driving back slightly
 		addParallel(new TurnToTarget(), 5.0);
-		addParallel(new GearRotateUp(), 1.0);
+		addParallel(new PlaceGearPosition(), 1.0);
 		addSequential(new Delay(0.5));
 		addParallel(new ChassisDriveDistance(2.0, 0.2, false), 2.0);
 		addSequential(new Delay(0.5));
@@ -41,24 +41,23 @@ public class AutoDeliverGear extends CommandGroup
 		addSequential(new ChassisDriveRange(5.0, -0.3, false), 2.0);
 		
 		// Release the gear
-		addSequential(new GearRelease(), 1.0);
-		addSequential(new Delay(0.75));
+		addSequential(new PlaceGear(), 1.0);
 		
-		// Rotate the gear handler down
-		addSequential(new GearRotateDown(), 1.0);
-		addSequential(new Delay(0.5));
-		
-		if (shouldPushBackOn) 
-		{
-			// Backup to get ready to push the gear on
-			addSequential(new ChassisDriveDistance(8.0, 0.5, false), 2.0);
-			
-			// Grive up again to push back on
-			addSequential(new GearRotateUp(), 1.0);
-			addSequential(new GearRelease(), 1.0);
-			addSequential(new Delay(0.5));
-			addSequential(new ChassisDriveDistance(8.0, -0.3, false), 2.0);
-		}
+//		// Rotate the gear handler down
+//		addSequential(new GearRotateDown(), 1.0);
+//		addSequential(new Delay(0.5));
+//		
+//		if (shouldPushBackOn) 
+//		{
+//			// Backup to get ready to push the gear on
+//			addSequential(new ChassisDriveDistance(8.0, 0.5, false), 2.0);
+//			
+//			// Grive up again to push back on
+//			addSequential(new GearRotateUp(), 1.0);
+//			addSequential(new GearRelease(), 1.0);
+//			addSequential(new Delay(0.5));
+//			addSequential(new ChassisDriveDistance(8.0, -0.3, false), 2.0);
+//		}
 		
 		// Back away from lift
 		addSequential(new ChassisDriveDistance(30.0, 0.5, false), 2.0);

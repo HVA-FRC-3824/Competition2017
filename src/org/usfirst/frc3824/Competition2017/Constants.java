@@ -65,6 +65,20 @@ public class Constants
 	
 	public static double GEAR_PLACE_TIME                    =  1.0;
 	
+	public static double ROTATOR_P						    =  0.01;
+	public static double ROTATOR_I						    =  0.000;
+	public static double ROTATOR_D						    =  0.0;
+	
+	public static double ROTATOR_MIN_INPUT					=  -1000.0;
+	public static double ROTATOR_MAX_INPUT					=   1000.0;
+	
+	public static double ROTATOR_MIN_OUTPUT					=  -0.4;
+	public static double ROTATOR_MAX_OUTPUT					=   0.4;
+	
+	public static double UP_ROTATOR_POS						=  150.0;
+	public static double DOWN_ROTATOR_POS					=  50.0;
+	public static double PLACE_ROTATOR_POS					=  100.0;
+	
 	// ***************************************************************************************
 	// Ultrasonic constants
 
