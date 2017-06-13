@@ -68,6 +68,12 @@ public class Constants
 	public static double ROTATOR_P						    =  0.01;
 	public static double ROTATOR_I						    =  0.000;
 	public static double ROTATOR_D						    =  0.0;
+	public static double ROTATOR_F						    =  0.0;
+	
+	public static double SUCKER_P						    =  0.01;
+	public static double SUCKER_I						    =  0.000;
+	public static double SUCKER_D						    =  0.0;
+	public static double SUCKER_F						    =  0.0;
 	
 	public static double ROTATOR_MIN_INPUT					=  -1000.0;
 	public static double ROTATOR_MAX_INPUT					=   1000.0;
