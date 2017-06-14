@@ -43,7 +43,7 @@ public class AutonomousGearPlaceCenter extends CommandGroup
 		
     	// Drive up to lift
 		addSequential(new ChassisDriveDistance(50.0, -0.4, false));
-		addSequential(new GearRotateUp());
+		addSequential(new PlaceGearPosition());
 		addSequential(new Delay(1.0));
 		
 		// Move gear onto lift
@@ -51,9 +51,8 @@ public class AutonomousGearPlaceCenter extends CommandGroup
 		addSequential(new Delay(1.0));
 		
 		// Drop Gear off 
-		addSequential(new GearRelease());
+		addSequential(new PlaceGear());
 		addSequential(new Delay(1.0));
-		addSequential(new GearRotateDown());
 		
 		// Drive back
 		addSequential(new ChassisDriveDistance(48.0, 0.5, false));

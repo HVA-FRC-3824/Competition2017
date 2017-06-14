@@ -40,7 +40,7 @@ public class AutoDeliverGear extends CommandGroup
 		addSequential(new ChassisDriveRange(5.0, -0.3, false), 2.0);
 		
 		// Release the gear
-		addSequential(new GearRelease(), 1.0);
+		addSequential(new PlaceGear(), 1.0);
 		//addSequential(new Delay(0.25)); // 0.75
 
 		// Back up to allow the gear to rotate down
