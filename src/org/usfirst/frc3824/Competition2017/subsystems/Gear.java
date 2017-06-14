@@ -80,6 +80,11 @@ public class Gear extends Subsystem
     	rotator.enable();
     }
     
+    public double getRotatorEncoderValue()
+    {
+    	return rotator.getEncPosition();
+    }
+    
     /**
 	 * Method to update the encoder PID setpoint for the gear rotator
 	 */

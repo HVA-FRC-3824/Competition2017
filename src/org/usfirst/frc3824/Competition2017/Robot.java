@@ -234,6 +234,8 @@ public class Robot extends IterativeRobot
 		
 		SmartDashboard.putBoolean("Climber Switch", Robot.climber.getClimberLimitSwitch());
 		
+		SmartDashboard.putNumber("Rotator Encoder", Robot.gear.getRotatorEncoderValue());
+		
 //		// Update the SmartDashboard data about the image processing
 //        rpi.updateSmartDashboardData();
 //        rpi.updateSmartDashboardActive();
