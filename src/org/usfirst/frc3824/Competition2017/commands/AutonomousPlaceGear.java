@@ -43,33 +43,23 @@ public class AutonomousPlaceGear extends CommandGroup
 
 		if (GearLocation == "Left")
 		{
-			addSequential(new ChassisDriveDistance(80.0, -0.8, false));
-			addSequential(new ChassisTurnAngle(65.0, 0.0, false));
+			// Drive and turn towards gear
+			addSequential(new ChassisDriveDistance(75.0, -0.8, false));  // 80
+			addSequential(new ChassisTurnAngle(60.0, 0.0, false));       // 65
 		} 
-		else if (GearLocation == "Center" || GearLocation == "Center No Run")
+		else if (GearLocation == "Center")
 		{
-			addSequential(new ChassisDriveDistance(40.0, -0.8, false));
+			// Drive to gear
+			addSequential(new ChassisDriveDistance(30.0, -0.8, false));  // 40 
 		} 
 		else if (GearLocation == "Right")
 		{
-			addSequential(new ChassisDriveDistance(80.0, -0.8, false));
-			addSequential(new ChassisTurnAngle(-65.0, 0.0, false));
+			// Drive and turn towards gear
+			addSequential(new ChassisDriveDistance(75.0, -0.8, false));  //  80
+			addSequential(new ChassisTurnAngle(-60.0, 0.0, false));      // -60
 		}
 
 		// Deliver the gear
 		addSequential(new AutoDeliverGear());
-		
-		if (GearLocation == "Center")
-		{
-			// on center run away to cross baseline
-			addSequential(new ChassisDriveDistance(20.0, 0.8, false));
-			addSequential(new ChassisTurnAngle(-60.0, 0.0, false));
-			addSequential(new ChassisDriveDistance(60.0, -0.8, false));
-		}
-		else if (GearLocation == "Center No Run")
-		{
-			// straight forward to cross baseline
-			addSequential(new ChassisDriveDistance(20.0, -0.2, false));
-		}
 	}
 }

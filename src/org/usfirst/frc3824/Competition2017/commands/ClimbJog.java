@@ -42,7 +42,7 @@ public class ClimbJog extends Command
 	// Called just before this Command runs the first time
 	protected void initialize()
 	{
-		Robot.climber.climbControl(Constants.CLIMBER_SPEED_FAST);
+		Robot.climber.climbControl(Constants.CLIMBER_SPEED_JOG);
 
 		timer.reset();
 		timer.start();

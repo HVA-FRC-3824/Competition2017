@@ -70,6 +70,9 @@ public class ClimberControl extends Command
 				// Indicate that the switch activation have been processed
 				m_limitSwitchActivated = true;
 				
+				// Slow down climb after hitting limit switches
+				Robot.climber.climbControl(Constants.CLIMBER_SPEED_JOG);
+				
 				// Reset the timer
 				m_Timer.reset();
 			}

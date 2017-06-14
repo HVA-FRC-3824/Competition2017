@@ -18,9 +18,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class AutoDeliverGear extends CommandGroup
 {
-
-
-    public AutoDeliverGear() {
+    public AutoDeliverGear()
+    {
     	this(false);
     }
     public AutoDeliverGear(boolean shouldPushBackOn) {
@@ -35,13 +34,18 @@ public class AutoDeliverGear extends CommandGroup
 		addParallel(new PlaceGearPosition(), 1.0);
 		addSequential(new Delay(0.5));
 		addParallel(new ChassisDriveDistance(2.0, 0.2, false), 2.0);
-		addSequential(new Delay(0.5));
+		addSequential(new Delay(0.2));
 		
 		// Drive up to lift to place gear
 		addSequential(new ChassisDriveRange(5.0, -0.3, false), 2.0);
 		
 		// Release the gear
-		addSequential(new PlaceGear(), 1.0);
+		addSequential(new GearRelease(), 1.0);
+		//addSequential(new Delay(0.25)); // 0.75
+
+		// Back up to allow the gear to rotate down
+		addSequential(new ChassisDriveDistance(1.0, 0.2, false), 2.0);
+		addSequential(new Delay(0.25));	
 		
 //		// Rotate the gear handler down
 //		addSequential(new GearRotateDown(), 1.0);

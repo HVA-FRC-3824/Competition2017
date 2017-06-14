@@ -51,14 +51,15 @@ public class Constants
 	public static int    CLIMBER_BUTTON_FAST                =  15;
 	public static int    CLIMBER_BUTTON_AUTO                =   4;
 	
-	public static double CLIMBER_SPEED_FAST                 = -0.6;
+	public static double CLIMBER_SPEED_FAST                 = -0.75;
 	public static double CLIMBER_SPEED_SLOW                 = -0.45;
-	public static double CLIMBER_SPEED_HOLD                 =  0.0;
+	public static double CLIMBER_SPEED_HOLD                 = -0.0;
+	public static double CLIMBER_SPEED_JOG                  = -0.5;
 	
-	public static double CLIMBER_STOP_CURRENT               =  28.0;
-	public static double CLIMBER_JOG_TIME                 	=  1.0;
+	public static double CLIMBER_STOP_CURRENT               =  45.0;
+	public static double CLIMBER_JOG_TIME                 	=   0.4;
 	
-	public static double CLIMBER_AFTER_LIMIT_SWITCH_TIME    = 0.0;
+	public static double CLIMBER_AFTER_LIMIT_SWITCH_TIME    = 0.25;
 
 	// ***************************************************************************************
 	// Gear constants
@@ -125,6 +126,13 @@ public class Constants
 	public static double IMAGE_Y_B                          = -0.0462;
 	public static double IMAGE_Y_C                          =  183.46;
 	
-	public static int    IMAGE_ON_TARGET_X_POSITION         =   170;
+	public static int    IMAGE_ON_TARGET_X_POSITION         =   266;  // 170
 	public static int    IMAGE_ON_TARGET_Y_OFFSET           =   -25;
+	// ***************************************************************************************
+	// ***************************************************************************************
+	// Camera constants
+	public static int    CAMERA_BRIGHTNESS                  = 38;   // 50
+	public static int 	 CAMERA_EXPOSURE                    = 38;   // 50
+	// Gyro constants
+	public static int    DEFAULT_GYRO_CENTER                = 2079600; // 2079480; // 2079000;
 }
