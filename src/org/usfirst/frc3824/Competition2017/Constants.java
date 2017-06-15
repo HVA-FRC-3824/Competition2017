@@ -62,7 +62,7 @@ public class Constants
 	public static double CLIMBER_AFTER_LIMIT_SWITCH_TIME    = 0.25;
 
 	// ***************************************************************************************
-	// Gear constants
+	// Gear subsystem constants
 	
 	public static double GEAR_PLACE_TIME                    =  1.0;
 	
@@ -82,9 +82,9 @@ public class Constants
 	public static double ROTATOR_MIN_OUTPUT					=  -0.4;
 	public static double ROTATOR_MAX_OUTPUT					=   0.4;
 	
-	public static double UP_ROTATOR_POS						=  150.0;
-	public static double DOWN_ROTATOR_POS					=  50.0;
-	public static double PLACE_ROTATOR_POS					=  100.0;
+	public static int    UP_ROTATOR_POS						=  150;
+	public static int    DOWN_ROTATOR_POS					=  50;
+	public static int    PLACE_ROTATOR_POS					=  100;
 	
 	// ***************************************************************************************
 	// Ultrasonic constants
@@ -128,11 +128,18 @@ public class Constants
 	
 	public static int    IMAGE_ON_TARGET_X_POSITION         =   266;  // 170
 	public static int    IMAGE_ON_TARGET_Y_OFFSET           =   -25;
-	// ***************************************************************************************
+	
 	// ***************************************************************************************
 	// Camera constants
 	public static int    CAMERA_BRIGHTNESS                  = 38;   // 50
 	public static int 	 CAMERA_EXPOSURE                    = 38;   // 50
+	
+	// ***************************************************************************************
 	// Gyro constants
 	public static int    DEFAULT_GYRO_CENTER                = 2079600; // 2079480; // 2079000;
+	
+	// ***************************************************************************************
+	// Gear placing constants
+	public static double UNLOCK_TO_PUSH_TIME                = 2.0;
+	public static double PUSHER_OUT_TIME                    = 4.0;
 }

@@ -107,6 +107,9 @@ public class Robot extends IterativeRobot
         SmartDashboard.putNumber("Gyro Center", Constants.DEFAULT_GYRO_CENTER);
         
         RIOCamera.GetThread().start();
+        
+        Robot.gear.setLock(false);
+        Robot.gear.setPush(false);
 		
 //		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 //

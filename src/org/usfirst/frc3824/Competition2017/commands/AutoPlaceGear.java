@@ -117,7 +117,7 @@ public class AutoPlaceGear extends Command
 		{
 			// Arrived at lift
 			Robot.chassis.updateMagnitude(0.0);  // Stop driving
-			Robot.gear.place();                  // Release gear
+			Robot.gear.setLock(true);            // Release gear
 
 			// Gear placement done
 			return true;  

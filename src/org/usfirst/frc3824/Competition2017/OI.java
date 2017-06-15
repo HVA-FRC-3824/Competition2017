@@ -62,7 +62,6 @@ public class OI
     public JoystickButton gearIntakeStation;
     public JoystickButton gearPlacePosition;
     public JoystickButton gearPlace;
-    public JoystickButton pushGear;
     public JoystickButton climberJogUp;
     public JoystickButton dONOTPRESS;
     public Joystick controllerJoystick;
@@ -79,8 +78,6 @@ public class OI
         dONOTPRESS.whenPressed(new DONOTPRESS());
         climberJogUp = new JoystickButton(controllerJoystick, 2);
         climberJogUp.whenPressed(new ClimbJog());
-        pushGear = new JoystickButton(controllerJoystick, 13);
-        pushGear.whenPressed(new GearPush());
         gearPlace = new JoystickButton(controllerJoystick, 8);
         gearPlace.whenPressed(new PlaceGear());
         gearPlacePosition = new JoystickButton(controllerJoystick, 7);
