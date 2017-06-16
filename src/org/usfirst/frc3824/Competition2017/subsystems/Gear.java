@@ -50,6 +50,7 @@ public class Gear extends Subsystem
     	rotator.setI(Constants.ROTATOR_I);
     	rotator.setD(Constants.ROTATOR_D);
     	rotator.setF(Constants.ROTATOR_F);
+    	rotator.changeControlMode(CANTalon.TalonControlMode.Position);
     	
     	// Setup gear manipulation intake feedback and output
     	sucker.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
@@ -63,8 +64,7 @@ public class Gear extends Subsystem
     	sucker.setI(Constants.SUCKER_I);
     	sucker.setD(Constants.SUCKER_D);
     	sucker.setF(Constants.SUCKER_F);
-    	
-    	sucker.disable();
+    	sucker.changeControlMode(CANTalon.TalonControlMode.Speed);
     	
     	resetAndEnableRotator();
     }
@@ -99,7 +99,7 @@ public class Gear extends Subsystem
 	 */
 	public void setIntake(double speed)
 	{
-		sucker.set(speed);
+		sucker.setSetpoint(speed);
 	}
     
 	/**

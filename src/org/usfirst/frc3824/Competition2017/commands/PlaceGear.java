@@ -41,9 +41,12 @@ public class PlaceGear extends Command
 
     // Called just before this Command runs the first time
     protected void initialize()
-    {	
+    {
+    	// Lock gear; rotate down blockade
     	Robot.gear.setLock(true);
+    	Robot.gear.setRotator("Down");
     	
+    	// Zero and start timer
     	timer.reset();
     	timer.start();
     }
@@ -51,21 +54,31 @@ public class PlaceGear extends Command
     // Called repeatedly when this Command is scheduled to run
     protected void execute()
     {
+    	// Push out gear after blockade rotates down
     	if (timer.get() > Constants.UNLOCK_TO_PUSH_TIME)
     	{
     		Robot.gear.setPush(true);
+    	}
+    	
+    	// Driver backs up
+    	
+    	// Blockade returns to position
+    	if (timer.get() > Constants.PUSH_TO_ROTATE_BACK_TIME)
+    	{
+    		Robot.gear.setRotator("Place");
     	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished()
     {
-    	return timer.get() > Constants.PUSHER_OUT_TIME;
+    	return timer.get() > Constants.RESET_TIME;
     }
 
     // Called once after isFinished returns true
     protected void end()
     {
+    	// Return pusher to position and unlock system
     	Robot.gear.setPush(false);
     	Robot.gear.setLock(false);
     }

@@ -60,6 +60,7 @@ public class IntakeGearStation extends Command
     protected void end()
     {
     	Robot.gear.setIntake(0.0);
+    	Robot.gear.setRotator("Place");
     }
 
     // Called when another command which requires one or more of the same
