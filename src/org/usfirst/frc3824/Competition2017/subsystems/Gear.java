@@ -66,7 +66,7 @@ public class Gear extends Subsystem
     	sucker.setF(Constants.SUCKER_F);
     	sucker.changeControlMode(CANTalon.TalonControlMode.Speed);
     	
-    	resetAndEnableRotator();
+    	resetAndEnableGear();
     }
     
 	// Put methods for controlling this subsystem
@@ -75,10 +75,12 @@ public class Gear extends Subsystem
     /**
 	 * Method to reset and enable the encoder input for the gear rotator
 	 */
-    public void resetAndEnableRotator()
+    public void resetAndEnableGear()
     {
     	rotator.reset();
     	rotator.enable();
+    	sucker.reset();
+    	sucker.enable();
     }
     
     /**
@@ -100,6 +102,14 @@ public class Gear extends Subsystem
 	public void setIntake(double speed)
 	{
 		sucker.setSetpoint(speed);
+	}
+	
+	/**
+	 * Method to get the intake speed
+	 */
+	public double getIntakeSpeed()
+	{
+		return sucker.getSpeed();
 	}
     
 	/**
