@@ -11,6 +11,8 @@
 
 package org.usfirst.frc3824.Competition2017.commands;
 import edu.wpi.first.wpilibj.command.Command;
+
+import org.usfirst.frc3824.Competition2017.Constants;
 import org.usfirst.frc3824.Competition2017.Robot;
 
 /**
@@ -41,7 +43,7 @@ public class IntakeGearStation extends Command
     protected void initialize()
     {    	
     	Robot.gear.setRotator("Up");
-    	Robot.gear.setIntake(0.5);
+    	Robot.gear.setIntake(Constants.SUCKER_SPEED_STATION);
     }
 
     // Called repeatedly when this Command is scheduled to run

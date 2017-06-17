@@ -66,25 +66,17 @@ public class Constants
 	
 	public static double GEAR_PLACE_TIME                    =  1.0;
 	
-	public static double ROTATOR_P						    =  0.01;
-	public static double ROTATOR_I						    =  0.000;
+	public static double ROTATOR_P						    =  1.0;
+	public static double ROTATOR_I						    =  0.0;
 	public static double ROTATOR_D						    =  0.0;
 	public static double ROTATOR_F						    =  0.0;
 	
-	public static double SUCKER_P						    =  0.01;
-	public static double SUCKER_I						    =  0.000;
-	public static double SUCKER_D						    =  0.0;
-	public static double SUCKER_F						    =  0.0;
+	public static double SUCKER_SPEED_GROUND				= -12.0;
+	public static double SUCKER_SPEED_STATION				= -5.0;
 	
-	public static double ROTATOR_MIN_INPUT					= -1000.0;
-	public static double ROTATOR_MAX_INPUT					=  1000.0;
-	
-	public static double ROTATOR_MIN_OUTPUT					= -0.4;
-	public static double ROTATOR_MAX_OUTPUT					=  0.4;
-	
-	public static int    UP_ROTATOR_POS						=  150;
-	public static int    DOWN_ROTATOR_POS					=  50;
-	public static int    PLACE_ROTATOR_POS					=  100;
+	public static double UP_ROTATOR_POS						= -0.22;
+	public static double DOWN_ROTATOR_POS					=  0.45;
+	public static double PLACE_ROTATOR_POS					=  0.0;
 	
 	// ***************************************************************************************
 	// Ultrasonic constants
@@ -140,7 +132,8 @@ public class Constants
 	
 	// ***************************************************************************************
 	// Gear placing constants
-	public static double UNLOCK_TO_PUSH_TIME                =  2.0;
-	public static double PUSH_TO_ROTATE_BACK_TIME			=  4.0;
-	public static double RESET_TIME                   	    =  6.0;
+	public static double LOCK_TO_ROTATE_TIME				=  2.0;
+	public static double UNLOCK_TO_PUSH_TIME                =  4.0;
+	public static double PUSH_TO_ROTATE_BACK_TIME			=  6.0;
+	public static double RESET_TIME                   	    =  8.0;
 }

@@ -26,6 +26,8 @@ import org.usfirst.frc3824.Competition2017.commands.*;
 import org.usfirst.frc3824.Competition2017.subsystems.*;
 import org.usfirst.frc3824.Competition2017.utils.RIOCamera;
 
+import com.ctre.CANTalon;
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -110,6 +112,11 @@ public class Robot extends IterativeRobot
         
         Robot.gear.setLock(false);
         Robot.gear.setPush(false);
+        
+        SmartDashboard.putNumber("Rotator P", 0);
+        SmartDashboard.putNumber("Rotator I", 0);
+        SmartDashboard.putNumber("Rotator D", 0);
+        SmartDashboard.putNumber("Rotator Setpoint", 0);
 		
 //		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 //
@@ -238,7 +245,20 @@ public class Robot extends IterativeRobot
 		SmartDashboard.putBoolean("Climber Switch", Robot.climber.getClimberLimitSwitch());
 		
 		SmartDashboard.putNumber("Rotator Encoder", Robot.gear.getRotatorEncoderValue());
-		SmartDashboard.putNumber("Intake Speed", Robot.gear.getIntakeSpeed());
+		
+		SmartDashboard.putNumber("Rotate Output", Robot.gear.getRotator().get());
+		SmartDashboard.putNumber("Rotate Error", Robot.gear.getRotator().getError());
+		SmartDashboard.putNumber("Rotate Voltage", Robot.gear.getRotator().getOutputVoltage());
+		SmartDashboard.putNumber("Rotate Setpoint", Robot.gear.getRotator().getSetpoint());
+		SmartDashboard.putNumber("Rotate P", Robot.gear.getRotator().getP());
+		SmartDashboard.putNumber("Rotate I", Robot.gear.getRotator().getI());
+		SmartDashboard.putNumber("Rotate D", Robot.gear.getRotator().getD());
+		SmartDashboard.putNumber("Rotate PID Get", Robot.gear.getRotator().pidGet());
+		SmartDashboard.putBoolean("Rotate Enabled", Robot.gear.getRotator().isEnabled());
+		SmartDashboard.putNumber("Rotate Control Mode", Robot.gear.getRotator().getControlMode().getValue());
+		
+		SmartDashboard.putNumber("Position Mode", CANTalon.TalonControlMode.Position.getValue());
+		SmartDashboard.putNumber("Speed Mode", CANTalon.TalonControlMode.Speed.getValue());
 		
 		SmartDashboard.putBoolean("Pusher", Robot.gear.getPush());
 		SmartDashboard.putBoolean("Locker", Robot.gear.getLock());

@@ -103,16 +103,16 @@ public class RobotMap
         climberLimitSwitch = new DigitalInput(4);
         LiveWindow.addSensor("Climber", "Limit Switch", climberLimitSwitch);
         
-        gearPusher = new Solenoid(0, 1);
+        gearPusher = new Solenoid(0, 2);
         LiveWindow.addActuator("Gear", "Pusher", gearPusher);
         
-        gearSucker = new CANTalon(0);
+        gearSucker = new CANTalon(1);
         LiveWindow.addActuator("Gear", "Sucker", gearSucker);
         
-        gearRotator = new CANTalon(1);
+        gearRotator = new CANTalon(2);
         LiveWindow.addActuator("Gear", "Rotator", gearRotator);
         
-        gearLocker = new Solenoid(0, 2);
+        gearLocker = new Solenoid(0, 1);
         LiveWindow.addActuator("Gear", "Locker", gearLocker);
         
 

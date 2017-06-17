@@ -39,34 +39,27 @@ public class Gear extends Subsystem
     public Gear()
     {
     	// Setup gear manipulation rotator feedback and output
-    	rotator.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Absolute);    	
-    	rotator.reverseSensor(false);   	
+    	rotator.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
+    	rotator.reverseSensor(false);	
     	rotator.configNominalOutputVoltage(0.0f,  0.0f);
-    	rotator.configPeakOutputVoltage(12.0f,  -12.0f);
+    	rotator.configPeakOutputVoltage(5.0f,  -5.0f);
     	rotator.reverseOutput(false);
     	rotator.setProfile(0);
-    	rotator.configEncoderCodesPerRev(4096);
+    	rotator.configEncoderCodesPerRev(8192);
     	rotator.setP(Constants.ROTATOR_P);
     	rotator.setI(Constants.ROTATOR_I);
     	rotator.setD(Constants.ROTATOR_D);
     	rotator.setF(Constants.ROTATOR_F);
-    	rotator.changeControlMode(CANTalon.TalonControlMode.Position);
+    	rotator.changeControlMode(CANTalon.TalonControlMode.Position);    	
+    	rotator.setEncPosition(0);
+    	
+    	resetAndEnableGear();
     	
     	// Setup gear manipulation intake feedback and output
-    	sucker.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
-    	sucker.reverseSensor(false);   	
     	sucker.configNominalOutputVoltage(0.0f,  0.0f);
     	sucker.configPeakOutputVoltage(12.0f,  -12.0f);
     	sucker.reverseOutput(false);
-    	sucker.setProfile(0);
-    	sucker.configEncoderCodesPerRev(4096);
-    	sucker.setP(Constants.SUCKER_P);
-    	sucker.setI(Constants.SUCKER_I);
-    	sucker.setD(Constants.SUCKER_D);
-    	sucker.setF(Constants.SUCKER_F);
-    	sucker.changeControlMode(CANTalon.TalonControlMode.Speed);
-    	
-    	resetAndEnableGear();
+    	sucker.changeControlMode(CANTalon.TalonControlMode.Voltage);
     }
     
 	// Put methods for controlling this subsystem
@@ -79,14 +72,12 @@ public class Gear extends Subsystem
     {
     	rotator.reset();
     	rotator.enable();
-    	sucker.reset();
-    	sucker.enable();
     }
     
     /**
 	 * Method to update the encoder PID setpoint for the gear rotator
 	 */
-    public void updateRotatorSetpoint(int encoderValue)
+    public void updateRotatorSetpoint(double encoderValue)
     {
     	rotator.setSetpoint(encoderValue);
     }
@@ -99,17 +90,9 @@ public class Gear extends Subsystem
 	/**
 	 * Method to set the intake speed
 	 */
-	public void setIntake(double speed)
+	public void setIntake(double volts)
 	{
-		sucker.setSetpoint(speed);
-	}
-	
-	/**
-	 * Method to get the intake speed
-	 */
-	public double getIntakeSpeed()
-	{
-		return sucker.getSpeed();
+		sucker.setSetpoint(volts);
 	}
     
 	/**
@@ -163,6 +146,11 @@ public class Gear extends Subsystem
 	public boolean getLock()
 	{
 		return locker.get();
+	}
+	
+	public CANTalon getRotator()
+	{
+		return rotator;
 	}
 	
 	public void initDefaultCommand()
