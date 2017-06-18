@@ -50,6 +50,8 @@ public class ChassisDriveDistance extends Command
 	// Called just before this Command runs the first time
 	protected void initialize()
 	{
+		System.out.println("Drive Straight Init: " + m_Power);
+		
 		// Set the PID up for driving straight
 		Robot.chassis.driveStraightPID(m_Power, m_HighGear);
 
@@ -64,7 +66,8 @@ public class ChassisDriveDistance extends Command
 		// Slow down when reaching the desired position
 		if (Math.abs(m_Distance - Robot.chassis.getEncoderDistance()) < 7.0)
 		{
-			Robot.chassis.updateMagnitude(0.2);
+			System.out.println("Change Magnitude");
+			Robot.chassis.updateMagnitude(-0.2);
 		}
 	}
 

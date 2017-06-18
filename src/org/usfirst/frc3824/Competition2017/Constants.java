@@ -35,7 +35,7 @@ public class Constants
 	// ***************************************************************************************
 	// Chassis turn constants
 
-	public static double TURN_ANGLE_P						=  0.07;
+	public static double TURN_ANGLE_P						=  0.06;
 	public static double TURN_ANGLE_I						=  0.0;
 	public static double TURN_ANGLE_D						=  0.0;
 
@@ -75,7 +75,7 @@ public class Constants
 	public static double SUCKER_SPEED_STATION				= -5.0;
 	
 	public static double UP_ROTATOR_POS						= -0.22;
-	public static double DOWN_ROTATOR_POS					=  0.45;
+	public static double DOWN_ROTATOR_POS					=  0.42;
 	public static double PLACE_ROTATOR_POS					=  0.0;
 	
 	// ***************************************************************************************
@@ -123,17 +123,17 @@ public class Constants
 	
 	// ***************************************************************************************
 	// Camera constants
-	public static int    CAMERA_BRIGHTNESS                  =  38;   // 50
-	public static int 	 CAMERA_EXPOSURE                    =  38;   // 50
+	public static int    CAMERA_BRIGHTNESS                  = 38;   // 50
+	public static int 	 CAMERA_EXPOSURE                    = 38;   // 50
 	
 	// ***************************************************************************************
 	// Gyro constants
-	public static int    DEFAULT_GYRO_CENTER                =  2079600; // 2079480; // 2079000;
+	public static int    DEFAULT_GYRO_CENTER                =  2064144; //220669; // 2063841; // 2079600; // 2079480; // 2079000;
 	
 	// ***************************************************************************************
 	// Gear placing constants
-	public static double LOCK_TO_ROTATE_TIME				=  2.0;
+	public static double LOCK_TO_ROTATE_TIME				=  0.1;
 	public static double UNLOCK_TO_PUSH_TIME                =  4.0;
-	public static double PUSH_TO_ROTATE_BACK_TIME			=  6.0;
-	public static double RESET_TIME                   	    =  8.0;
+	public static double PUSH_TO_ROTATE_BACK_TIME			=  1.25;
+	public static double RESET_TIME                   	    =  1.5;
 }

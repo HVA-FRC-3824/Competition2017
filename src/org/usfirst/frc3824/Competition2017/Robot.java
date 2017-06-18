@@ -111,12 +111,12 @@ public class Robot extends IterativeRobot
         RIOCamera.GetThread().start();
         
         Robot.gear.setLock(false);
-        Robot.gear.setPush(false);
-        
-        SmartDashboard.putNumber("Rotator P", 0);
-        SmartDashboard.putNumber("Rotator I", 0);
-        SmartDashboard.putNumber("Rotator D", 0);
-        SmartDashboard.putNumber("Rotator Setpoint", 0);
+//        Robot.gear.setPush(false);
+//        
+//        SmartDashboard.putNumber("Rotator P", 0);
+//        SmartDashboard.putNumber("Rotator I", 0);
+//        SmartDashboard.putNumber("Rotator D", 0);
+//        SmartDashboard.putNumber("Rotator Setpoint", 0);
 		
 //		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 //
@@ -246,22 +246,22 @@ public class Robot extends IterativeRobot
 		
 		SmartDashboard.putNumber("Rotator Encoder", Robot.gear.getRotatorEncoderValue());
 		
-		SmartDashboard.putNumber("Rotate Output", Robot.gear.getRotator().get());
-		SmartDashboard.putNumber("Rotate Error", Robot.gear.getRotator().getError());
-		SmartDashboard.putNumber("Rotate Voltage", Robot.gear.getRotator().getOutputVoltage());
-		SmartDashboard.putNumber("Rotate Setpoint", Robot.gear.getRotator().getSetpoint());
-		SmartDashboard.putNumber("Rotate P", Robot.gear.getRotator().getP());
-		SmartDashboard.putNumber("Rotate I", Robot.gear.getRotator().getI());
-		SmartDashboard.putNumber("Rotate D", Robot.gear.getRotator().getD());
-		SmartDashboard.putNumber("Rotate PID Get", Robot.gear.getRotator().pidGet());
-		SmartDashboard.putBoolean("Rotate Enabled", Robot.gear.getRotator().isEnabled());
-		SmartDashboard.putNumber("Rotate Control Mode", Robot.gear.getRotator().getControlMode().getValue());
+//		SmartDashboard.putNumber("Rotate Output", Robot.gear.getRotator().get());
+//		SmartDashboard.putNumber("Rotate Error", Robot.gear.getRotator().getError());
+//		SmartDashboard.putNumber("Rotate Voltage", Robot.gear.getRotator().getOutputVoltage());
+//		SmartDashboard.putNumber("Rotate Setpoint", Robot.gear.getRotator().getSetpoint());
+//		SmartDashboard.putNumber("Rotate P", Robot.gear.getRotator().getP());
+//		SmartDashboard.putNumber("Rotate I", Robot.gear.getRotator().getI());
+//		SmartDashboard.putNumber("Rotate D", Robot.gear.getRotator().getD());
+//		SmartDashboard.putNumber("Rotate PID Get", Robot.gear.getRotator().pidGet());
+//		SmartDashboard.putBoolean("Rotate Enabled", Robot.gear.getRotator().isEnabled());
+//		SmartDashboard.putNumber("Rotate Control Mode", Robot.gear.getRotator().getControlMode().getValue());
 		
-		SmartDashboard.putNumber("Position Mode", CANTalon.TalonControlMode.Position.getValue());
-		SmartDashboard.putNumber("Speed Mode", CANTalon.TalonControlMode.Speed.getValue());
-		
-		SmartDashboard.putBoolean("Pusher", Robot.gear.getPush());
-		SmartDashboard.putBoolean("Locker", Robot.gear.getLock());
+//		SmartDashboard.putNumber("Position Mode", CANTalon.TalonControlMode.Position.getValue());
+//		SmartDashboard.putNumber("Speed Mode", CANTalon.TalonControlMode.Speed.getValue());
+//		
+//		SmartDashboard.putBoolean("Pusher", Robot.gear.getPush());
+//		SmartDashboard.putBoolean("Locker", Robot.gear.getLock());
 		
 //		// Update the SmartDashboard data about the image processing
 //        rpi.updateSmartDashboardData();
