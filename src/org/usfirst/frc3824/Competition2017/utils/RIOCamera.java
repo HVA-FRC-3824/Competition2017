@@ -79,6 +79,9 @@ public class RIOCamera
 
 		// Setup the video stream
 		CvSink   cvSink       = CameraServer.getInstance().getVideo();
+		System.out.println("cvSink = " + cvSink);
+		System.out.println("camera server name: " + CameraServer.getInstance().getServer().getName());
+		
 //		CvSource outputStream = CameraServer.getInstance().putVideo("Processed", 640, 480);
 
 		// Setup the HSV minimum/maximum values on the SmartDashboard
@@ -108,7 +111,7 @@ public class RIOCamera
 					isCameraBright = shouldBeBright;
 				}
 				
-				System.out.println("Loop Counter: " + loopcounter);
+				// System.out.println("Loop Counter: " + loopcounter);
 				
 				// Grab a camera frame
 				if (cvSink.grabFrame(source) == 0)
@@ -116,6 +119,7 @@ public class RIOCamera
 					System.out.println("cv failed to get frame");
 					continue;
 				}
+				System.out.print(".");
 
 				if (isCameraBright) 
 				{
