@@ -31,9 +31,9 @@ public class AutoDeliverGear extends CommandGroup
     	
     	// Turn to lift and rotate up while driving back slightly
 		addParallel(new TurnToTarget(), 5.0);
-		addParallel(new PlaceGearPosition(), 1.0);
-		addSequential(new Delay(0.5));
-		addParallel(new ChassisDriveDistance(2.0, 0.2, false), 2.0);
+		addParallel(new DownGearPosition(), 1.0);
+		addSequential(new Delay(0.2));
+		addParallel(new ChassisDriveDistance(20.0, 0.2, false), 2.0);
 		addSequential(new Delay(0.2));
 		
 		// Drive up to lift to place gear

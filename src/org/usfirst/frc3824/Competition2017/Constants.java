@@ -74,9 +74,9 @@ public class Constants
 	public static double SUCKER_SPEED_GROUND				= -12.0;
 	public static double SUCKER_SPEED_STATION				= -5.0;
 	
-	public static double UP_ROTATOR_POS						= -0.22;
-	public static double DOWN_ROTATOR_POS					=  0.42;
-	public static double PLACE_ROTATOR_POS					=  0.0;
+	public static double UP_ROTATOR_POS						=  0.09; // -0.18;
+	public static double PLACE_ROTATOR_POS					=  0.27; //  0.0;
+	public static double DOWN_ROTATOR_POS					=  0.69; //  0.42;
 	
 	// ***************************************************************************************
 	// Ultrasonic constants
