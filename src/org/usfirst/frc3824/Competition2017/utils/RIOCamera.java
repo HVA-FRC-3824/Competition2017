@@ -80,7 +80,7 @@ public class RIOCamera
 		// Setup the video stream
 		CvSink   cvSink       = CameraServer.getInstance().getVideo();
 		System.out.println("cvSink = " + cvSink);
-		System.out.println("camera server name: " + CameraServer.getInstance().getServer().getName());
+		//System.out.println("camera server name: " + CameraServer.getInstance().getServer().getName());
 		
 //		CvSource outputStream = CameraServer.getInstance().putVideo("Processed", 640, 480);
 
