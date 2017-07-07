@@ -29,6 +29,17 @@ public class Constants
 	public static double PLACE_GEAR_AUTO_A					=  6194.3;
 	public static double PLACE_GEAR_AUTO_E					= -1.011;
 	
+	public static double LEFT_STRAIGHT_DISTANCE				=  80.0;
+	public static double LEFT_TURN_ANGLE					=  60.0;
+	
+	public static double RIGHT_STRAIGHT_DISTANCE			=  98.0;
+	public static double RIGHT_TURN_ANGLE					= -60.0;
+	
+	public static double CENTER_STRIGHT_DISTANCE			=  50.0;
+	
+	public static double DRIVE_RANGE_DISTANCE				=  8.0;
+	public static double BACKUP_DISTANCE					=  20.0;
+	
 	public static double PLACE_GEAR_AUTO_CAMERA_CENTER		=  300.0;
 
 
@@ -83,7 +94,7 @@ public class Constants
 	public static double PLACE_ROTATOR_POS					=  0.26; //  0.0;
 	public static double DOWN_ROTATOR_POS					=  0.70; //  0.42;
 	
-	public static double GUIDE_SETPOINT						=  450.0;
+	public static double GUIDE_SETPOINT						=  300.0;
 	
 	// ***************************************************************************************
 	// Ultrasonic constants

@@ -10,6 +10,8 @@
 
 package org.usfirst.frc3824.Competition2017.commands;
 
+import org.usfirst.frc3824.Competition2017.Constants;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -46,32 +48,22 @@ public class AutonomousPlaceGear extends CommandGroup
 		if (GearLocation == "Left")
 		{
 			// Drive and turn towards gear
-			addSequential(new ChassisDriveDistance(80.0, -0.8, false));  // 80
-			addSequential(new ChassisTurnAngle(60.0, 0.0, false));       // 65
+			addSequential(new ChassisDriveDistance(Constants.LEFT_STRAIGHT_DISTANCE, -0.8, false));  // 80
+			addSequential(new ChassisTurnAngle(Constants.LEFT_TURN_ANGLE, 0.0, false));       // 65
 		} 
 		else if (GearLocation == "Center")
 		{
 			// Drive to gear
-			addSequential(new ChassisDriveDistance(40.0, -0.8, false));  // 40 
+			addSequential(new ChassisDriveDistance(Constants.CENTER_STRIGHT_DISTANCE, -0.6, false));  // 40 
 		} 
 		else if (GearLocation == "Right")
 		{
 			// Drive and turn towards gear
-			addSequential(new ChassisDriveDistance(98.0, -0.8, false));  //  80
-			addSequential(new ChassisTurnAngle(-60.0, 0.0, false));      // -60
+			addSequential(new ChassisDriveDistance(Constants.RIGHT_STRAIGHT_DISTANCE, -0.8, false));  //  80
+			addSequential(new ChassisTurnAngle(Constants.RIGHT_TURN_ANGLE, 0.0, false));      // -60
 		}
 
 		// Deliver the gear
-		//addSequential(new AutoDeliverGear());
-		
-		// Move gear onto lift
-		addSequential(new ChassisDriveRange(8.0, -0.3, false));
-		addSequential(new Delay(0.2));
-		
-		// Drop Gear off and Back Up
-		addSequential(new DownGearPosition());
-		addSequential(new Delay(0.2));
-		addSequential(new ChassisDriveDistance(20.0, 0.3, false));
-		addSequential(new PlaceGearPosition());
+		addSequential(new AutoDeliverGear());
 	}
 }

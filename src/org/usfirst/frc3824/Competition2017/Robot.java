@@ -110,7 +110,7 @@ public class Robot extends IterativeRobot
         
         RIOCamera.GetThread().start();
         
-        Robot.gear.setLock(false);
+        Robot.gear.setGrip(true);
 //        Robot.gear.setPush(false);
 //        
 //        SmartDashboard.putNumber("Rotator P", 0);
@@ -118,10 +118,10 @@ public class Robot extends IterativeRobot
 //        SmartDashboard.putNumber("Rotator D", 0);
 //        SmartDashboard.putNumber("Rotator Setpoint", 0);
         
-        SmartDashboard.putNumber("Guide Setpoint", 0);
-		SmartDashboard.putNumber("Guide P", 0);
-		SmartDashboard.putNumber("Guide I", 0);
-		SmartDashboard.putNumber("Guide D", 0);
+//        SmartDashboard.putNumber("Guide Setpoint", 0);
+//		SmartDashboard.putNumber("Guide P", 0);
+//		SmartDashboard.putNumber("Guide I", 0);
+//		SmartDashboard.putNumber("Guide D", 0);
 		
 //		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 //
@@ -169,7 +169,7 @@ public class Robot extends IterativeRobot
 			autonomousCommand = new AutonomousPlaceGear(startPosition);
 			break;
 		case "Gear Simple":
-			autonomousCommand = new AutonomousGearPlaceCenter();
+			autonomousCommand = new AutonomousGearPlaceCenter(startPosition);
 			break;
 		default:
 			autonomousCommand = null;
@@ -251,6 +251,8 @@ public class Robot extends IterativeRobot
 		
 		SmartDashboard.putNumber("Rotator Encoder", Robot.gear.getRotatorEncoderValue());
 		
+		SmartDashboard.putNumber("Guide Encoder", Robot.gear.getGuideEncoderValue());
+		
 //		SmartDashboard.putNumber("Rotate Output", Robot.gear.getRotator().get());
 //		SmartDashboard.putNumber("Rotate Error", Robot.gear.getRotator().getError());
 //		SmartDashboard.putNumber("Rotate Voltage", Robot.gear.getRotator().getOutputVoltage());
@@ -258,7 +260,7 @@ public class Robot extends IterativeRobot
 //		SmartDashboard.putNumber("Guide P", Robot.gear.getGuide().getP());
 //		SmartDashboard.putNumber("Guide I", Robot.gear.getGuide().getI());
 //		SmartDashboard.putNumber("Guide D", Robot.gear.getGuide().getD());
-		SmartDashboard.putNumber("Rotate PID Get", Robot.gear.getRotator().pidGet());
+//		SmartDashboard.putNumber("Rotate PID Get", Robot.gear.getRotator().pidGet());
 //		SmartDashboard.putBoolean("Rotate Enabled", Robot.gear.getRotator().isEnabled());
 //		SmartDashboard.putNumber("Rotate Control Mode", Robot.gear.getRotator().getControlMode().getValue());
 		
