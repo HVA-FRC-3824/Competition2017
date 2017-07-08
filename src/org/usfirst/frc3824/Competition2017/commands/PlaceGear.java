@@ -41,7 +41,7 @@ public class PlaceGear extends Command
     // Called just before this Command runs the first time
     protected void initialize()
     {
-    	Robot.gear.setGrip(false);
+    	Robot.gear.setGrip(true);
     	Robot.gear.setRotator("Down");
     }
 
@@ -61,7 +61,7 @@ public class PlaceGear extends Command
     protected void end()
     {
     	// Return pusher to position and unlock system
-    	Robot.gear.setGrip(true);
+    	Robot.gear.setGrip(false);
     	Robot.gear.setRotator("Place");
     }
 

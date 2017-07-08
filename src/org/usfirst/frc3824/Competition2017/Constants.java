@@ -40,7 +40,7 @@ public class Constants
 	public static double DRIVE_RANGE_DISTANCE				=  8.0;
 	public static double BACKUP_DISTANCE					=  20.0;
 	
-	public static double PLACE_GEAR_AUTO_CAMERA_CENTER		=  300.0;
+	public static double PLACE_GEAR_AUTO_CAMERA_CENTER		=  280.0; // Smaller number = farther right turn
 
 
 	// ***************************************************************************************
@@ -82,8 +82,8 @@ public class Constants
 	public static double ROTATOR_D						    =  0.0;
 	public static double ROTATOR_F						    =  0.0;
 	
-	public static double GUIDE_P						    =  0.15;
-	public static double GUIDE_I						    =  0.0;
+	public static double GUIDE_P						    =  0.1;
+	public static double GUIDE_I						    =  0.001;
 	public static double GUIDE_D						    =  0.0;
 	public static double GUIDE_F						    =  0.0;
 	
@@ -94,7 +94,7 @@ public class Constants
 	public static double PLACE_ROTATOR_POS					=  0.26; //  0.0;
 	public static double DOWN_ROTATOR_POS					=  0.70; //  0.42;
 	
-	public static double GUIDE_SETPOINT						=  300.0;
+	public static double GUIDE_SETPOINT						=  -300.0;
 	
 	// ***************************************************************************************
 	// Ultrasonic constants
@@ -146,7 +146,7 @@ public class Constants
 	
 	// ***************************************************************************************
 	// Gyro constants
-	public static int    DEFAULT_GYRO_CENTER                =  2064144; //220669; // 2063841; // 2079600; // 2079480; // 2079000;
+	public static int    DEFAULT_GYRO_CENTER                =  2064555; //2064144; //220669; // 2063841; // 2079600; // 2079480; // 2079000;
 	
 	// ***************************************************************************************
 	// Gear placing constants

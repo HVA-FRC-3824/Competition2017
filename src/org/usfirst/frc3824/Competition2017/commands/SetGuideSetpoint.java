@@ -38,7 +38,7 @@ public class SetGuideSetpoint extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.gear.getGuide().set(SmartDashboard.getDouble("Guide Setpoint", 0.0));
+    	Robot.gear.getGuide().setSetpoint(SmartDashboard.getDouble("Guide Setpoint", 0.0));
     }
 
     // Called repeatedly when this Command is scheduled to run

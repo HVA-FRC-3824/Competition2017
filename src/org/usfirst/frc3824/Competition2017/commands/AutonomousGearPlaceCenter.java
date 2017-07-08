@@ -68,10 +68,13 @@ public class AutonomousGearPlaceCenter extends CommandGroup
   			
    		// Drop Gear off and Back Up
   		addSequential(new SetGearGripOpen());
+  		addSequential(new DownGearPosition());
     	addSequential(new Delay(0.2));
     	addSequential(new ChassisDriveDistance(Constants.BACKUP_DISTANCE, 0.3, false));
     	addSequential(new Delay(0.2));
     	addSequential(new SetGearGripClosed());
+    	addSequential(new PlaceGearPosition());
+    	
 //		
 //		// Drive back
 //		addSequential(new ChassisDriveDistance(48.0, 0.5, false));

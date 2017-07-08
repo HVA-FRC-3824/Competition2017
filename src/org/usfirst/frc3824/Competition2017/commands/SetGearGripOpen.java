@@ -39,7 +39,7 @@ public class SetGearGripOpen extends Command
     // Called just before this Command runs the first time
     protected void initialize()
     {
-    	Robot.gear.setGrip(false);
+    	Robot.gear.setGrip(true);
     }
 
     // Called repeatedly when this Command is scheduled to run

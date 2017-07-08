@@ -41,7 +41,7 @@ public class Gear extends Subsystem
     	rotator.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
     	rotator.reverseSensor(false);	
     	rotator.configNominalOutputVoltage(0.0f,  0.0f);
-    	rotator.configPeakOutputVoltage(5.0f,  -5.0f);
+    	rotator.configPeakOutputVoltage(4.0f,  -4.0f);
     	rotator.reverseOutput(false);
     	rotator.setProfile(0);
     	rotator.configEncoderCodesPerRev(8192);
@@ -57,7 +57,7 @@ public class Gear extends Subsystem
     	guide.reverseSensor(false);	
     	guide.configNominalOutputVoltage(0.0f,  0.0f);
     	guide.configPeakOutputVoltage(12.0f,    -12.0f);
-    	guide.reverseOutput(false);
+    	guide.reverseOutput(true);
     	guide.setProfile(0);
     	guide.configEncoderCodesPerRev(4096);
     	guide.setP(Constants.GUIDE_P);
@@ -65,6 +65,7 @@ public class Gear extends Subsystem
     	guide.setD(Constants.GUIDE_D);
     	guide.setF(Constants.GUIDE_F);
     	guide.changeControlMode(CANTalon.TalonControlMode.Speed);
+    	guide.setEncPosition(0);
     	
     	resetAndEnableGear();
     	
@@ -121,7 +122,7 @@ public class Gear extends Subsystem
 	 */
 	public void setGuide(double setpoint)
 	{
-		guide.set(setpoint);
+		guide.setSetpoint(setpoint);
 	}
     
 	/**
@@ -143,8 +144,8 @@ public class Gear extends Subsystem
 	
 	/**
 	 * Method to set the gear gripper piston in or out
-	 *    true  - in
-	 *    false - out
+	 *    true  - out
+	 *    false - in
 	 */
 	public void setGrip(boolean in)
 	{

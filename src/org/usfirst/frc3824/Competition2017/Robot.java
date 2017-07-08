@@ -110,7 +110,6 @@ public class Robot extends IterativeRobot
         
         RIOCamera.GetThread().start();
         
-        Robot.gear.setGrip(true);
 //        Robot.gear.setPush(false);
 //        
 //        SmartDashboard.putNumber("Rotator P", 0);
@@ -118,10 +117,10 @@ public class Robot extends IterativeRobot
 //        SmartDashboard.putNumber("Rotator D", 0);
 //        SmartDashboard.putNumber("Rotator Setpoint", 0);
         
-//        SmartDashboard.putNumber("Guide Setpoint", 0);
-//		SmartDashboard.putNumber("Guide P", 0);
-//		SmartDashboard.putNumber("Guide I", 0);
-//		SmartDashboard.putNumber("Guide D", 0);
+        SmartDashboard.putNumber("Guide Setpoint", 0);
+		SmartDashboard.putNumber("Guide P", 0);
+		SmartDashboard.putNumber("Guide I", 0);
+		SmartDashboard.putNumber("Guide D", 0);
 		
 //		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 //
@@ -152,6 +151,8 @@ public class Robot extends IterativeRobot
 
 	public void autonomousInit()
 	{	
+		Robot.gear.setGrip(false);
+		
 		// set camera to be dark for autonomous
     	SmartDashboard.putBoolean("Camera Bright", false);
 
@@ -205,8 +206,10 @@ public class Robot extends IterativeRobot
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 		
+		Robot.gear.setGrip(false);
+		
 		// switch camera back to higher brightness so driver can see
-		SmartDashboard.putBoolean("Camera Bright", true);
+		//SmartDashboard.putBoolean("Camera Bright", true);
 	}
 
 	/**
@@ -250,16 +253,22 @@ public class Robot extends IterativeRobot
 		SmartDashboard.putBoolean("Climber Switch", Robot.climber.getClimberLimitSwitch());
 		
 		SmartDashboard.putNumber("Rotator Encoder", Robot.gear.getRotatorEncoderValue());
-		
-		SmartDashboard.putNumber("Guide Encoder", Robot.gear.getGuideEncoderValue());
-		
+		SmartDashboard.putNumber("Rotate Control Mode", Robot.gear.getRotator().getControlMode().getValue());
+				
 //		SmartDashboard.putNumber("Rotate Output", Robot.gear.getRotator().get());
 //		SmartDashboard.putNumber("Rotate Error", Robot.gear.getRotator().getError());
 //		SmartDashboard.putNumber("Rotate Voltage", Robot.gear.getRotator().getOutputVoltage());
-		SmartDashboard.putNumber("Guide Setpoint", Robot.gear.getGuide().getSetpoint());
-		SmartDashboard.putNumber("Guide P", Robot.gear.getGuide().getP());
-		SmartDashboard.putNumber("Guide I", Robot.gear.getGuide().getI());
-		SmartDashboard.putNumber("Guide D", Robot.gear.getGuide().getD());
+//		SmartDashboard.putNumber("Guide Setpoint", Robot.gear.getGuide().getSetpoint());
+//		SmartDashboard.putNumber("Guide P", Robot.gear.getGuide().getP());
+//		SmartDashboard.putNumber("Guide I", Robot.gear.getGuide().getI());
+//		SmartDashboard.putNumber("Guide D", Robot.gear.getGuide().getD());
+		SmartDashboard.putNumber("Guide Voltage", Robot.gear.getGuide().getOutputVoltage());
+		SmartDashboard.putNumber("Guide Encoder", Robot.gear.getGuideEncoderValue());
+		SmartDashboard.putBoolean("Guide Enabled", Robot.gear.getGuide().isEnabled());
+		SmartDashboard.putNumber("Guide Error", Robot.gear.getGuide().getError());
+		SmartDashboard.putNumber("Guide Control Mode", Robot.gear.getGuide().getControlMode().getValue());
+		SmartDashboard.putNumber("Guide Speed", Robot.gear.getGuide().getSpeed());
+		
 //		SmartDashboard.putNumber("Rotate PID Get", Robot.gear.getRotator().pidGet());
 //		SmartDashboard.putBoolean("Rotate Enabled", Robot.gear.getRotator().isEnabled());
 //		SmartDashboard.putNumber("Rotate Control Mode", Robot.gear.getRotator().getControlMode().getValue());

@@ -101,7 +101,7 @@ public class TurnToTarget extends Command
 		// x - distanceBetweenTargetPixels
 		double x = Math.abs(SmartDashboard.getNumber("Target A X", -1) - SmartDashboard.getNumber("Target B X", -1));
 		
-		double targetOffset = SmartDashboard.getNumber("Target Center", -1) - 320;
+		double targetOffset = SmartDashboard.getNumber("Target Center", -1) - Constants.PLACE_GEAR_AUTO_CAMERA_CENTER;
 		
 		double inchesPerPixel = 6 / x;
 		

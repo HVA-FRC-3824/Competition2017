@@ -102,6 +102,7 @@ public class OI
 
 
         // SmartDashboard Buttons
+        SmartDashboard.putData("TurnToTarget", new TurnToTarget());
         SmartDashboard.putData("Set Gyro Center", new SetGyroCenter());
         SmartDashboard.putData("Recalibrate Gyro", new RecalibrateGyro());
         SmartDashboard.putData("Zero Rotator Enc", new ZeroRotatorEnc());

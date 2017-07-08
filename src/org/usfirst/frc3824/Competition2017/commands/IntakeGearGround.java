@@ -41,7 +41,8 @@ public class IntakeGearGround extends Command
 
     // Called just before this Command runs the first time
     protected void initialize()
-    {    	
+    {   
+    	Robot.gear.setGrip(true);
     	Robot.gear.setRotator("Down");
     	Robot.gear.setIntake(Constants.SUCKER_SPEED_GROUND);
     }
@@ -63,6 +64,7 @@ public class IntakeGearGround extends Command
     {
     	Robot.gear.setIntake(0.0);
     	Robot.gear.setRotator("Place");
+    	Robot.gear.setGrip(false);
     }
 
     // Called when another command which requires one or more of the same

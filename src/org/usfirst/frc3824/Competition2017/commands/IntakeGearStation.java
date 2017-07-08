@@ -45,7 +45,7 @@ public class IntakeGearStation extends Command
     	Robot.gear.setRotator("Up");
     	Robot.gear.setIntake(Constants.SUCKER_SPEED_STATION);
     	Robot.gear.setGuide(Constants.GUIDE_SETPOINT);
-    	Robot.gear.setGrip(false);
+    	Robot.gear.setGrip(true);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -63,7 +63,7 @@ public class IntakeGearStation extends Command
     // Called once after isFinished returns true
     protected void end()
     {
-    	Robot.gear.setGrip(true);
+    	Robot.gear.setGrip(false);
     	Robot.gear.setIntake(0.0);
     	Robot.gear.setGuide(0.0);
     	Robot.gear.setRotator("Place");
