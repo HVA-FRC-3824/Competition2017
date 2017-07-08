@@ -256,10 +256,10 @@ public class Robot extends IterativeRobot
 //		SmartDashboard.putNumber("Rotate Output", Robot.gear.getRotator().get());
 //		SmartDashboard.putNumber("Rotate Error", Robot.gear.getRotator().getError());
 //		SmartDashboard.putNumber("Rotate Voltage", Robot.gear.getRotator().getOutputVoltage());
-//		SmartDashboard.putNumber("Guide Setpoint", Robot.gear.getGuide().getSetpoint());
-//		SmartDashboard.putNumber("Guide P", Robot.gear.getGuide().getP());
-//		SmartDashboard.putNumber("Guide I", Robot.gear.getGuide().getI());
-//		SmartDashboard.putNumber("Guide D", Robot.gear.getGuide().getD());
+		SmartDashboard.putNumber("Guide Setpoint", Robot.gear.getGuide().getSetpoint());
+		SmartDashboard.putNumber("Guide P", Robot.gear.getGuide().getP());
+		SmartDashboard.putNumber("Guide I", Robot.gear.getGuide().getI());
+		SmartDashboard.putNumber("Guide D", Robot.gear.getGuide().getD());
 //		SmartDashboard.putNumber("Rotate PID Get", Robot.gear.getRotator().pidGet());
 //		SmartDashboard.putBoolean("Rotate Enabled", Robot.gear.getRotator().isEnabled());
 //		SmartDashboard.putNumber("Rotate Control Mode", Robot.gear.getRotator().getControlMode().getValue());
