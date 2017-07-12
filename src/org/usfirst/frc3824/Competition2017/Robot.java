@@ -209,7 +209,7 @@ public class Robot extends IterativeRobot
 		Robot.gear.setGrip(false);
 		
 		// switch camera back to higher brightness so driver can see
-		//SmartDashboard.putBoolean("Camera Bright", true);
+		SmartDashboard.putBoolean("Camera Bright", true);
 	}
 
 	/**

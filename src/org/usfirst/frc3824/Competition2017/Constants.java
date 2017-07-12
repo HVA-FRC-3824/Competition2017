@@ -90,9 +90,9 @@ public class Constants
 	public static double SUCKER_SPEED_GROUND				= -12.0;
 	public static double SUCKER_SPEED_STATION				= -5.0;
 	
-	public static double UP_ROTATOR_POS						=  0.06; // -0.18;
-	public static double PLACE_ROTATOR_POS					=  0.26; //  0.0;
-	public static double DOWN_ROTATOR_POS					=  0.70; //  0.42;
+	public static double UP_ROTATOR_POS						=  0.05; // -0.18;
+	public static double PLACE_ROTATOR_POS					=  0.25; //  0.0;
+	public static double DOWN_ROTATOR_POS					=  0.69; //  0.42;
 	
 	public static double GUIDE_SETPOINT						=  -300.0;
 	
