@@ -29,10 +29,10 @@ public class Constants
 	public static double PLACE_GEAR_AUTO_A					=  6194.3;
 	public static double PLACE_GEAR_AUTO_E					= -1.011;
 	
-	public static double LEFT_STRAIGHT_DISTANCE				=  80.0;
+	public static double LEFT_STRAIGHT_DISTANCE				=  86.0;
 	public static double LEFT_TURN_ANGLE					=  60.0;
 	
-	public static double RIGHT_STRAIGHT_DISTANCE			=  98.0;
+	public static double RIGHT_STRAIGHT_DISTANCE			=  104.0;
 	public static double RIGHT_TURN_ANGLE					= -60.0;
 	
 	public static double CENTER_STRIGHT_DISTANCE			=  50.0;
@@ -62,12 +62,12 @@ public class Constants
 	public static int    CLIMBER_BUTTON_FAST                =  15;
 	public static int    CLIMBER_BUTTON_AUTO                =   4;
 	
-	public static double CLIMBER_SPEED_FAST                 = -0.75;
+	public static double CLIMBER_SPEED_FAST                 = -0.90;
 	public static double CLIMBER_SPEED_SLOW                 = -0.45;
 	public static double CLIMBER_SPEED_HOLD                 = -0.0;
 	public static double CLIMBER_SPEED_JOG                  = -0.5;
 	
-	public static double CLIMBER_STOP_CURRENT               =  45.0;
+	public static double CLIMBER_STOP_CURRENT               =  55.0;
 	public static double CLIMBER_JOG_TIME                 	=   0.4;
 	
 	public static double CLIMBER_AFTER_LIMIT_SWITCH_TIME    = 0.25;
@@ -90,7 +90,7 @@ public class Constants
 	public static double SUCKER_SPEED_GROUND				= -12.0;
 	public static double SUCKER_SPEED_STATION				= -5.0;
 	
-	public static double UP_ROTATOR_POS						=  0.05; // -0.18;
+	public static double UP_ROTATOR_POS						=  0.08; // 0.05; // -0.18;
 	public static double PLACE_ROTATOR_POS					=  0.25; //  0.0;
 	public static double DOWN_ROTATOR_POS					=  0.69; //  0.42;
 	
